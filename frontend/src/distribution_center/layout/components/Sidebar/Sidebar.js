@@ -79,10 +79,10 @@ const Sidebar = () => {
                         <ul className={cx('sidebar_list_ul')}>
                             <li>
                                 <div className={cx(donhangClass)} onClick={addDonHangClass}>
-                                    <NavLink to={'/distribution/dashboard'} className={cx('sidebar-item')}>
+                                    <NavLink to={''} className={cx('sidebar-item')}>
                                         {donhangClass === 'donhang-item' ? (
                                             <IoDocumentTextOutline
-                                                style={{ color: 'hsl(187, 85%, 43%)' }}
+                                                style={{ color: 'hsl(199, 100%, 33%)' }}
                                                 className={cx('sidebar-icon')}
                                             />
                                         ) : (
@@ -91,7 +91,7 @@ const Sidebar = () => {
                                         <span className={cx('sidebar_title', 'subclass')}>Đơn hàng</span>
                                         {donhangClass === 'donhang-item' ? (
                                             <TiArrowSortedUp
-                                                style={{ color: 'hsl(187, 85%, 43%)' }}
+                                                style={{ color: 'hsl(199, 100%, 33%)' }}
                                                 className={cx('sidebar-icon-updown')}
                                             />
                                         ) : (
@@ -103,7 +103,7 @@ const Sidebar = () => {
                                         <ul className={cx('sidebar_list_ul')}>
                                             <li className={cx('subtitle1', subTitleClass)}>
                                                 <NavLink
-                                                    to={''}
+                                                    to={'/distribution/createdelivery'}
                                                     className={cx('sidebar-item')}
                                                     onClick={(e) => addSubTitleClass(1, e)}
                                                 >

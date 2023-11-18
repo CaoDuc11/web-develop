@@ -35,7 +35,7 @@
             }
 
             .sidebar_title:active {
-                color: $secondaryColor;
+                color: $primaryColor;
             }
 
             .sidebar-icon {
@@ -77,7 +77,7 @@
     .donhang-item {
         background: $contentColor;
         .subclass {
-            color: $secondaryColor !important;
+            color: $primaryColor !important;
         }
 
         .subtitle1.create-order,
@@ -85,10 +85,10 @@
         .subtitle3.manage-status {
             background-color: rgb(230, 230, 230);
             .sidebar-icon {
-                color: $secondaryColor !important;
+                color: $primaryColor !important;
             }
             .sidebar_title {
-                color: $secondaryColor !important;
+                color: $primaryColor !important;
             }
         }
     }
