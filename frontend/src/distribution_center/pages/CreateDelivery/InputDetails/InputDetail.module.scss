@@ -1,0 +1,56 @@
+@import '../../../../variables';
+.formDetail {
+    width: 100%;
+    padding-right: 2rem;
+    margin-bottom: 2rem;
+
+    .labelDiv {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.6rem;
+        height: 1.9rem;
+
+        label {
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+            color: $primaryColor;
+            font-weight: 500;
+        }
+    }
+
+    .productType {
+        height: 1.9rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 0.6rem;
+        align-items: center;
+        .label-checktype {
+            @extend .inforInputLabel;
+        }
+        .checkbox-type {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            .type-item {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end;
+                margin-left: 2rem;
+                &-checkbox {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+                &-label {
+                    margin-left: 0.5rem;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .inforItem {
+        @include inforItemCss;
+    }
+}

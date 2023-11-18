@@ -4,6 +4,7 @@ import styles from './CreateDelivery.module.scss';
 import classNames from 'classnames/bind';
 import { IoDocumentTextSharp } from 'react-icons/io5';
 import InputInfor from './InputInfor/InputInfor';
+import InputDetail from './InputDetails/InputDetail';
 
 const cx = classNames.bind(styles);
 
@@ -22,7 +23,9 @@ const CreateDelivery = () => {
                         <InputInfor />
                     </div>
 
-                    <div className={cx('itemDetail')}>bbb</div>
+                    <div className={cx('itemDetail')}>
+                        <InputDetail />
+                    </div>
 
                     <div className={cx('deliveryFee')}>ccc</div>
                 </div>
