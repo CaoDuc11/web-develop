@@ -4,11 +4,11 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const InputInfor = () => {
+const InputInfor = ({ text }) => {
     return (
         <div className={cx('formInput')}>
             <div className={cx('objectSender')}>
-                <label for="name">1. Người gửi</label>
+                <label for="name">{text}</label>
                 <input type="text" name="name" id="name" placeholder="Nguyễn Văn A" />
             </div>
 

@@ -5,6 +5,7 @@ import classNames from 'classnames/bind';
 import { IoDocumentTextSharp } from 'react-icons/io5';
 import InputInfor from './InputInfor/InputInfor';
 import InputDetail from './InputDetails/InputDetail';
+import DeliveryFee from './DeliveryFee/DeliveryFee';
 
 const cx = classNames.bind(styles);
 
@@ -19,15 +20,17 @@ const CreateDelivery = () => {
 
                 <div className={cx('mainCreateDelivery')}>
                     <div className={cx('receiverSenderInfor')}>
-                        <InputInfor />
-                        <InputInfor />
+                        <InputInfor text={'1. Người gửi'} />
+                        <InputInfor text={'2. Người nhận'} />
                     </div>
 
                     <div className={cx('itemDetail')}>
                         <InputDetail />
                     </div>
 
-                    <div className={cx('deliveryFee')}>ccc</div>
+                    <div className={cx('deliveryFee')}>
+                        <DeliveryFee />
+                    </div>
                 </div>
             </div>
         </Layout>
