@@ -114,7 +114,7 @@ const Sidebar = () => {
 
                                             <li className={cx('subtitle2', subTitleClass)}>
                                                 <NavLink
-                                                    to={''}
+                                                    to={'/distribution/deliverymanagement'}
                                                     className={cx('sidebar-item')}
                                                     onClick={(e) => addSubTitleClass(2, e)}
                                                 >

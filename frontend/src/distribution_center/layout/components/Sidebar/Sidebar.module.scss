@@ -5,12 +5,13 @@
     height: 100%;
     background: $whiteColor;
     box-shadow: 0px 2px 1px rgb(0 0 0 / 12%);
+    border-right: 1px solid rgb(230, 230, 230);
 
     .sidebar_label {
         display: inline-block;
         margin-top: 0.8rem;
         margin-left: 0.5rem;
-        font-size: 1rem;
+        font-size: 15px;
         font-weight: 500;
         color: $sidebarLabelColor;
     }
@@ -31,7 +32,8 @@
                 height: 1.3rem;
                 margin-left: 1.2rem;
                 color: $textLogo;
-                font-size: 1rem;
+                font-size: 14px;
+                font-weight: 500;
             }
 
             .sidebar_title:active {
