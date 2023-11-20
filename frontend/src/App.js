@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './distribution_center/pages/Dashboard';
 import CreateDelivery from './distribution_center/pages/CreateDelivery';
 import DeliveryManagement from './distribution_center/pages/DeliveryManagement';
+import DeliveryReceipt from './distribution_center/pages/DeliveryManagement/DeliveryReceipt/DeliveryReceipt';
 
 function App() {
     return (

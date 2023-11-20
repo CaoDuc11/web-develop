@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './DeliveryList.module.scss';
 import classNames from 'classnames/bind';
 import { PiPrinterFill } from 'react-icons/pi';
@@ -7,10 +7,27 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import DeliveryItem from './DeliveryItem';
 import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import { useReactToPrint } from 'react-to-print';
+import DeliveryReceipt from '../DeliveryReceipt/DeliveryReceipt';
 
 const cx = classNames.bind(styles);
 
 const DeliveryList = () => {
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+        pageStyle: () => `@media print {
+                           @page {
+                              size: A6 landscape;
+                              margin: 0;
+                            }
+
+                            body {
+                              margin: 1.5cm;
+                            }
+                         }`,
+    });
+
     return (
         <div className={cx('delivery-list')}>
             <div className={cx('search-header')}>
@@ -24,7 +41,10 @@ const DeliveryList = () => {
                     />
                     <AiOutlineSearch className={cx('icon-search')} />
                 </div>
-                <PiPrinterFill className={cx('icon-header')} />
+                <div style={{ display: 'none' }}>
+                    <DeliveryReceipt ref={componentRef} />
+                </div>
+                <PiPrinterFill className={cx('icon-header')} onClick={handlePrint} />
                 <HiDocumentPlus className={cx('icon-header')} />
             </div>
 
