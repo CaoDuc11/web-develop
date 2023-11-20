@@ -11,8 +11,8 @@
             display: flex;
             flex: 1;
             flex-direction: row;
-            align-items: end;
-            justify-content: start;
+            align-items: flex-end;
+            justify-content: flex-start;
             margin-right: 1.6rem;
             .search-input {
                 flex: 1;
@@ -71,7 +71,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: start;
+        justify-content: flex-start;
 
         .select-status {
             width: 9rem;
@@ -186,6 +186,20 @@
             border-radius: 4px;
             font-size: 13.5px;
             cursor: pointer;
+        }
+
+        .icon-delete {
+            margin-left: 0.5rem;
+            width: 1.4rem;
+            height: 1.4rem;
+            color: $primaryColor;
+            &:hover {
+                color: red;
+            }
+
+            &:active {
+                color: chartreuse;
+            }
         }
     }
 }

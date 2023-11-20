@@ -6,6 +6,7 @@ import { BsPersonCheck } from 'react-icons/bs';
 import { BiCalendar } from 'react-icons/bi';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 import { PiPhoneCall } from 'react-icons/pi';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const cx = classNames.bind(styles);
 
@@ -41,6 +42,7 @@ const DeliveryItem = () => {
             <div className={cx('delivery-status')}>
                 <button className={cx('btn-status')}>Gửi đơn</button>
                 <button className={cx('btn-cancel')}>Hủy đơn</button>
+                <RiDeleteBin6Line className={cx('icon-delete')} />
             </div>
         </div>
     );

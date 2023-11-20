@@ -47,8 +47,6 @@ const DeliveryList = () => {
                 <DeliveryItem />
                 <DeliveryItem />
                 <DeliveryItem />
-                <DeliveryItem />
-                <DeliveryItem />
             </div>
         </div>
     );
