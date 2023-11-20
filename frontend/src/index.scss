@@ -8,6 +8,7 @@
 }
 
 body {
+    height: 100%;
     scroll-behavior: smooth;
 }
 
@@ -29,7 +30,7 @@ li {
 }
 
 .icon {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     cursor: pointer;
     color: $whiteColor;
     font-weight: 500;
@@ -58,7 +59,7 @@ li {
     align-items: center;
 
     .title {
-        font-size: 1rem;
+        font-size: 14px;
         font-weight: 500;
         color: $whiteColor;
     }

@@ -1,0 +1,42 @@
+@import '../../../variables';
+.sectionCreateDelivery {
+    width: 100%;
+    height: 100vh;
+    background: $whiteColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2rem 1.5rem;
+
+    .header-label {
+        .header-icon {
+            color: $primaryColor;
+        }
+
+        .header-title {
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+            color: $primaryColor;
+            font-weight: 500;
+        }
+    }
+
+    .mainCreateDelivery {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        .receiverSenderInfor {
+            flex: 1;
+        }
+
+        .itemDetail {
+            flex: 1;
+        }
+
+        .deliveryFee {
+            flex: 1;
+        }
+    }
+}
