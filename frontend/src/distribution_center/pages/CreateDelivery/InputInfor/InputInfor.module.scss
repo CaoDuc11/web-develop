@@ -1,0 +1,27 @@
+@import '../../../../variables';
+
+.formInput {
+    width: 100%;
+    padding-right: 2rem;
+    margin-bottom: 2rem;
+    .objectSender {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.6rem;
+
+        label {
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+            color: $primaryColor;
+            font-weight: 500;
+        }
+
+        @include inputCss;
+    }
+
+    .inforItem {
+        @include inforItemCss;
+    }
+}

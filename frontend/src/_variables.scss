@@ -10,7 +10,57 @@ $inputColor: rgb(239, 239, 239);
 $bodyColor: rgb(240, 240, 246);
 $cardBG: rgb(225, 225, 235);
 $textLogo: rgb(20, 5, 73);
-
+$contentColor: rgb(245, 245, 245);
+$sidebarLabelColor: rgba(64, 64, 64, 0.5);
 $header-height: 3rem;
+$sidebar-width: 15rem;
+$borderInputColor: rgba(64, 64, 64, 0.5);
+
+@mixin inputCss {
+    input {
+        height: 1.9rem;
+        width: 13rem;
+        font-size: 14px;
+        font-weight: 400;
+        padding-left: 0.5rem;
+        border: 1px solid rgb(190, 190, 190);
+        border-radius: 2px;
+    }
+
+    input::placeholder {
+        font-size: 14px;
+        color: rgb(190, 190, 190);
+    }
+
+    input:focus {
+        outline: none;
+        border-color: $primaryColor !important;
+        box-shadow: 0 0 8px rgba(80, 225, 240, 0.5);
+    }
+}
+
+.inforInputLabel {
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+    font-weight: 400;
+}
+
+.formInforCss {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+}
+
+@mixin inforItemCss {
+    @extend .formInforCss;
+
+    label {
+        @extend .inforInputLabel;
+    }
+
+    @include inputCss;
+}
 
 $fontSizeTextLogo: 1.8rem;
