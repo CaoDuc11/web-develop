@@ -139,7 +139,7 @@ const Sidebar = () => {
                             </li>
 
                             <li>
-                                <NavLink to={'/distribution/dashboard'} className={cx('sidebar-item')}>
+                                <NavLink to={'/distribution/receivedgoods'} className={cx('sidebar-item')}>
                                     <MdShoppingCart className={cx('sidebar-icon')} />
                                     <span className={cx('sidebar_title')}>Hàng nhận</span>
                                 </NavLink>
