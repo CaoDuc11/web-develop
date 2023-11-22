@@ -6,6 +6,7 @@ import { MdShoppingCart, MdOutlineShoppingCart } from 'react-icons/md';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { TiArrowSortedUp } from 'react-icons/ti';
+import { GrUserManager } from 'react-icons/gr';
 import {
     IoHome,
     IoStatsChart,
@@ -18,8 +19,6 @@ import {
 const cx = classNames.bind(styles);
 
 const Sidebar = () => {
-    
-
     return (
         <section className={cx('sidebarSection')}>
             <div className={cx('sideBar')}>
@@ -42,8 +41,8 @@ const Sidebar = () => {
                             </li>
 
                             <li>
-                                <NavLink to={'/warehouse/dashboard'} className={cx('sidebar-item')}>
-                                    <IoStatsChart className={cx('sidebar-icon')} />
+                                <NavLink to={'/warehouse/managestaff'} className={cx('sidebar-item')}>
+                                    <GrUserManager className={cx('sidebar-icon')} />
                                     <span className={cx('sidebar_title')}>Quản lý nhân viên</span>
                                 </NavLink>
                             </li>
@@ -51,11 +50,8 @@ const Sidebar = () => {
                     </div>
                 </div>
             </div>
-
         </section>
-        
-    )
-
+    );
 };
 
-export default Sidebar
+export default Sidebar;
