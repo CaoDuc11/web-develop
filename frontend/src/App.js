@@ -12,7 +12,7 @@ function App() {
                     <Route path="/distribution/dashboard" element={<Dashboard />} />
                     <Route path="/distribution/createdelivery" element={<CreateDelivery />} />
                     <Route path="/distribution/deliverymanagement" element={<DeliveryManagement />} />
-                    <Route path="/warehouse/dashboard" element={<Warehouse />} />
+                    <Route path="/warehouse/dashboard" element={<Warehouse/>} />
                 </Routes>
             </BrowserRouter>
         </div>
