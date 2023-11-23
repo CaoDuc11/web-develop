@@ -1,0 +1,148 @@
+@import '../../../../variables';
+.received-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .search-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        .select-container {
+            .select-filter {
+                display: flex;
+                flex-direction: row;
+                padding-left: 0.5rem;
+                font-size: 14px;
+                font-weight: 500;
+                height: 1.8rem;
+                border: 1px solid $greyText !important;
+                justify-content: center;
+                background: $contentColor;
+                align-items: center;
+                border-top-left-radius: 2px;
+                border-bottom-left-radius: 2px;
+
+                &::placeholder {
+                    font-size: 14px;
+                }
+
+                &:focus {
+                    border: 1px solid $primaryColor;
+                    outline: none;
+                }
+
+                option {
+                    font-size: 14px;
+                    border-radius: 0;
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+
+        .search {
+            .search-input {
+                width: 25rem;
+                height: 1.8rem;
+                font-size: 14px;
+                padding-left: 0.5rem;
+                border: 1px solid $greyText;
+
+                &:focus {
+                    outline: none;
+                    border-color: $primaryColor !important;
+                }
+
+                &::placeholder {
+                    font-size: 14px;
+                    color: rgb(190, 190, 190);
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    .handle-button {
+        margin-top: 0.8rem;
+        padding: 0.5rem 0.6rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        .button-green {
+            margin-right: 0.5rem;
+            padding: 0.25rem 0.25rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background: rgb(10, 130, 60);
+            border-radius: 2px;
+            .icon {
+                height: 1.4rem;
+                color: $whiteColor;
+                margin-right: 0.5rem;
+            }
+            span {
+                font-size: 13px;
+                font-weight: 500;
+                color: $whiteColor;
+            }
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .button-red {
+            margin-right: 0.5rem;
+            padding: 0.25rem 0.25rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background: rgb(222, 46, 46);
+            border-radius: 2px;
+            .icon {
+                height: 1.3rem;
+                color: $whiteColor;
+                margin-right: 0.5rem;
+            }
+            span {
+                font-size: 12px;
+                font-weight: 500;
+                color: $whiteColor;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .button-pink {
+            margin-right: 0.5rem;
+            padding: 0.2rem 0.25rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background: rgba(230, 230, 230, 0.847);
+            border-radius: 2px;
+            .icon {
+                height: 1.3rem;
+                color: rgb(222, 46, 46);
+                margin-right: 0.5rem;
+            }
+            span {
+                font-size: 12px;
+                font-weight: 500;
+                color: $greyText;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
