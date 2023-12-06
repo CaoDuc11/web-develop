@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '~/distribution_center/layout';
 
-const Dashboard = () => {
+const DashboardDDD = () => {
     return (
         <Layout>
             <div>Home</div>
@@ -9,4 +9,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default DashboardDDD;

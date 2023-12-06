@@ -1,0 +1,66 @@
+@import '../../../../variables';
+
+.btn {
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 2px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+.received-table {
+    .table-list {
+        border-collapse: collapse;
+        width: 100%;
+        border-left: 1px solid $greyText;
+        border-right: 1px solid $greyText;
+        .header-table {
+            background: rgb(227, 227, 227);
+            th {
+                text-align: start;
+                padding: 0.5rem 0.5rem;
+                font-size: 13px;
+            }
+        }
+        .body-table {
+            background: $whiteColor;
+            th {
+                text-align: start;
+                padding: 0.5rem 0.5rem;
+                font-size: 13px;
+                font-weight: 400;
+                border-bottom: 1px solid $greyText;
+
+                .btn-options {
+                    display: flex;
+                    flex-direction: row;
+                    align-self: center;
+                    justify-content: center;
+
+                    .edit-btn {
+                        margin-right: 0.5rem;
+                        @extend .btn;
+                        background: $secondaryColor;
+
+                        &:hover {
+                            background: $primaryColor;
+                        }
+                    }
+
+                    .delete-btn {
+                        @extend .btn;
+                        background: red;
+
+                        &:hover {
+                            background: $deleteColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
