@@ -7,6 +7,8 @@ import Warehouse from './warehouse/pages/Dashboard';
 import Add from './warehouse/pages/ManageStaff/Add/Add';
 import ManageStaff from './warehouse/pages/ManageStaff/ManageStaff';
 import ChangeInfor from './warehouse/pages/ManageStaff/ChangeInfor/ChangeInfor';
+import StatisticWarehouse from './warehouse/pages/StatisticWarehouse/StatisticWarehouse';
+
 
 function App() {
     return (
@@ -20,6 +22,7 @@ function App() {
                     <Route path="/warehouse/managestaff" element={<ManageStaff/>} />
                     <Route path="/warehouse/managestaff/add" element={<Add/>} />
                     <Route path="/warehouse/managestaff/changeInfor" element={<ChangeInfor/>} />
+                    <Route path="/warehouse/statistic" element={<StatisticWarehouse/>} />
                 </Routes>
             </BrowserRouter>
         </div>
