@@ -1,0 +1,95 @@
+@import '../../variables';
+
+.loginSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .login-background {
+        flex: 2;
+        img {
+            width: 100%;
+            height: 100vh;
+        }
+    }
+    .login-container {
+        background-color: azure;
+        flex: 1;
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .login-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 3rem;
+                height: 3rem;
+            }
+
+            .title {
+                margin-left: 0.5rem;
+                font-size: 25px;
+            }
+        }
+
+        .login-body {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            .field {
+                margin-bottom: 2rem;
+                width: 100%;
+                margin-top: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                .label {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    span {
+                        margin-left: 0.5rem;
+                        font-size: 0.8rem;
+                        font-weight: 500;
+                        color: $textColor;
+                    }
+                }
+
+                .control {
+                    margin-top: 0.5rem;
+                    @include inputCss;
+                    input {
+                        width: 20rem;
+                        height: 2.2rem;
+                    }
+                }
+            }
+
+            .btn-login {
+                width: 100%;
+                height: 2.2rem;
+                background: $secondaryColor;
+                color: white;
+                font-size: 14px;
+                font-weight: 500;
+                border: 0 solid white;
+                border-radius: 2px;
+
+                &:hover {
+                    background-color: $primaryColor;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -11,12 +11,15 @@ import Warehouse from './warehouse/pages/Dashboard';
 
 import Dashboard from './distribution_admin/pages/Dashboard';
 import Employees from './distribution_admin/pages/Employees';
+import Login from './all/Login';
 
 function App() {
     return (
         <div>
             <BrowserRouter>
                 <Routes>
+                    <Route path="/" element={<Login />} />
+
                     <Route path="/distribution/dashboard" element={<DashboardDDD />} />
                     <Route path="/distribution/createdelivery" element={<CreateDelivery />} />
                     <Route path="/distribution/deliverymanagement" element={<DeliveryManagement />} />
