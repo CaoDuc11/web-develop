@@ -13,20 +13,16 @@ const Login = async (req, res) => {
     });
     return res.status(400).json({ msg: errorsInfor });
   }
-
-  console.log(req.body);
   const existUser = await User.findOne({
     where: {
       email: req.body.email,
     },
   });
-  console.log(existUser);
   if (!existUser) {
     return res.status(400).json({ msg: "Không tồn tại tài khoản" });
   }
   const match = await bcrypt.compare(req.body.password, existUser.password);
   if (!match) {
-    console.log("abcfsfs");
     return res.status(400).json({ msg: "Mật khẩu đăng nhập sai" });
   }
   const token = jwt.sign(
@@ -34,11 +30,18 @@ const Login = async (req, res) => {
       id: existUser.id,
       email: existUser.email,
       position: existUser.position,
+      workplace: existUser.workplace,
     },
     "jwt12345678",
-    { expiresIn: "5h" }
+    { expiresIn: 5 * 3600 * 1000 }
   );
-  res.cookie("access_token", token, { httpOnly: true });
+  const options = {
+    maxAge: 5 * 1000 * 3600,
+    expires: new Date(Date.now() + 5 * 1000 * 3600),
+    httpOnly: true,
+    secure: true,
+  };
+  res.cookie("access_token", token, options);
   const email = existUser.email;
   const id = existUser.id;
   const username = existUser.username;

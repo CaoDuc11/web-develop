@@ -3,21 +3,23 @@ import axios from 'axios';
 import API from '../config/API';
 
 const initialState = {
-    cookies: null,
-    user: null,
     isError: false,
+    message: '',
     isSuccess: false,
     isLoading: false,
-    message: '',
+    usersList: [],
 };
 
-export const LoginUser = createAsyncThunk('user/LoginUser', async (user, thunkAPI) => {
+export const CreateEmployee = createAsyncThunk('admin/distribution/create', async (inforEmployee, thunkAPI) => {
     try {
         const response = await axios.post(
-            API.HTTP_API + '/login',
+            API.HTTP_API + '/admin/distribution/create',
             {
-                email: user.email,
-                password: user.password,
+                fullname: inforEmployee.fullname,
+                email: inforEmployee.email,
+                username: inforEmployee.username,
+                password: inforEmployee.password,
+                password_confirm: inforEmployee.password_confirm,
             },
             { withCredentials: true },
         );
@@ -30,28 +32,24 @@ export const LoginUser = createAsyncThunk('user/LoginUser', async (user, thunkAP
     }
 });
 
-export const authSlice = createSlice({
-    name: 'auth',
+export const adminDistributionSlice = createSlice({
+    name: 'adminDistribution',
     initialState,
-    reducers: {
-        reset: (state) => initialState,
-    },
+    reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(LoginUser.pending, (state) => {
+        builder.addCase(CreateEmployee.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(LoginUser.fulfilled, (state, action) => {
+        builder.addCase(CreateEmployee.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.user = action.payload;
         });
-        builder.addCase(LoginUser.rejected, (state, action) => {
+        builder.addCase(CreateEmployee.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         });
     },
 });
-
-export const { reset } = authSlice.actions;
-export default authSlice.reducer;
+export default adminDistributionSlice.reducer;

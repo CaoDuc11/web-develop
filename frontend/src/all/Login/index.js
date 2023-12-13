@@ -21,7 +21,7 @@ const Login = () => {
     useEffect(() => {
         if (user || isSuccess) {
             setCookie('access_token', user.token, { path: '/' });
-            if (user.position === 'admin1') {
+            if (user.position === 'admin_distribution') {
                 navigate('/admin/distribution/dashboard');
             }
         }
