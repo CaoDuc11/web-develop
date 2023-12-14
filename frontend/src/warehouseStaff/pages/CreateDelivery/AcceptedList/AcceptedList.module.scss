@@ -1,5 +1,6 @@
-@import '../../../variables';
-.received-table {
+@import '../../../../variables';
+
+.accepted-table {
     .table-list {
         border-collapse: collapse;
         width: 100%;
@@ -24,13 +25,4 @@
             }
         }
     }
-}
-
-.nav-icon {
-    margin-top: 30px;
-    cursor: pointer;
-}
-
-.received-table {
-    margin-top: 15px;
 }

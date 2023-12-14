@@ -1,0 +1,59 @@
+@import '../../../../variables';
+
+.search-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    .select-container {
+        .select-filter {
+            display: flex;
+            flex-direction: row;
+            padding-left: 0.5rem;
+            font-size: 14px;
+            font-weight: 500;
+            height: 1.8rem;
+            border: 1px solid $greyText !important;
+            justify-content: center;
+            background: $contentColor;
+            align-items: center;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+
+            &::placeholder {
+                font-size: 14px;
+            }
+
+            &:focus {
+                border: 1px solid $primaryColor;
+                outline: none;
+            }
+
+            option {
+                font-size: 14px;
+                border-radius: 0;
+                margin-left: 0.5rem;
+            }
+        }
+    }
+    .search {
+        .search-input {
+            width: 25rem;
+            height: 1.8rem;
+            font-size: 14px;
+            padding-left: 0.5rem;
+            border: 1px solid $greyText;
+
+            &:focus {
+                outline: none;
+                border-color: $primaryColor !important;
+            }
+
+            &::placeholder {
+                font-size: 14px;
+                color: rgb(190, 190, 190);
+                font-weight: 500;
+            }
+        }
+    }
+}

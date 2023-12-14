@@ -12,7 +12,7 @@ const ManageStaff = () => {
         <Layout>
             <div id="StaffList">Danh sách nhân viên</div>
 
-            <NavLink
+            <NavLink className={cx('nav-icon')}
                 to={'/warehouse/managestaff/add'}
                 style={{
                     background: 'rgb(51,255,51)',
@@ -21,7 +21,7 @@ const ManageStaff = () => {
                     fontWeight: '500',
                     padding: '0.5rem 0.5rem',
                     border: 'none',
-                    borderRadius: '2px',
+                    borderRadius: '10px',
                 }}
             >
                 Thêm mới

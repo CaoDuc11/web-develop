@@ -14,6 +14,9 @@ import Warehouse from './warehouse/pages/Dashboard';
 
 import Dashboard from './distribution_admin/pages/Dashboard';
 import Employees from './distribution_admin/pages/Employees';
+import WarehouseStaff from './warehouseStaff/pages/Dashboard';
+import AcceptDelivery from './warehouseStaff/pages/AcceptDelivery';
+import CreateDeliveryW from './warehouseStaff/pages/CreateDelivery';
 
 function App() {
     return (
@@ -29,12 +32,16 @@ function App() {
                     <Route path="/warehouse/managestaff/add" element={<Add/>} />
                     <Route path="/warehouse/managestaff/changeInfor" element={<ChangeInfor/>} />
                     <Route path="/warehouse/statistic" element={<StatisticWarehouse/>} />
-                    
+
                     <Route path="/distribution/receivedgoods" element={<ReceivedGoods />} />
 
                     <Route path="/admin/distribution/dashboard" element={<Dashboard />} />
                     <Route path="/admin/distribution/employees" element={<Employees />} />
 
+                    <Route path="/warehouse/staff/dashboard" element={<WarehouseStaff />}/>
+                    <Route path="/warehouse/staff/acceptDelivery" element={<AcceptDelivery />}/>
+                    <Route path="/warehouse/staff/createDelivery" element={<CreateDeliveryW />}/>
+                    
                 </Routes>
             </BrowserRouter>
         </div>
