@@ -17,12 +17,16 @@ import Employees from './distribution_admin/pages/Employees';
 import WarehouseStaff from './warehouseStaff/pages/Dashboard';
 import AcceptDelivery from './warehouseStaff/pages/AcceptDelivery';
 import CreateDeliveryW from './warehouseStaff/pages/CreateDelivery';
+import Login from './all/Login';
+
 
 function App() {
     return (
         <div>
             <BrowserRouter>
                 <Routes>
+                    <Route path="/" element={<Login />} />
+
                     <Route path="/distribution/dashboard" element={<DashboardDDD />} />
                     <Route path="/distribution/createdelivery" element={<CreateDelivery />} />
                     <Route path="/distribution/deliverymanagement" element={<DeliveryManagement />} />
