@@ -86,8 +86,41 @@ const DeleteEmployee = async (req, res) => {
   }
 };
 
+const UpdateEmpolyee = async (req, res) => {
+  try {
+    const employee = await User.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!employee) {
+      return res.status(404).json({ msg: "Nhân viên không tồn tại" });
+    }
+    if (req.body.password !== req.body.password_confirm) {
+      return res.status(400).json({ msg: "Xác nhận lại mật khẩu" });
+    }
+    const hashPassword = await bcrypt.hash(req.body.password, 10);
+    await User.update(
+      {
+        email: req.body.email,
+        username: req.body.username,
+        password: hashPassword,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    return res.status(200).json({ msg: "Update người dùng thành công!" });
+  } catch (error) {
+    return res.status(400).json({ msg: error.message });
+  }
+};
+
 module.exports = {
   CreateEmployee,
   GetEmployees,
   DeleteEmployee,
+  UpdateEmpolyee,
 };

@@ -16,14 +16,16 @@
             flex-direction: column;
             &_title1 {
                 font-size: 1.5rem;
+                font-weight: 500;
             }
 
             .add-employee {
+                width: 8rem;
                 margin: 0.5rem 0;
                 color: white;
                 font-size: 14px;
                 font-weight: 500;
-                padding: 0.5rem 0.5rem;
+                padding: 0.5rem;
                 border: none;
                 border-radius: 2px;
                 background: $secondaryColor;

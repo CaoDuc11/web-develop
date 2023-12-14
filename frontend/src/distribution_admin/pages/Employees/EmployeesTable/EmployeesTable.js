@@ -3,10 +3,16 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const EmployeesTable = ({ employeesList, handleDeleteEmployee }) => {
+const EmployeesTable = ({ employeesList, handleDeleteEmployee, onClickEdit, onClickGetInfor }) => {
     const onClickDeleteEmployee = (item) => {
         handleDeleteEmployee(item);
     };
+
+    const onClickEditButton = (item) => {
+        onClickGetInfor(item);
+        onClickEdit();
+    };
+
     return (
         <div className={cx('received-table')}>
             <table className={cx('table-list')}>
@@ -31,7 +37,9 @@ const EmployeesTable = ({ employeesList, handleDeleteEmployee }) => {
                             <th>0987898768</th>
                             <th style={{ textAlign: 'center' }}>
                                 <div className={cx('btn-options')}>
-                                    <button className={cx('edit-btn')}>Sửa</button>
+                                    <button className={cx('edit-btn')} onClick={() => onClickEditButton(item)}>
+                                        Sửa
+                                    </button>
                                     <button className={cx('delete-btn')} onClick={() => onClickDeleteEmployee(item)}>
                                         Xóa
                                     </button>

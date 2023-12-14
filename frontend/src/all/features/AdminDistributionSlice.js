@@ -9,6 +9,7 @@ const initialState = {
     isSuccess: false,
     isLoading: false,
     usersList: [],
+    employeeEdit: {},
 };
 
 export const CreateEmployee = createAsyncThunk('admin/distribution/create', async (inforEmployee, thunkAPI) => {
@@ -59,6 +60,29 @@ export const DeletedEmployees = createAsyncThunk('admin/distribution/delete', as
     }
 });
 
+export const UpdateEmployee = createAsyncThunk('admin/distribution/update', async (user, thunkAPI) => {
+    try {
+        const response = await axios.put(
+            API.HTTP_API + '/admin/distribution/employees/' + user.id,
+            {
+                username: user.usernameEdit,
+                email: user.emailEdit,
+                password: user.password,
+                password_confirm: user.password_confirm,
+            },
+            {
+                withCredentials: true,
+            },
+        );
+        return response.data;
+    } catch (error) {
+        if (error.response) {
+            const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+});
+
 export const adminDistributionSlice = createSlice({
     name: 'adminDistribution',
     initialState,
@@ -89,7 +113,7 @@ export const adminDistributionSlice = createSlice({
         deleteEmployee: {
             reducer(state, action) {
                 const { username } = action.payload;
-                console.log(username);
+
                 state.usersList = state.usersList.filter((item) => item.username !== username);
             },
 
@@ -97,6 +121,43 @@ export const adminDistributionSlice = createSlice({
                 return {
                     payload: {
                         fullname,
+                        username,
+                        email,
+                    },
+                };
+            },
+        },
+
+        setEmployeeEdit: {
+            reducer(state, action) {
+                const { id, fullname, username, email } = action.payload;
+                state.employeeEdit = { id, fullname, username, email };
+            },
+
+            prepare(id, fullname, username, email) {
+                return {
+                    payload: {
+                        id,
+                        fullname,
+                        username,
+                        email,
+                    },
+                };
+            },
+        },
+
+        updateEmployee: {
+            reducer(state, action) {
+                const { id, username, email } = action.payload;
+                let employee = state.usersList.find((item) => item.id === id);
+                employee.username = username;
+                employee.email = email;
+            },
+
+            prepare(id, username, email) {
+                return {
+                    payload: {
+                        id,
                         username,
                         email,
                     },
@@ -135,5 +196,5 @@ export const adminDistributionSlice = createSlice({
         // });
     },
 });
-export const { reset, addEmployee, deleteEmployee } = adminDistributionSlice.actions;
+export const { reset, addEmployee, deleteEmployee, setEmployeeEdit, updateEmployee } = adminDistributionSlice.actions;
 export default adminDistributionSlice.reducer;

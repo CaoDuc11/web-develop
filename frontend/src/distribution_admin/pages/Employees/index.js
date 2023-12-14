@@ -11,14 +11,18 @@ import {
     CreateEmployee,
     DeletedEmployees,
     deleteEmployee,
+    setEmployeeEdit,
+    UpdateEmployee,
+    updateEmployee,
 } from '~/all/features/AdminDistributionSlice';
+import ModalEditEmployee from './ModalEditEmployee/ModalEditEmployee';
 
 const cx = classNames.bind(styles);
 
 const Employees = () => {
     const dispatch = useDispatch();
     const [employeesList, setEmployees] = useState([]);
-    const { usersList } = useSelector((state) => state.adminDistribution);
+    const { usersList, employeeEdit } = useSelector((state) => state.adminDistribution);
 
     useEffect(() => {
         if (usersList.length === 0) {
@@ -28,9 +32,10 @@ const Employees = () => {
         }
     }, [dispatch, usersList]);
 
-    const [displayModal, setDisplayModale] = useState('none');
+    //Modal Thêm Nhân Viên
+    const [displayModalAdd, setDisplayModale] = useState('none');
     const onClickHandleDisplayModal = () => {
-        if (displayModal === 'flex') {
+        if (displayModalAdd === 'flex') {
             setDisplayModale('none');
         } else {
             setDisplayModale('flex');
@@ -43,6 +48,26 @@ const Employees = () => {
         dispatch(addEmployee(fullname, username, email));
     };
 
+    //Chỉnh Sửa Thông Tin Nhân Viên
+    const [displayModalEdit, setDisplayModaleEdit] = useState('none');
+    const onClickHandleDisplayModalEdit = () => {
+        if (displayModalEdit === 'flex') {
+            setDisplayModaleEdit('none');
+        } else {
+            setDisplayModaleEdit('flex');
+        }
+    };
+    const GetInforEmployee = (user) => {
+        const { id, fullname, username, email } = user;
+        dispatch(setEmployeeEdit(id, fullname, username, email));
+    };
+    const handleUpdate = (data) => {
+        const { id, emailEdit, usernameEdit, password, password_confirm } = data;
+        dispatch(UpdateEmployee({ id, emailEdit, usernameEdit, password, password_confirm }));
+        dispatch(updateEmployee(id, usernameEdit, emailEdit));
+    };
+
+    //Xóa Nhân Viên
     const handleDeleteEmployee = (user) => {
         dispatch(DeletedEmployees(user));
         const { fullname, username, email } = user;
@@ -54,22 +79,34 @@ const Employees = () => {
             <Layout>
                 <div className={cx('sectionEmployees')}>
                     <div className={cx('header-employees')}>
-                        <h2 className={cx('header-employees_title1')}>Nhân viên</h2>
+                        <span className={cx('header-employees_title1')}>Nhân viên</span>
                         <button className={cx('add-employee')} onClick={onClickHandleDisplayModal}>
                             Thêm mới
                         </button>
                         <span className={cx('header-employees_title2')}>Danh sách nhân viên</span>
                     </div>
                     <div className={cx('employees-table')}>
-                        <EmployeesTable employeesList={employeesList} handleDeleteEmployee={handleDeleteEmployee} />
+                        <EmployeesTable
+                            employeesList={employeesList}
+                            handleDeleteEmployee={handleDeleteEmployee}
+                            onClickEdit={onClickHandleDisplayModalEdit}
+                            onClickGetInfor={GetInforEmployee}
+                        />
                     </div>
                 </div>
             </Layout>
             <ModalAddEmployee
-                displayModal={displayModal}
+                displayModal={displayModalAdd}
                 onClickHandle={onClickHandleDisplayModal}
                 onSubmit={handleFormSubmit}
                 className={cx('modal-add-employee')}
+            />
+
+            <ModalEditEmployee
+                displayModalEdit={displayModalEdit}
+                // className={cx('modal-add-employee')}
+                onClickHandle={onClickHandleDisplayModalEdit}
+                onSubmit={handleUpdate}
             />
         </div>
     );

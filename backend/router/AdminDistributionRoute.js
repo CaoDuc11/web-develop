@@ -3,6 +3,7 @@ const {
   CreateEmployee,
   GetEmployees,
   DeleteEmployee,
+  UpdateEmpolyee,
 } = require("../controller/admin_distribution/AdminDistributionController");
 const checkInput = require("../middleware/Validator");
 const {
@@ -32,6 +33,13 @@ AdminDistributionRouter.delete(
   authenticationUser,
   checkAdminDistribution,
   DeleteEmployee
+);
+
+AdminDistributionRouter.put(
+  "/admin/distribution/employees/:id",
+  authenticationUser,
+  checkAdminDistribution,
+  UpdateEmpolyee
 );
 
 module.exports = AdminDistributionRouter;
