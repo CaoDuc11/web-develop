@@ -16,6 +16,7 @@ const authenticationUser = async (req, res, next) => {
   return next();
 };
 
+//Kiểm tra tài khoản của quản lí điểm giao dịch
 const checkAdminDistribution = async (req, res, next) => {
   if (req.Position == "admin_distribution") {
     return next();

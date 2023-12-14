@@ -1,5 +1,9 @@
 const express = require("express");
-const CreateEmployee = require("../controller/admin_distribution/AdminDistributionController");
+const {
+  CreateEmployee,
+  GetEmployees,
+  DeleteEmployee,
+} = require("../controller/admin_distribution/AdminDistributionController");
 const checkInput = require("../middleware/Validator");
 const {
   authenticationUser,
@@ -14,6 +18,20 @@ AdminDistributionRouter.post(
   checkAdminDistribution,
   checkInput.checkRegisterEmployee,
   CreateEmployee
+);
+
+AdminDistributionRouter.get(
+  "/admin/distribution/employees",
+  authenticationUser,
+  checkAdminDistribution,
+  GetEmployees
+);
+
+AdminDistributionRouter.delete(
+  "/admin/distribution/delete/:id",
+  authenticationUser,
+  checkAdminDistribution,
+  DeleteEmployee
 );
 
 module.exports = AdminDistributionRouter;

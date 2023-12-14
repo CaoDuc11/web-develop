@@ -1,31 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './ModalAddEmployee.module.scss';
 import classNames from 'classnames/bind';
 import { IoMdClose } from 'react-icons/io';
 import { FaAddressBook } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import { CreateEmployee } from '~/all/features/AdminDistributionSlice';
 
 const cx = classNames.bind(styles);
 
-const ModalAddEmployee = ({ displayModal, onClickHandle }) => {
+const ModalAddEmployee = ({ displayModal, onClickHandle, onSubmit }) => {
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password_confirm, setPasswordConfirm] = useState('');
-    const dispatch = useDispatch();
-    const { isError, isSuccess, isLoading, message, userList } = useSelector((state) => state.adminDistribution);
-
-    useEffect(() => {
-        if (isSuccess) {
-        }
-    }, [isSuccess]);
 
     const CreateUser = (e) => {
         e.preventDefault();
-        dispatch(CreateEmployee({ fullname, email, username, password, password_confirm }));
         onClickHandle();
+        onSubmit({ fullname, email, username, password, password_confirm });
     };
 
     return (
@@ -104,11 +95,11 @@ const ModalAddEmployee = ({ displayModal, onClickHandle }) => {
                             </div>
                         </div>
                         <div className={cx('modal-footer')}>
-                            <div className={cx('button-red')}>
+                            <div className={cx('button-red')} onClick={onClickHandle}>
                                 <IoMdClose className={cx('icon')} />
                                 <span>ĐÓNG</span>
                             </div>
-                            <button className={cx('button-green')} type="submit">
+                            <button style={{ border: 'none' }} className={cx('button-green')} type="submit">
                                 <FaAddressBook className={cx('icon')} />
                                 <span>THÊM</span>
                             </button>

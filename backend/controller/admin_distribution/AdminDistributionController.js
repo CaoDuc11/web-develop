@@ -46,4 +46,48 @@ const CreateEmployee = async (req, res) => {
   }
 };
 
-module.exports = CreateEmployee;
+const GetEmployees = async (req, res) => {
+  try {
+    const data = await User.findAll({
+      attributes: ["id", "fullname", "email", "username"],
+      where: {
+        [Op.and]: [
+          {
+            workplace: req.Workplace,
+            position: "employee_distribution",
+          },
+        ],
+      },
+    });
+    return res.status(200).json(data);
+  } catch (error) {
+    return res.status(500).json({ msg: error.message });
+  }
+};
+
+const DeleteEmployee = async (req, res) => {
+  try {
+    const employee = await User.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!employee) {
+      return res.status(404).json({ msg: "Nhân viên không tồn tại" });
+    }
+    await User.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).json({ msg: "User Deleted" });
+  } catch (error) {
+    return res.status(400).json({ msg: error.message });
+  }
+};
+
+module.exports = {
+  CreateEmployee,
+  GetEmployees,
+  DeleteEmployee,
+};
