@@ -44,8 +44,8 @@ const Employees = () => {
 
     const handleFormSubmit = (data) => {
         const { fullname, username, email, password, password_confirm } = data;
-        dispatch(CreateEmployee({ fullname, email, username, password, password_confirm }));
         dispatch(addEmployee(fullname, username, email));
+        dispatch(CreateEmployee({ fullname, email, username, password, password_confirm }));
     };
 
     //Chỉnh Sửa Thông Tin Nhân Viên

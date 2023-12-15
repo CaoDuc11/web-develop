@@ -32,7 +32,7 @@ const CreateEmployee = async (req, res) => {
     }
     const hashPassword = await bcrypt.hash(password, 10);
     await User.create({
-      id: "DDDE" + (employeeDistributions.count + 1).toString(),
+      id: `${req.Workplace}-${employeeDistributions.count + 1}`,
       position: "employee_distribution",
       fullname: fullname,
       username: username,
@@ -40,7 +40,9 @@ const CreateEmployee = async (req, res) => {
       password: hashPassword,
       workplace: req.Workplace,
     });
-    return res.status(201).json({ msg: "Tạo tài khoản thành công" });
+    return res
+      .status(201)
+      .json({ id: `${req.Workplace}-${employeeDistributions.count + 1}` });
   } catch (error) {
     return res.status(400).json({ msg: error.message });
   }
