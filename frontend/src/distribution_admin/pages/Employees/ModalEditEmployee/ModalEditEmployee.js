@@ -1,44 +1,53 @@
-import React, { useState } from 'react';
-import styles from './ModalAddEmployee.module.scss';
+import { React, useEffect, useState } from 'react';
+import styles from '../ModalAddEmployee/ModalAddEmployee.module.scss';
 import classNames from 'classnames/bind';
 import { IoMdClose } from 'react-icons/io';
 import { FaAddressBook } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
-const ModalAddEmployee = ({ displayModal, onClickHandle, onSubmit }) => {
-    const [fullname, setFullname] = useState('');
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
+const ModalEditEmployee = ({ displayModalEdit, onClickHandle, onSubmit }) => {
+    const { employeeEdit } = useSelector((state) => state.adminDistribution);
+    const [emailEdit, setEmailEdit] = useState('');
+    const [usernameEdit, setUsername] = useState('');
+    const { id, fullname, username, email } = employeeEdit;
+    useEffect(() => {
+        if (employeeEdit) {
+            setEmailEdit(email);
+            setUsername(username);
+        }
+    }, [email, employeeEdit, username]);
     const [password, setPassword] = useState('');
     const [password_confirm, setPasswordConfirm] = useState('');
 
-    const CreateUser = (e) => {
+    const UpdateEmployee = (e) => {
         e.preventDefault();
+        onSubmit({ id, emailEdit, usernameEdit, password, password_confirm });
         onClickHandle();
-        onSubmit({ fullname, email, username, password, password_confirm });
     };
 
     return (
-        <div style={{ display: displayModal }} className={cx('modal-add-employee')}>
+        <div style={{ display: displayModalEdit }} className={cx('modal-add-employee')}>
             <div className={cx('modal-background')}>
                 <div className={cx('modal-container')}>
                     <div className={cx('modal-header')}>
-                        <span>Thông tin nhân viên</span>
+                        <span>Chỉnh sửa thông tin</span>
                     </div>
-                    <form onSubmit={CreateUser}>
+                    <form onSubmit={UpdateEmployee}>
                         <div className={cx('modal-body')}>
                             <div className={cx('inforItem')}>
                                 <label for="fullname">
                                     Họ và tên <i style={{ color: 'red' }}>*</i>
                                 </label>
                                 <input
+                                    style={{ backgroundColor: 'hsl(200, 80%, 90%)' }}
                                     type="text"
                                     name="fullname"
                                     id="fullname"
                                     placeholder=""
                                     value={fullname}
-                                    onChange={(e) => setFullname(e.target.value)}
+                                    readOnly
                                 />
                             </div>
                             <div className={cx('inforItem')}>
@@ -50,8 +59,8 @@ const ModalAddEmployee = ({ displayModal, onClickHandle, onSubmit }) => {
                                     name="email"
                                     id="email"
                                     placeholder=""
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    value={emailEdit}
+                                    onChange={(e) => setEmailEdit(e.target.value)}
                                 />
                             </div>
                             <div className={cx('inforItem')}>
@@ -63,7 +72,7 @@ const ModalAddEmployee = ({ displayModal, onClickHandle, onSubmit }) => {
                                     name="username"
                                     id="username"
                                     placeholder=""
-                                    value={username}
+                                    value={usernameEdit}
                                     onChange={(e) => setUsername(e.target.value)}
                                 />
                             </div>
@@ -101,7 +110,7 @@ const ModalAddEmployee = ({ displayModal, onClickHandle, onSubmit }) => {
                             </div>
                             <button style={{ border: 'none' }} className={cx('button-green')} type="submit">
                                 <FaAddressBook className={cx('icon')} />
-                                <span>THÊM</span>
+                                <span>Enter</span>
                             </button>
                         </div>
                     </form>
@@ -111,4 +120,4 @@ const ModalAddEmployee = ({ displayModal, onClickHandle, onSubmit }) => {
     );
 };
 
-export default ModalAddEmployee;
+export default ModalEditEmployee;
