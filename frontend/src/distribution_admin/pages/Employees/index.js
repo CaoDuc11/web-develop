@@ -22,7 +22,7 @@ const cx = classNames.bind(styles);
 const Employees = () => {
     const dispatch = useDispatch();
     const [employeesList, setEmployees] = useState([]);
-    const { usersList, employeeEdit } = useSelector((state) => state.adminDistribution);
+    const { usersList } = useSelector((state) => state.adminDistribution);
 
     useEffect(() => {
         if (usersList.length === 0) {

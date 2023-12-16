@@ -24,6 +24,9 @@ const Login = () => {
             if (user.position === 'admin_distribution') {
                 navigate('/admin/distribution/dashboard');
             }
+            if (user.position === 'employee_distribution') {
+                navigate('/distribution/dashboard');
+            }
         }
         dispatch(reset());
     }, [user, isSuccess, dispatch, navigate]);

@@ -1,42 +1,48 @@
 const DataTypes = require("sequelize");
 const database = require("../../config/Database");
-const User = database.define(
-  "users",
+const User = require("../user/UserModel");
+const Collection = database.define(
+  "collections",
   {
-    id: {
+    collectionId: {
       type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
     },
 
-    fullname: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    email: {
+    collectionName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    username: {
+    province: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    password: {
+    district: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    position: {
+    ward: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    workplace: {
+    managerId: {
       type: DataTypes.STRING,
       allowNull: false,
+
+      references: {
+        model: User,
+        key: "id",
+      },
     },
   },
   {
@@ -44,11 +50,11 @@ const User = database.define(
   }
 );
 
-User.sync({ alter: true })
+Collection.sync({ alter: true })
   .then(() => {
     console.log("table created successfully!");
   })
   .catch((error) => {
     console.error("Unable to create table : ", error);
   });
-module.exports = User;
+module.exports = Collection;
