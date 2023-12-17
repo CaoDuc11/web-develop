@@ -173,6 +173,7 @@ export const adminDistributionSlice = createSlice({
         builder.addCase(CreateEmployee.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
+            state.usersList[state.usersList.length - 1].id = action.payload.id;
         });
         builder.addCase(CreateEmployee.rejected, (state, action) => {
             state.isLoading = false;
