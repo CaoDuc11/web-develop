@@ -10,7 +10,7 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const cx = classNames.bind(styles);
 
-const DeliveryItem = ({ item, background, index, onClickItem }) => {
+const DeliveryItem = ({ item, background, index, onClickItem, onClickDelete }) => {
     return (
         <div className={cx('delivery-item')} style={{ background: background }} onClick={() => onClickItem(index)}>
             <div className={cx('delivery-item-subitem')}>
@@ -42,7 +42,7 @@ const DeliveryItem = ({ item, background, index, onClickItem }) => {
             <div className={cx('delivery-status')}>
                 <button className={cx('btn-status')}>Gửi đơn</button>
                 <button className={cx('btn-cancel')}>Hủy đơn</button>
-                <RiDeleteBin6Line className={cx('icon-delete')} />
+                <RiDeleteBin6Line className={cx('icon-delete')} onClick={() => onClickDelete(item)} />
             </div>
         </div>
     );

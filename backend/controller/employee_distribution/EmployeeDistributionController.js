@@ -122,7 +122,7 @@ const CreateDelivery = async (req, res) => {
 const GetDelivery = async (req, res) => {
   try {
     const sql =
-      "SELECT DISTINCT sender.customerName as senderName, sender.address as senderAddress, sender.numberPhone as senderPhone," +
+      "SELECT DISTINCT transactions.transactionId as transactionId, sender.customerName as senderName, sender.address as senderAddress, sender.numberPhone as senderPhone," +
       " receiver.customerName as receiverName, receiver.address as receiverAddress, receiver.numberPhone as receiverPhone," +
       " parcels.width as parcelWidth, parcels.height as parcelHeight, parcels.length as parcelLength, parcels.parcelContent as parcelContent, parcels.parcelType as parcelType, parcels.weight as parcelWeight," +
       " fees.feeMain as feeMain, fees.feeSub as feeSub, fees.cod as cod, fees.vat as vat, fees.gtgt as gtgt, fees.other as other, fees.total as total,  CONCAT(DATE_FORMAT(transactions.createAt, '%d/%m/%Y'), ' - ', DATE_FORMAT(transactions.createAt, '%H:%i')) as dateTime FROM transactions" +
@@ -136,4 +136,47 @@ const GetDelivery = async (req, res) => {
   }
 };
 
-module.exports = { CreateDelivery, GetDelivery };
+const DeleteDelivery = async (req, res) => {
+  try {
+    const transaction = await Transaction.findOne({
+      where: {
+        transactionId: req.params.id,
+      },
+    });
+    if (!transaction) {
+      return res.status(404).json({ msg: "Đơn hàng không tồn tại" });
+    }
+    await Transaction.destroy({
+      where: {
+        transactionId: req.params.id,
+      },
+    });
+
+    await Fee.destroy({
+      where: {
+        feeId: transaction.feeId,
+      },
+    });
+
+    await Parcel.destroy({
+      where: {
+        parcelId: transaction.parcelId,
+      },
+    });
+
+    await Customer.destroy({
+      where: {
+        [Op.or]: [
+          { customerId: transaction.senderId },
+          { customerId: transaction.receiverId },
+        ],
+      },
+    });
+
+    res.status(200).json({ msg: "Delivery Deleted" });
+  } catch (error) {
+    return res.status(400).json({ msg: error.message });
+  }
+};
+
+module.exports = { CreateDelivery, GetDelivery, DeleteDelivery };

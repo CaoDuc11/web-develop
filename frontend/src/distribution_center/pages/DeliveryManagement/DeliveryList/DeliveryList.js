@@ -12,7 +12,7 @@ import DeliveryReceipt from '../DeliveryReceipt/DeliveryReceipt';
 
 const cx = classNames.bind(styles);
 
-const DeliveryList = ({ deliveries, position, onClickHandlePostion }) => {
+const DeliveryList = ({ deliveries, position, onClickHandlePostion, onClickDelete }) => {
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -70,6 +70,7 @@ const DeliveryList = ({ deliveries, position, onClickHandlePostion }) => {
                         item={item}
                         background={index === position ? 'hsl(200, 80%, 90%)' : 'white'}
                         onClickItem={onClickHandlePostion}
+                        onClickDelete={onClickDelete}
                     />
                 ))}
             </div>

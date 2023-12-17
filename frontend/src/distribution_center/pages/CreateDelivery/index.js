@@ -7,7 +7,7 @@ import InputInfor from './InputInfor/InputInfor';
 import InputDetail from './InputDetails/InputDetail';
 import DeliveryFee from './DeliveryFee/DeliveryFee';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDelivery, employeeDistribution, createDelivery } from '~/all/features/EmployeeDistributionSlice';
+import { addDelivery, employeeDistribution, createDelivery, reset } from '~/all/features/EmployeeDistributionSlice';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +20,7 @@ const CreateDelivery = () => {
 
     const handleSubmit = () => {
         dispatch(createDelivery(deliveryCreate));
+        dispatch(reset());
     };
 
     return (

@@ -6,12 +6,10 @@ import DeliveryList from './DeliveryList/DeliveryList';
 import DeliveryDetails from './DeliveryDetails/DeliveryDetails';
 import FadeLoader from 'react-spinners/FadeLoader';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetDelivery, resetState, resetCreateStatus } from '~/all/features/EmployeeDistributionSlice';
+import { GetDelivery, resetCreateStatus, DeleteDelivery } from '~/all/features/EmployeeDistributionSlice';
 const cx = classNames.bind(styles);
 const DeliveryManagement = () => {
-    const { deliveries, isError, isLoading, isSuccess, createStatus } = useSelector(
-        (state) => state.employeeDistribution,
-    );
+    const { deliveries, isLoading, isSuccess, createStatus } = useSelector((state) => state.employeeDistribution);
     const dispatch = useDispatch();
     const [position, setPosition] = useState(0);
     useEffect(() => {
@@ -23,12 +21,16 @@ const DeliveryManagement = () => {
             }, 1000);
             return () => {
                 clearTimeout(delay);
-                dispatch(resetState());
             };
         }
     }, [dispatch, createStatus]);
+
     const onClickHandlePostion = (index) => {
         setPosition(index);
+    };
+
+    const onClickDeleteDelivery = (item) => {
+        dispatch(DeleteDelivery(item));
     };
 
     let content;
@@ -58,6 +60,7 @@ const DeliveryManagement = () => {
                                 deliveries={deliveries}
                                 position={position}
                                 onClickHandlePostion={onClickHandlePostion}
+                                onClickDelete={onClickDeleteDelivery}
                             />
                         </div>
                         <div className={cx('delivery-details')}>
