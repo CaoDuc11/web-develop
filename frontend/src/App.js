@@ -14,6 +14,9 @@ import Warehouse from './warehouse/pages/Dashboard';
 
 import Dashboard from './distribution_admin/pages/Dashboard';
 import Employees from './distribution_admin/pages/Employees';
+
+import Dashboard2 from './collection_admin/pages/Dashboard';
+import Employees2 from './collection_admin/pages/Employees';
 import Login from './all/Login';
 
 function App() {
@@ -37,6 +40,9 @@ function App() {
 
                     <Route path="/admin/distribution/dashboard" element={<Dashboard />} />
                     <Route path="/admin/distribution/employees" element={<Employees />} />
+
+                    <Route path="/admin/collection/dashboard" element={<Dashboard2 />} />
+                    <Route path="/admin/collection/employees" element={<Employees2/>} />
 
                 </Routes>
             </BrowserRouter>

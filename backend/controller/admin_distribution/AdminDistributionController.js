@@ -22,6 +22,7 @@ const CreateEmployee = async (req, res) => {
     const employeeDistributions = await User.findAndCountAll({
       where: {
         position: "employee_distribution",
+        workplace: `${req.Workplace}`,
       },
     });
     if (existUsers.count != 0) {
@@ -114,7 +115,7 @@ const UpdateEmpolyee = async (req, res) => {
         },
       }
     );
-    return res.status(200).json({ msg: "Update người dùng thành công!" });
+    return res.status(200).json({ msg: "Cập nhật người dùng thành công!" });
   } catch (error) {
     return res.status(400).json({ msg: error.message });
   }
