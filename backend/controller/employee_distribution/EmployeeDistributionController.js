@@ -4,6 +4,8 @@ const Customer = require("../../models/custumer/CustomerModel");
 const Parcel = require("../../models/parcel/ParcelModel");
 const Fee = require("../../models/fee/FeeModel");
 const Transaction = require("../../models/transaction/TransactionModel");
+const QueryTypes = require("sequelize");
+const database = require("../../config/Database");
 
 const CreateDelivery = async (req, res) => {
   const errors = validationResult(req);
@@ -43,7 +45,6 @@ const CreateDelivery = async (req, res) => {
     vat,
     other,
   } = req.body;
-  console.log(req.body);
 
   try {
     await Customer.bulkCreate([
@@ -118,4 +119,21 @@ const CreateDelivery = async (req, res) => {
   }
 };
 
-module.exports = { CreateDelivery };
+const GetDelivery = async (req, res) => {
+  try {
+    const sql =
+      "SELECT DISTINCT sender.customerName as senderName, sender.address as senderAddress, sender.numberPhone as senderPhone," +
+      " receiver.customerName as receiverName, receiver.address as receiverAddress, receiver.numberPhone as receiverPhone," +
+      " parcels.width as parcelWidth, parcels.height as parcelHeight, parcels.length as parcelLength, parcels.parcelContent as parcelContent, parcels.parcelType as parcelType, parcels.weight as parcelWeight," +
+      " fees.feeMain as feeMain, fees.feeSub as feeSub, fees.cod as cod, fees.vat as vat, fees.gtgt as gtgt, fees.other as other, fees.total as total,  CONCAT(DATE_FORMAT(transactions.createAt, '%d/%m/%Y'), ' - ', DATE_FORMAT(transactions.createAt, '%H:%i')) as dateTime FROM transactions" +
+      " INNER JOIN customers as sender ON transactions.senderId = sender.customerId INNER JOIN customers as receiver ON transactions.receiverId = receiver.customerId JOIN parcels ON transactions.parcelId = parcels.parcelId INNER JOIN fees ON transactions.feeId = fees.feeId WHERE transactions.status = '1' ORDER BY transactions.createAt DESC";
+    const data = await database.query(sql, {
+      type: QueryTypes.SELECT,
+    });
+    return res.status(200).json(data[0]);
+  } catch (error) {
+    return res.status(500).json({ msg: error.message });
+  }
+};
+
+module.exports = { CreateDelivery, GetDelivery };

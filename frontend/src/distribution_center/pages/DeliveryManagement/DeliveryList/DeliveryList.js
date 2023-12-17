@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './DeliveryList.module.scss';
 import classNames from 'classnames/bind';
 import { PiPrinterFill } from 'react-icons/pi';
@@ -12,7 +12,7 @@ import DeliveryReceipt from '../DeliveryReceipt/DeliveryReceipt';
 
 const cx = classNames.bind(styles);
 
-const DeliveryList = () => {
+const DeliveryList = ({ deliveries, position, onClickHandlePostion }) => {
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -58,15 +58,20 @@ const DeliveryList = () => {
                     <option value="Đã xóa">Đã xóa</option>
                 </select>
 
-                <span className={cx('pages')}>1 of 5</span>
+                <span className={cx('pages')}>{`${position + 1} of ${deliveries.length}`}</span>
                 <MdOutlineKeyboardArrowLeft className={cx('arrow-icon')} />
                 <MdOutlineKeyboardArrowRight className={cx('arrow-icon')} />
             </div>
 
             <div className={cx('main-list')}>
-                <DeliveryItem />
-                <DeliveryItem />
-                <DeliveryItem />
+                {deliveries.map((item, index) => (
+                    <DeliveryItem
+                        index={index}
+                        item={item}
+                        background={index === position ? 'hsl(200, 80%, 90%)' : 'white'}
+                        onClickItem={onClickHandlePostion}
+                    />
+                ))}
             </div>
         </div>
     );

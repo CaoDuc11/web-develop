@@ -13,14 +13,15 @@ const cx = classNames.bind(styles);
 
 const CreateDelivery = () => {
     const dispatch = useDispatch();
-    const state = useSelector((state) => state.employeeDistribution);
+    const { deliveryCreate, isSuccess } = useSelector((state) => state.employeeDistribution);
     const handleInput = (e) => {
         dispatch(addDelivery({ [e.target.name]: e.target.value }));
     };
 
     const handleSubmit = () => {
-        dispatch(createDelivery(state));
+        dispatch(createDelivery(deliveryCreate));
     };
+
     return (
         <Layout>
             <div className={cx('sectionCreateDelivery')}>
