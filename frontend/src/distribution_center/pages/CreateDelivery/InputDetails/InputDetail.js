@@ -3,7 +3,7 @@ import styles from './InputDetail.module.scss';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
-const InputDetail = () => {
+const InputDetail = ({ handleDetails }) => {
     return (
         <div className={cx('formDetail')}>
             <div className={cx('labelDiv')}>
@@ -49,14 +49,20 @@ const InputDetail = () => {
                 <label for="product-detail">
                     Nội dung hàng hóa <i style={{ color: 'red' }}>*</i>
                 </label>
-                <input type="text" name="product-detail" id="product-detail" placeholder="Tài liệu học tập" />
+                <input
+                    type="text"
+                    name="parcelContent"
+                    id="product-detail"
+                    placeholder="Tài liệu học tập"
+                    onChange={handleDetails}
+                />
             </div>
 
             <div className={cx('inforItem')}>
                 <label for="weight">
                     Trọng lượng (gram) <i style={{ color: 'red' }}>*</i>
                 </label>
-                <input type="text" name="weight" id="weight" placeholder="200" />
+                <input type="text" name="parcelWeight" id="weight" placeholder="200" onChange={handleDetails} />
             </div>
         </div>
     );

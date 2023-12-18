@@ -24,6 +24,8 @@ const Login = () => {
             if (user.position === 'admin_distribution') {
                 navigate('/admin/distribution/dashboard');
             }
+            if (user.position === 'employee_distribution') {
+                navigate('/distribution/dashboard');
             if (user.position === 'admin_collection') {
                 navigate('/admin/collection/dashboard');
             }

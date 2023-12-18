@@ -1,42 +1,63 @@
-const DataTypes = require("sequelize");
+const { DataTypes } = require("sequelize");
 const database = require("../../config/Database");
-const User = database.define(
-  "users",
+const Customer = require("../custumer/CustomerModel");
+const Parcel = database.define(
+  "parcels",
   {
-    id: {
-      type: DataTypes.STRING,
+    parcelId: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-      allowNull: false,
     },
 
-    fullname: {
+    parcelContent: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    email: {
+    parcelType: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    username: {
+    weight: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    password: {
+    width: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    position: {
+    height: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    workplace: {
+    length: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+
+    receiverId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+
+      references: {
+        model: Customer,
+        key: "customerId",
+      },
+    },
+
+    senderId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+
+      references: {
+        model: Customer,
+        key: "customerId",
+      },
     },
   },
   {
@@ -44,11 +65,11 @@ const User = database.define(
   }
 );
 
-User.sync({ alter: true })
+Parcel.sync({ alter: true })
   .then(() => {
     console.log("table created successfully!");
   })
   .catch((error) => {
     console.error("Unable to create table : ", error);
   });
-module.exports = User;
+module.exports = Parcel;

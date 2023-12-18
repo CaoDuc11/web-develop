@@ -6,7 +6,7 @@ import DeliveryComment from './DeliveryComment';
 
 const cx = classNames.bind(styles);
 
-const DeliveryDetails = () => {
+const DeliveryDetails = ({ deliveryDetail, position }) => {
     return (
         <div className={cx('delivery-details')}>
             <div className={cx('delivery-details-header')}>
@@ -24,10 +24,10 @@ const DeliveryDetails = () => {
 
             <div className={cx('delivery-details-main')}>
                 <div className={cx('delivery-details-infor')}>
-                    <InforDetails />
+                    <InforDetails item={deliveryDetail} index={position} />
                 </div>
                 <div className={cx('delivery-details-comment')}>
-                    <DeliveryComment />
+                    <DeliveryComment item={deliveryDetail} index={position} />
                 </div>
             </div>
         </div>

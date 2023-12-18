@@ -1,40 +1,40 @@
 const DataTypes = require("sequelize");
 const database = require("../../config/Database");
-const User = database.define(
-  "users",
+const Customer = database.define(
+  "customers",
   {
-    id: {
-      type: DataTypes.STRING,
+    customerId: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-      allowNull: false,
     },
 
-    fullname: {
+    customerName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    email: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    username: {
+    numberPhone: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    password: {
+    province: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    position: {
+    district: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    workplace: {
+    ward: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -44,11 +44,11 @@ const User = database.define(
   }
 );
 
-User.sync({ alter: true })
+Customer.sync({ alter: true })
   .then(() => {
     console.log("table created successfully!");
   })
   .catch((error) => {
     console.error("Unable to create table : ", error);
   });
-module.exports = User;
+module.exports = Customer;

@@ -6,10 +6,23 @@ import { IoDocumentTextSharp } from 'react-icons/io5';
 import InputInfor from './InputInfor/InputInfor';
 import InputDetail from './InputDetails/InputDetail';
 import DeliveryFee from './DeliveryFee/DeliveryFee';
+import { useDispatch, useSelector } from 'react-redux';
+import { addDelivery, employeeDistribution, createDelivery, reset } from '~/all/features/EmployeeDistributionSlice';
 
 const cx = classNames.bind(styles);
 
 const CreateDelivery = () => {
+    const dispatch = useDispatch();
+    const { deliveryCreate, isSuccess } = useSelector((state) => state.employeeDistribution);
+    const handleInput = (e) => {
+        dispatch(addDelivery({ [e.target.name]: e.target.value }));
+    };
+
+    const handleSubmit = () => {
+        dispatch(createDelivery(deliveryCreate));
+        dispatch(reset());
+    };
+
     return (
         <Layout>
             <div className={cx('sectionCreateDelivery')}>
@@ -20,16 +33,15 @@ const CreateDelivery = () => {
 
                 <div className={cx('mainCreateDelivery')}>
                     <div className={cx('receiverSenderInfor')}>
-                        <InputInfor text={'1. Người gửi'} />
-                        <InputInfor text={'2. Người nhận'} />
+                        <InputInfor handleInforCustomer={handleInput} />
                     </div>
 
                     <div className={cx('itemDetail')}>
-                        <InputDetail />
+                        <InputDetail handleDetails={handleInput} />
                     </div>
 
                     <div className={cx('deliveryFee')}>
-                        <DeliveryFee />
+                        <DeliveryFee handleFee={handleInput} handleSubmit={handleSubmit} />
                     </div>
                 </div>
             </div>

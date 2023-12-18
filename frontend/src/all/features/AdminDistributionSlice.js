@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import API from '../config/API';
-import Employees from '~/distribution_admin/pages/Employees';
 
 const initialState = {
     isError: false,

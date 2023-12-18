@@ -1,40 +1,45 @@
 const DataTypes = require("sequelize");
 const database = require("../../config/Database");
-const User = database.define(
-  "users",
+const Fee = database.define(
+  "fees",
   {
-    id: {
-      type: DataTypes.STRING,
+    feeId: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-      allowNull: false,
     },
 
-    fullname: {
+    feeMain: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    email: {
+    feeSub: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    username: {
+    cod: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    password: {
+    vat: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    position: {
+    gtgt: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    workplace: {
+    other: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    total: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -44,11 +49,11 @@ const User = database.define(
   }
 );
 
-User.sync({ alter: true })
+Fee.sync({ alter: true })
   .then(() => {
     console.log("table created successfully!");
   })
   .catch((error) => {
     console.error("Unable to create table : ", error);
   });
-module.exports = User;
+module.exports = Fee;
