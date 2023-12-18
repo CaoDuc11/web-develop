@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Layout from '~/collection_admin/layout';
+import Layout from '~/warehouse/layout';
 import styles from './Employees.module.scss';
 import classNames from 'classnames/bind';
 import EmployeesTable from './EmployeesTable/EmployeesTable';
@@ -19,7 +19,7 @@ import ModalEditEmployee from './ModalEditEmployee/ModalEditEmployee';
 
 const cx = classNames.bind(styles);
 
-const Employees2 = () => {
+const ManageStaff = () => {
     const dispatch = useDispatch();
     const [employeesList, setEmployees] = useState([]);
     const { usersList } = useSelector((state) => state.adminCollection);
@@ -112,4 +112,4 @@ const Employees2 = () => {
     );
 };
 
-export default Employees2;
+export default ManageStaff;
