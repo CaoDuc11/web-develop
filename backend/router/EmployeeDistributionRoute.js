@@ -8,6 +8,7 @@ const {
   CreateDelivery,
   GetDelivery,
   DeleteDelivery,
+  UpdateDelivery,
 } = require("../controller/employee_distribution/EmployeeDistributionController");
 
 const EmployeeDistributionRouter = express.Router();
@@ -20,7 +21,7 @@ EmployeeDistributionRouter.post(
 );
 
 EmployeeDistributionRouter.get(
-  "/distribution/deliveries/",
+  "/distribution/deliveries/:status",
   authenticationUser,
   checkEmployeeDistribution,
   GetDelivery
@@ -31,6 +32,13 @@ EmployeeDistributionRouter.delete(
   authenticationUser,
   checkEmployeeDistribution,
   DeleteDelivery
+);
+
+EmployeeDistributionRouter.put(
+  "/distribution/deliveries/update/:id",
+  authenticationUser,
+  checkEmployeeDistribution,
+  UpdateDelivery
 );
 
 module.exports = EmployeeDistributionRouter;

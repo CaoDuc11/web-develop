@@ -122,12 +122,13 @@ const CreateDelivery = async (req, res) => {
 const GetDelivery = async (req, res) => {
   try {
     const sql =
-      "SELECT DISTINCT transactions.transactionId as transactionId, sender.customerName as senderName, sender.address as senderAddress, sender.numberPhone as senderPhone," +
+      "SELECT DISTINCT transactions.transactionId as transactionId, transactions.status as status , sender.customerName as senderName, sender.address as senderAddress, sender.numberPhone as senderPhone," +
       " receiver.customerName as receiverName, receiver.address as receiverAddress, receiver.numberPhone as receiverPhone," +
       " parcels.width as parcelWidth, parcels.height as parcelHeight, parcels.length as parcelLength, parcels.parcelContent as parcelContent, parcels.parcelType as parcelType, parcels.weight as parcelWeight," +
       " fees.feeMain as feeMain, fees.feeSub as feeSub, fees.cod as cod, fees.vat as vat, fees.gtgt as gtgt, fees.other as other, fees.total as total,  CONCAT(DATE_FORMAT(transactions.createAt, '%d/%m/%Y'), ' - ', DATE_FORMAT(transactions.createAt, '%H:%i')) as dateTime FROM transactions" +
-      " INNER JOIN customers as sender ON transactions.senderId = sender.customerId INNER JOIN customers as receiver ON transactions.receiverId = receiver.customerId JOIN parcels ON transactions.parcelId = parcels.parcelId INNER JOIN fees ON transactions.feeId = fees.feeId WHERE transactions.status = '1' ORDER BY transactions.createAt DESC";
+      " INNER JOIN customers as sender ON transactions.senderId = sender.customerId INNER JOIN customers as receiver ON transactions.receiverId = receiver.customerId JOIN parcels ON transactions.parcelId = parcels.parcelId INNER JOIN fees ON transactions.feeId = fees.feeId WHERE transactions.status = :status ORDER BY transactions.createAt DESC";
     const data = await database.query(sql, {
+      replacements: { status: req.params.status },
       type: QueryTypes.SELECT,
     });
     return res.status(200).json(data[0]);
@@ -179,4 +180,35 @@ const DeleteDelivery = async (req, res) => {
   }
 };
 
-module.exports = { CreateDelivery, GetDelivery, DeleteDelivery };
+const UpdateDelivery = async (req, res) => {
+  try {
+    const transaction = await Transaction.findOne({
+      where: {
+        transactionId: req.params.id,
+      },
+    });
+    if (!transaction) {
+      return res.status(404).json({ msg: "Không tồn tại đơn hàng " });
+    }
+    await Transaction.update(
+      {
+        status: req.body.status,
+      },
+      {
+        where: {
+          transactionId: req.params.id,
+        },
+      }
+    );
+    return res.status(200).json({ msg: "Cập nhật đơn thành công" });
+  } catch (error) {
+    return res.status(400).json({ msg: error.message });
+  }
+};
+
+module.exports = {
+  CreateDelivery,
+  GetDelivery,
+  DeleteDelivery,
+  UpdateDelivery,
+};

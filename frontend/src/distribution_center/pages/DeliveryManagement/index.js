@@ -6,31 +6,47 @@ import DeliveryList from './DeliveryList/DeliveryList';
 import DeliveryDetails from './DeliveryDetails/DeliveryDetails';
 import FadeLoader from 'react-spinners/FadeLoader';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetDelivery, resetCreateStatus, DeleteDelivery } from '~/all/features/EmployeeDistributionSlice';
+import {
+    GetDelivery,
+    resetCreateStatus,
+    DeleteDelivery,
+    UpdateDelivery,
+    ChangStatusOption,
+} from '~/all/features/EmployeeDistributionSlice';
 const cx = classNames.bind(styles);
 const DeliveryManagement = () => {
     const { deliveries, isLoading, isSuccess, createStatus } = useSelector((state) => state.employeeDistribution);
     const dispatch = useDispatch();
     const [position, setPosition] = useState(0);
+    const [transactionStatus, setStatus] = useState('1');
     useEffect(() => {
         if (!isSuccess || createStatus === 'flex') {
             const delay = setTimeout(() => {
-                dispatch(GetDelivery());
+                dispatch(GetDelivery({ transactionStatus }));
                 setPosition(0);
                 dispatch(resetCreateStatus());
-            }, 1000);
+            }, 800);
             return () => {
                 clearTimeout(delay);
             };
         }
-    }, [dispatch, createStatus]);
+    }, [dispatch, createStatus, transactionStatus]);
 
     const onClickHandlePostion = (index) => {
         setPosition(index);
     };
 
+    const onChangeOption = (e) => {
+        setStatus(e.target.value);
+        dispatch(ChangStatusOption());
+    };
+
     const onClickDeleteDelivery = (item) => {
         dispatch(DeleteDelivery(item));
+    };
+
+    const onClickUpdateDelivery = (object) => {
+        dispatch(UpdateDelivery(object));
     };
 
     let content;
@@ -61,6 +77,9 @@ const DeliveryManagement = () => {
                                 position={position}
                                 onClickHandlePostion={onClickHandlePostion}
                                 onClickDelete={onClickDeleteDelivery}
+                                onClickUpdate={onClickUpdateDelivery}
+                                onClickChange={onChangeOption}
+                                transactionStatus={transactionStatus}
                             />
                         </div>
                         <div className={cx('delivery-details')}>

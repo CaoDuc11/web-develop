@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk, nanoid } from '@reduxjs/toolkit';
 import axios from 'axios';
 import API from '../config/API';
-import CreateDelivery from '~/distribution_center/pages/CreateDelivery';
 const initialState = {
     deliveries: [],
     deliveryCreate: {
@@ -48,6 +47,10 @@ export const employeeDistributionSlice = createSlice({
         resetCreateStatus: (state) => {
             state.createStatus = 'none';
         },
+
+        ChangStatusOption: (state) => {
+            state.createStatus = 'flex';
+        },
         addDelivery: (state, action) => {
             state.deliveryCreate = { ...state.deliveryCreate, ...action.payload };
         },
@@ -67,9 +70,16 @@ export const employeeDistributionSlice = createSlice({
             state.isLoading = false;
         });
 
-        //Xử lý khi trạng thái của DeliveryDelivery cập nhật
+        //Xử lý khi trạng thái của DeleteDelivery cập nhật
         builder.addCase(DeleteDelivery.fulfilled, (state) => {
             state.createStatus = 'flex';
+            state.isLoading = false;
+        });
+
+        //Xử lý khi trạng thái của UpdateDelivery cập nhật
+        builder.addCase(UpdateDelivery.fulfilled, (state) => {
+            state.createStatus = 'flex';
+            state.isLoading = false;
         });
     },
 });
@@ -87,9 +97,9 @@ export const createDelivery = createAsyncThunk('distribution/create', async (del
     }
 });
 
-export const GetDelivery = createAsyncThunk('distribution/get', async (thunkAPI) => {
+export const GetDelivery = createAsyncThunk('distribution/get', async (option, thunkAPI) => {
     try {
-        const response = await axios.get(API.HTTP_API + '/distribution/deliveries/', {
+        const response = await axios.get(API.HTTP_API + '/distribution/deliveries/' + option.transactionStatus, {
             withCredentials: true,
         });
         return response.data;
@@ -116,5 +126,26 @@ export const DeleteDelivery = createAsyncThunk('distribution/delete', async (del
     }
 });
 
-export const { addDelivery, reset, resetState, resetCreateStatus } = employeeDistributionSlice.actions;
+export const UpdateDelivery = createAsyncThunk('distribution/update', async (object, thunkAPI) => {
+    try {
+        const response = await axios.put(
+            API.HTTP_API + '/distribution/deliveries/update/' + object.transactionId,
+            {
+                status: object.status,
+            },
+            {
+                withCredentials: true,
+            },
+        );
+        return response.data;
+    } catch (error) {
+        if (error.response) {
+            const message = error.respone.data.msg;
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+});
+
+export const { addDelivery, reset, resetState, resetCreateStatus, ChangStatusOption } =
+    employeeDistributionSlice.actions;
 export default employeeDistributionSlice.reducer;

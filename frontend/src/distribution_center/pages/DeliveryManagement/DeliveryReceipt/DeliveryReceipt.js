@@ -75,16 +75,13 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                         }}
                     >
                         <Text style={style.TextBold}>1. Họ tên người gửi:</Text>
-                        <Text style={{ fontSize: '15px', marginTop: '5px' }}>Nguyễn Văn A</Text>
-                        <Text style={{ fontSize: '15px', marginTop: '5px' }}>
-                            Đại học Quốc Gia Hà Nội, Dịch Vọng, Cầu Giấy, Hà Nội, gần đại học ngoại ngữ có mấy em gái
-                            xinh vãi
-                        </Text>
+                        <Text style={{ fontSize: '15px', marginTop: '5px' }}>{props.senderName}</Text>
+                        <Text style={{ fontSize: '15px', marginTop: '5px' }}>{props.senderAddress}</Text>
                         <View
                             style={{ display: 'flex', flexDirection: 'row', marginTop: '25px', alignItems: 'center' }}
                         >
                             <Text style={style.TextBold}>Số điện thoại:</Text>
-                            <Text style={{ fontSize: '15px', marginLeft: '5px' }}>0987678678</Text>
+                            <Text style={{ fontSize: '15px', marginLeft: '5px' }}>{props.senderPhone}</Text>
                         </View>
                         <View style={{ display: 'flex', flexDirection: 'row', marginTop: '5px' }}>
                             <Text style={{ fontSize: '16px', fontWeight: '500', flex: '1' }}>Mã khách hàng:</Text>
@@ -333,12 +330,11 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                         }}
                     >
                         <Text style={style.TextBold}>2. Họ tên người nhận:</Text>
-                        <Text style={{ fontSize: '15px', marginTop: '5px' }}>Nguyễn Văn A</Text>
-                        <Text style={{ fontSize: '15px', marginTop: '5px' }}>
-                            Đại học Quốc Gia Hà Nội, Dịch Vọng, Cầu Giấy, Hà Nội, gần đại học ngoại ngữ có mấy em gái
-                            xinh vãi
-                        </Text>
-                        <Text style={{ fontSize: '16px', marginTop: '25px', fontWeight: '500' }}>Mã ĐH:</Text>
+                        <Text style={{ fontSize: '15px', marginTop: '5px' }}>{props.receiverName}</Text>
+                        <Text style={{ fontSize: '15px', marginTop: '5px' }}>{props.receiverAddress}</Text>
+                        <Text
+                            style={{ fontSize: '16px', marginTop: '25px', fontWeight: '500' }}
+                        >{`Mã ĐH: ${props.transactionId}`}</Text>
                         <View style={{ display: 'flex', flexDirection: 'row', marginTop: '5px' }}>
                             <View
                                 style={{
@@ -349,7 +345,7 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                                 }}
                             >
                                 <Text style={style.TextBold}>Số điện thoại:</Text>
-                                <Text style={{ fontSize: '15px', marginLeft: '5px' }}>0987678678</Text>
+                                <Text style={{ fontSize: '15px', marginLeft: '5px' }}>{props.receiverPhone}</Text>
                             </View>
                             <Text style={{ fontSize: '16px', fontWeight: '500', flex: '1' }}>Mã bưu chính:</Text>
                         </View>
@@ -379,7 +375,7 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                                     }}
                                 >
                                     <Text style={{ fontSize: '15px' }}>a. Cước chính:</Text>
-                                    <Text style={{ fontSize: '15px' }}>9.500</Text>
+                                    <Text style={{ fontSize: '15px' }}>{props.feeMain}</Text>
                                 </View>
 
                                 <View
@@ -391,7 +387,7 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                                     }}
                                 >
                                     <Text style={{ fontSize: '15px' }}>b. Phụ phí:</Text>
-                                    <Text style={{ fontSize: '15px' }}>6.500</Text>
+                                    <Text style={{ fontSize: '15px' }}>{props.feeSub}</Text>
                                 </View>
 
                                 <View
@@ -403,7 +399,7 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                                     }}
                                 >
                                     <Text style={{ fontSize: '15px' }}>c. Cước GTGT:</Text>
-                                    <Text style={{ fontSize: '15px' }}>0</Text>
+                                    <Text style={{ fontSize: '15px' }}>{props.gtgt}</Text>
                                 </View>
 
                                 <View
@@ -415,7 +411,7 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                                     }}
                                 >
                                     <Text style={{ fontSize: '15px' }}>d. Tổng cước (gồm VAT):</Text>
-                                    <Text style={{ fontSize: '15px' }}> 0</Text>
+                                    <Text style={{ fontSize: '15px' }}> {props.vat}</Text>
                                 </View>
 
                                 <View
@@ -427,7 +423,7 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                                     }}
                                 >
                                     <Text style={{ fontSize: '15px' }}>e. Thu khác:</Text>
-                                    <Text style={{ fontSize: '15px' }}>0</Text>
+                                    <Text style={{ fontSize: '15px' }}>{props.other}</Text>
                                 </View>
 
                                 <View
@@ -439,7 +435,7 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                                     }}
                                 >
                                     <Text style={style.TextBold}>Tổng thu:</Text>
-                                    <Text style={{ fontSize: '15px' }}>15.500</Text>
+                                    <Text style={{ fontSize: '15px' }}>{props.total}</Text>
                                 </View>
                             </View>
 
@@ -461,7 +457,7 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                                     }}
                                 >
                                     <Text style={{ fontSize: '15px' }}>COD:</Text>
-                                    <Text style={{ fontSize: '15px' }}>0</Text>
+                                    <Text style={{ fontSize: '15px' }}>{props.cod}</Text>
                                 </View>
                                 <View
                                     style={{
@@ -527,7 +523,7 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                                     }}
                                 >
                                     <Text style={{ fontSize: '15px' }}>Khối lượng thực tế:</Text>
-                                    <Text style={{ fontSize: '15px' }}>0</Text>
+                                    <Text style={{ fontSize: '15px' }}>{props.parcelWeight}</Text>
                                 </View>
                                 <View
                                     style={{
@@ -538,7 +534,7 @@ const DeliveryReceipt = forwardRef((props, ref) => {
                                     }}
                                 >
                                     <Text style={{ fontSize: '15px' }}>Khối lượng quy đổi:</Text>
-                                    <Text style={{ fontSize: '15px' }}>0</Text>
+                                    <Text style={{ fontSize: '15px' }}>{props.parcelWeight}</Text>
                                 </View>
                             </View>
 
