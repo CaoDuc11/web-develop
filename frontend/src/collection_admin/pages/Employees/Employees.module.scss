@@ -1,0 +1,50 @@
+@import '../../../variables';
+.employees-container {
+    position: relative;
+    .sectionEmployees {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        background: $contentColor;
+        padding: 1rem 1rem;
+
+        .header-employees {
+            display: flex;
+            flex-direction: column;
+            &_title1 {
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+
+            .add-employee {
+                width: 8rem;
+                margin: 0.5rem 0;
+                color: white;
+                font-size: 14px;
+                font-weight: 500;
+                padding: 0.5rem;
+                border: none;
+                border-radius: 2px;
+                background: $secondaryColor;
+
+                &:hover {
+                    cursor: pointer;
+                    background: $primaryColor;
+                }
+            }
+
+            &_title2 {
+                font-size: 1rem;
+                font-weight: 500;
+            }
+        }
+
+        .employees-table {
+            margin-top: 1rem;
+            width: 100%;
+        }
+    }
+}
