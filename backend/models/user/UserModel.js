@@ -4,9 +4,13 @@ const User = database.define(
   "users",
   {
     id: {
-      type: DataTypes.INTEGER,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.STRING,
       primaryKey: true,
+      allowNull: false,
+    },
+
+    fullname: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
 
@@ -29,14 +33,18 @@ const User = database.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+
+    workplace: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     timestamps: false,
   }
 );
 
-database
-  .sync()
+User.sync({ alter: true })
   .then(() => {
     console.log("table created successfully!");
   })

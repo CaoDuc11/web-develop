@@ -1,7 +1,7 @@
 const express = require("express");
-const checkLogin = require("../middleware/Validator");
+const checkInput = require("../middleware/Validator");
 const Login = require("../controller/authentication/AuthController");
 
 const loginRoute = express.Router();
-loginRoute.post("/login", checkLogin, Login);
+loginRoute.post("/login", checkInput.checkLogin, Login);
 module.exports = loginRoute;

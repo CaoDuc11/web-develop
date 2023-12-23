@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { FaCommentDots } from 'react-icons/fa';
 
 const cx = classNames.bind(styles);
-const DeliveryComment = () => {
+const DeliveryComment = ({deliveryDetail,position}) => {
     return (
         <div className={cx('delivery-comment')}>
             <div className={cx('delivery-comment-content')}>
