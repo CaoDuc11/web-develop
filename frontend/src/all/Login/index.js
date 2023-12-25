@@ -28,7 +28,7 @@ const Login = () => {
                 navigate('/distribution/dashboard');
             }
             if (user.position === 'admin_collection') {
-                navigate('/admin/collection/dashboard');
+                navigate('/warehouse/dashboard');
             }
         }
         dispatch(reset());

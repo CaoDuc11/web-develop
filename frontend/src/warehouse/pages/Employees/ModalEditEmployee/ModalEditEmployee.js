@@ -52,7 +52,7 @@ const ModalEditEmployee = ({ displayModalEdit, onClickHandle, onSubmit }) => {
                             </div>
                             <div className={cx('inforItem')}>
                                 <label for="email">
-                                    email <i style={{ color: 'red' }}>*</i>
+                                    Email <i style={{ color: 'red' }}>*</i>
                                 </label>
                                 <input
                                     type="text"
