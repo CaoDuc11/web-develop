@@ -25,7 +25,7 @@ const DeliveryManagement = () => {
                 dispatch(GetDelivery({ transactionStatus }));
                 setPosition(0);
                 dispatch(resetCreateStatus());
-            }, 800);
+            }, 1000);
             return () => {
                 clearTimeout(delay);
             };

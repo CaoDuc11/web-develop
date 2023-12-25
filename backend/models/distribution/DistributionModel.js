@@ -21,6 +21,11 @@ const Distribution = database.define(
       allowNull: false,
     },
 
+    collectionName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
     ward: {
       type: DataTypes.STRING,
       allowNull: false,
