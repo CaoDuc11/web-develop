@@ -98,7 +98,6 @@ const Transaction = database.define(
 
     journeyId1: {
       type: DataTypes.STRING,
-      allowNull: false,
       references: {
         model: Journey,
         key: "journeyId",
