@@ -1,0 +1,46 @@
+.searchEngine {
+    display: flex;
+    flex-direction: column;
+}
+
+.searchEngine > h1 {
+    margin: auto;
+}
+
+.searchEngine > form {
+    margin: auto;
+}
+
+.searchInput {
+    margin-right: 10px;
+}
+
+#orderForm {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+#orderForm label {
+    margin: auto;
+}
+
+#orderForm input {
+    width: 100%;
+    height: 80px;
+    border-radius: 15px;
+}
+
+#orderForm p {
+    margin-top: 10px;
+}
+
+#orderForm button {
+    width: 100%;
+    height: 55px;
+    margin-top: 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}

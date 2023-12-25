@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const database = new Sequelize("magic_post", "root", "12345678", {
+const database = new Sequelize("magic_post", "root", "", {
   host: "localhost",
   dialect: "mysql",
 });

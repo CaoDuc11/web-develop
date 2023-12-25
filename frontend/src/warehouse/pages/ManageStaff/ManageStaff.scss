@@ -1,0 +1,36 @@
+@import '../../../variables';
+.received-table {
+    .table-list {
+        border-collapse: collapse;
+        width: 100%;
+        border-left: 1px solid $greyText;
+        border-right: 1px solid $greyText;
+        .header-table {
+            background: rgb(227, 227, 227);
+            th {
+                text-align: start;
+                padding: 0.5rem 0.5rem;
+                font-size: 13px;
+            }
+        }
+        .body-table {
+            background: $whiteColor;
+            th {
+                text-align: start;
+                padding: 0.5rem 0.5rem;
+                font-size: 13px;
+                font-weight: 400;
+                border-bottom: 1px solid $greyText;
+            }
+        }
+    }
+}
+
+.nav-icon {
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.received-table {
+    margin-top: 15px;
+}
