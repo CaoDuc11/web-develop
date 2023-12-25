@@ -16,7 +16,9 @@ import WarehouseStaff from './warehouseStaff/pages/Dashboard';
 import AcceptDelivery from './warehouseStaff/pages/AcceptDelivery';
 import CreateDeliveryW from './warehouseStaff/pages/CreateDelivery';
 import Login from './all/Login';
-import SearchOfUser from './SearchingDelivery(User)/Search';
+import SearchOfUser from './SearchingDelivery(User)/pages/Search/Search';
+import SelectDestination from './warehouseStaff/pages/CreateDelivery/AcceptedList/SelectDestination';
+import User from './SearchingDelivery(User)/pages/Dashboard';
 
 
 function App() {
@@ -42,8 +44,10 @@ function App() {
                     <Route path="/warehouse/staff/dashboard" element={<WarehouseStaff />}/>
                     <Route path="/warehouse/staff/acceptDelivery" element={<AcceptDelivery />}/>
                     <Route path="/warehouse/staff/createDelivery" element={<CreateDeliveryW />}/>
+                    <Route path="/warehouse/staff/createDelivery/selectDestination" element={<SelectDestination/>}/>
 
                     <Route path="/user/searchEngine" element={<SearchOfUser/>}/>
+                    <Route path="/user/dashboard" element={<User/>}/>
                     
                 </Routes>
             </BrowserRouter>

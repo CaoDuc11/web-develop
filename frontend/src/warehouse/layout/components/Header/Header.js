@@ -12,7 +12,7 @@ const Header = () => {
         <section className={cx('headerSection')}>
             <header className={cx('header')}>
                 <div className="logoDiv">
-                    <Link to="/distribution/dashboard" className={cx('logo-link')}>
+                    <Link to="/warehouse/dashboard" className={cx('logo-link')}>
                         <img src={images.logo} alt="logo" />
                         <h1 className={cx('logo-text')}>Magic Post</h1>
                     </Link>
