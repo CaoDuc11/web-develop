@@ -30,7 +30,6 @@ const checkEmployeeDistribution = async (req, res, next) => {
   }
   return res.status(403).json({ msg: "Người dùng không có quyền truy cập" });
 };
-
 //Kiểm tra tài khoản quản lí điểm tập kết
 const checkAdminCollection = async (req, res, next) => {
   if (req.Position == "admin_collection") {
