@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames/bind';
 import styles from './AcceptedList.module.scss'
+import { NavLink } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -28,20 +29,11 @@ const AcceptedList = () => {
                 <th>Nguyễn Phú Trọng</th>
                 <th>Số nhà 23 Đường Hai Bà Trưng, Quận Hai Bà Trưng, Thủ Đức Thành phố nhà bè</th>
                 <th>0989789789</th>
-                <th style={{ textAlign: 'center' }}>
-                    <button
-                        style={{
-                            background: 'rgb(255,0,0)',
-                            color: 'white',
-                            fontSize: '13px',
-                            fontWeight: '500',
-                            padding: '0.5rem 0.5rem',
-                            border: 'none',
-                            borderRadius: '2px',
-                        }}
-                    >
-                        Tạo đơn
+                <th>
+                    <button>
+                    Tạo đơn
                     </button>
+                    
                 </th>
             </tr>
 
