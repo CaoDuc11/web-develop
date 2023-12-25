@@ -28,6 +28,7 @@ const initialState = {
         gtgt: '',
         vat: '',
         other: '',
+        journeyId1: nanoid(),
     },
     isError: false,
     message: '',
@@ -41,7 +42,13 @@ export const employeeDistributionSlice = createSlice({
     initialState,
     reducers: {
         reset: (state) => {
-            const place = { senderId: nanoid(), receiverId: nanoid(), parcelId: nanoid(), feeId: nanoid() };
+            const place = {
+                senderId: nanoid(),
+                receiverId: nanoid(),
+                parcelId: nanoid(),
+                feeId: nanoid(),
+                journeyId1: nanoid(),
+            };
             state.deliveryCreate = { ...initialState.deliveryCreate, ...place };
         },
         resetCreateStatus: (state) => {
@@ -66,8 +73,12 @@ export const employeeDistributionSlice = createSlice({
 
         //Xử lý khi trạng thái của CreateDelivery cập nhật
         builder.addCase(createDelivery.fulfilled, (state) => {
-            state.createStatus = 'flex';
-            state.isLoading = false;
+            if (state.isSuccess === true) {
+                state.createStatus = 'flex';
+                state.isLoading = false;
+            } else {
+                state.isLoading = true;
+            }
         });
 
         //Xử lý khi trạng thái của DeleteDelivery cập nhật

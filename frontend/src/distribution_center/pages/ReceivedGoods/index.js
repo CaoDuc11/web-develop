@@ -9,14 +9,14 @@ const cx = classNames.bind(styles);
 
 const ReceivedGoods = () => {
     return (
-        <div className="receved-goods-container">
+        <div className={cx('receved-goods-container')}>
             <Layout>
                 <div className={cx('received-goods-page')}>
                     <ReceivedHeader />
                     <ReceivedTable />
                 </div>
             </Layout>
-            <ModalDetails className={cx('modal-details')} displayCheck="flex" />
+            <ModalDetails className={cx('modal-details')} />
         </div>
     );
 };

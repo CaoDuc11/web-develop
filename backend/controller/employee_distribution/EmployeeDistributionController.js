@@ -6,6 +6,9 @@ const Fee = require("../../models/fee/FeeModel");
 const Transaction = require("../../models/transaction/TransactionModel");
 const QueryTypes = require("sequelize");
 const database = require("../../config/Database");
+const Journey = require("../../models/journey/JourneyModel");
+const Collection = require("../../models/collection/CollectionModel");
+const Distribution = require("../../models/distribution/DistributionModel");
 
 const CreateDelivery = async (req, res) => {
   const errors = validationResult(req);
@@ -44,6 +47,8 @@ const CreateDelivery = async (req, res) => {
     gtgt,
     vat,
     other,
+
+    journeyId1,
   } = req.body;
 
   try {
@@ -103,16 +108,32 @@ const CreateDelivery = async (req, res) => {
   }
 
   try {
+    await Journey.create({
+      journeyId: journeyId1,
+      createAt: new Date(),
+      status: "1",
+    });
+  } catch (error) {
+    return res.status(400).json({ msg: error.message });
+  }
+
+  try {
+    const distributionData = await Distribution.findOne({
+      where: {
+        distributionId: req.Workplace,
+      },
+    });
     await Transaction.create({
       parcelId,
       senderId,
       receiverId,
-      createAt: new Date(),
       status: "1",
       distriSend: req.Workplace,
       feeId,
+      journeyId1,
+      createAt: new Date(),
+      collectionSend: distributionData.collectionId,
     });
-
     return res.status(201).json({ msg: "Tạo đơn hàng thành công" });
   } catch (error) {
     return res.status(400).json({ msg: error.message });
@@ -122,15 +143,21 @@ const CreateDelivery = async (req, res) => {
 const GetDelivery = async (req, res) => {
   try {
     const sql =
-      "SELECT DISTINCT transactions.transactionId as transactionId, transactions.status as status , sender.customerName as senderName, sender.address as senderAddress, sender.numberPhone as senderPhone," +
+      "SELECT DISTINCT transactions.transactionId as transactionId, transactions.status as status, sender.customerName as senderName, sender.address as senderAddress, sender.numberPhone as senderPhone," +
       " receiver.customerName as receiverName, receiver.address as receiverAddress, receiver.numberPhone as receiverPhone," +
       " parcels.width as parcelWidth, parcels.height as parcelHeight, parcels.length as parcelLength, parcels.parcelContent as parcelContent, parcels.parcelType as parcelType, parcels.weight as parcelWeight," +
-      " fees.feeMain as feeMain, fees.feeSub as feeSub, fees.cod as cod, fees.vat as vat, fees.gtgt as gtgt, fees.other as other, fees.total as total,  CONCAT(DATE_FORMAT(transactions.createAt, '%d/%m/%Y'), ' - ', DATE_FORMAT(transactions.createAt, '%H:%i')) as dateTime FROM transactions" +
-      " INNER JOIN customers as sender ON transactions.senderId = sender.customerId INNER JOIN customers as receiver ON transactions.receiverId = receiver.customerId JOIN parcels ON transactions.parcelId = parcels.parcelId INNER JOIN fees ON transactions.feeId = fees.feeId WHERE transactions.status = :status ORDER BY transactions.createAt DESC";
+      "  CONCAT(DATE_FORMAT(journey1.createAt, '%d/%m/%Y'), ' - ', DATE_FORMAT(journey1.createAt, '%H:%i')) as dateTime,  CONCAT(DATE_FORMAT(journey1.sendFromDistribution1At, '%d/%m/%Y'), ' - ', DATE_FORMAT(journey1.sendFromDistribution1At, '%H:%i')) as sendFromDistribution1At,  CONCAT(DATE_FORMAT(journey1.collectionTime1, '%d/%m/%Y'), ' - ', DATE_FORMAT(journey1.collectionTime1, '%H:%i')) as collectionTime1, CONCAT(DATE_FORMAT(journey1.sendFromCollection1At, '%d/%m/%Y'), ' - ', DATE_FORMAT(journey1.sendFromCollection1At, '%H:%i')) as sendFromCollection1At, CONCAT(DATE_FORMAT(journey1.collectionTime2, '%d/%m/%Y'), ' - ', DATE_FORMAT(journey1.collectionTime2, '%H:%i')) as collectionTime2, journey1.status as journeyStatus," +
+      " distributionSend.distributionName as distriSend, distributionSend.collectionName as collecSendName," +
+      " fees.feeMain as feeMain, fees.feeSub as feeSub, fees.cod as cod, fees.vat as vat, fees.gtgt as gtgt, fees.other as other, fees.total as total FROM transactions" +
+      " INNER JOIN customers as sender ON transactions.senderId = sender.customerId INNER JOIN customers as receiver ON transactions.receiverId = receiver.customerId JOIN parcels ON transactions.parcelId = parcels.parcelId INNER JOIN fees ON transactions.feeId = fees.feeId INNER JOIN journeys as journey1 ON transactions.journeyId1 = journey1.journeyId INNER JOIN distributions as distributionSend ON transactions.distriSend = distributionSend.distributionId WHERE transactions.status = :status AND transactions.distriSend =  :employee_place ORDER BY transactions.createAt DESC";
     const data = await database.query(sql, {
-      replacements: { status: req.params.status },
+      replacements: {
+        status: req.params.status,
+        employee_place: req.Workplace,
+      },
       type: QueryTypes.SELECT,
     });
+
     return res.status(200).json(data[0]);
   } catch (error) {
     return res.status(500).json({ msg: error.message });
@@ -162,6 +189,12 @@ const DeleteDelivery = async (req, res) => {
     await Parcel.destroy({
       where: {
         parcelId: transaction.parcelId,
+      },
+    });
+
+    await Journey.destroy({
+      where: {
+        journeyId: transaction.journeyId1,
       },
     });
 
@@ -200,6 +233,19 @@ const UpdateDelivery = async (req, res) => {
         },
       }
     );
+    if (req.body.status === "2") {
+      await Journey.update(
+        {
+          status: "2",
+          sendFromDistribution1At: new Date(),
+        },
+        {
+          where: {
+            journeyId: transaction.journeyId1,
+          },
+        }
+      );
+    }
     return res.status(200).json({ msg: "Cập nhật đơn thành công" });
   } catch (error) {
     return res.status(400).json({ msg: error.message });
