@@ -1,14 +1,15 @@
 @import '../../../variables';
 
-.received-goods-container {
+.receved-goods-container {
     position: relative;
+    height: 100vh;
+    width: 100%;
     .received-goods-page {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         width: 100%;
         height: 100vh;
-        background: $whiteColor;
         padding: 1rem 1rem;
     }
 }

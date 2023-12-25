@@ -3,6 +3,9 @@ const database = require("../../config/Database");
 const Customer = require("../custumer/CustomerModel");
 const Parcel = require("../parcel/ParcelModel");
 const Distribution = require("../distribution/DistributionModel");
+const Fee = require("../fee/FeeModel");
+const Journey = require("../journey/JourneyModel");
+const Collection = require("../collection/CollectionModel");
 const Transaction = database.define(
   "transactions",
   {
@@ -12,21 +15,14 @@ const Transaction = database.define(
       primaryKey: true,
     },
 
-    createAt: {
-      type: DataTypes.DATE,
-    },
-
-    sendAt: {
-      type: DataTypes.DATE,
-    },
-
-    receivedAt: {
-      type: DataTypes.DATE,
-    },
-
     feeId: {
       type: DataTypes.STRING,
       allowNull: false,
+
+      references: {
+        model: Fee,
+        key: "feeId",
+      },
     },
 
     status: {
@@ -74,13 +70,43 @@ const Transaction = database.define(
       },
     },
 
-    distriReceived: {
+    collectionSend: {
       type: DataTypes.STRING,
 
+      references: {
+        model: Collection,
+        key: "collectionId",
+      },
+    },
+
+    distriReceived: {
+      type: DataTypes.STRING,
       references: {
         model: Distribution,
         key: "distributionId",
       },
+    },
+
+    collectionReceived: {
+      type: DataTypes.STRING,
+
+      references: {
+        model: Collection,
+        key: "collectionId",
+      },
+    },
+
+    journeyId1: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      references: {
+        model: Journey,
+        key: "journeyId",
+      },
+    },
+
+    createAt: {
+      type: DataTypes.DATE,
     },
   },
   {

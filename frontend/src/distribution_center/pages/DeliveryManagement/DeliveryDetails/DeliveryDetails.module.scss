@@ -37,11 +37,6 @@
                 }
             }
 
-            .infor-button {
-                border-color: $primaryColor;
-                color: $primaryColor;
-            }
-
             .comment-button {
                 flex: 1;
                 color: $blackColor;
@@ -163,6 +158,33 @@
         }
         &-main {
             height: 5rem;
+        }
+    }
+}
+
+.table-list {
+    border-collapse: collapse;
+    width: 100%;
+    border-left: 1px solid $greyText;
+    border-right: 1px solid $greyText;
+    .header-table {
+        background: $secondaryColor;
+        th {
+            text-align: start;
+            padding: 0.5rem 0.5rem;
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+        }
+    }
+    .body-table {
+        background: $whiteColor;
+        th {
+            text-align: start;
+            padding: 0.5rem 0.5rem;
+            font-size: 14px;
+            font-weight: 400;
+            border-bottom: 1px solid $greyText;
         }
     }
 }

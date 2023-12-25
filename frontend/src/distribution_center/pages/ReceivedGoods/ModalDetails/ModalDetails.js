@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './ModalDetails.module.scss';
 import classNames from 'classnames/bind';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
@@ -7,11 +7,9 @@ import { MdOutlineAttachMoney } from 'react-icons/md';
 import { IoMdClose } from 'react-icons/io';
 import { PiPrinterFill } from 'react-icons/pi';
 const cx = classNames.bind(styles);
-const ModalDetails = (displayCheck) => {
-    const [display, setDisplay] = useState(displayCheck);
-
+const ModalDetails = () => {
     return (
-        <div style={{ display: display }} className={cx('modal-details')}>
+        <div style={{ display: 'none' }} className={cx('modal-details')}>
             <div className={cx('modal-background')}>
                 <div className={cx('modal-container')}>
                     <div className={cx('modal-header')}>Thông tin đơn hàng</div>
@@ -197,7 +195,7 @@ const ModalDetails = (displayCheck) => {
                         </div>
                     </div>
                     <div className={cx('modal-footer')}>
-                        <div className={cx('button-red')} onClick={() => setDisplay('none')}>
+                        <div className={cx('button-red')}>
                             <IoMdClose className={cx('icon')} />
                             <span>ĐÓNG</span>
                         </div>
