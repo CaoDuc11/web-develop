@@ -3,6 +3,8 @@ import classNames from 'classnames/bind';
 import styles from './AcceptedList.module.scss';
 import { PiPrinterFill } from 'react-icons/pi';
 import { IoPaperPlane } from 'react-icons/io5';
+import styles from './AcceptedList.module.scss'
+import { NavLink } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -66,7 +68,6 @@ const Button = ({ item, onClick }) => {
             return null;
     }
 };
-
 const AcceptedList = (props) => {
     const { deliveries, onClick, handleOpen, collections, handleSelect } = props;
     return (

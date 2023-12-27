@@ -15,27 +15,27 @@
     margin-right: 10px;
 }
 
-#orderForm {
+.orderForm {
     width: 80%;
     display: flex;
     flex-direction: column;
 }
 
-#orderForm label {
+.orderForm label {
     margin: auto;
 }
 
-#orderForm input {
+.orderForm input {
     width: 100%;
     height: 80px;
     border-radius: 15px;
 }
 
-#orderForm p {
+.orderForm p {
     margin-top: 10px;
 }
 
-#orderForm button {
+.orderForm button {
     width: 100%;
     height: 55px;
     margin-top: 20px;
