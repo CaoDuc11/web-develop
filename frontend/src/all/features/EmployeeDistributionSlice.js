@@ -96,7 +96,6 @@ export const employeeDistributionSlice = createSlice({
 });
 
 export const createDelivery = createAsyncThunk('distribution/create', async (deliveryCreate, thunkAPI) => {
-    console.log(deliveryCreate);
     try {
         const response = await axios.post(API.HTTP_API + '/distribution/deliveries/create/', deliveryCreate, {
             withCredentials: true,
