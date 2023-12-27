@@ -3,6 +3,7 @@ import authReducer from '../features/AuthSlice';
 import adminDistributionReducer from '../features/AdminDistributionSlice';
 import EmployeeDistributionReducer, { employeeDistributionSlice } from '../features/EmployeeDistributionSlice';
 import adminCollectionReducer from '../features/AdminCollectionSlice';
+import employeeCollectionReducer from '../features/EmployeeCollectionSlice';
 
 export const store = configureStore({
     reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
         adminDistribution: adminDistributionReducer,
         employeeDistribution: EmployeeDistributionReducer,
         adminCollection: adminCollectionReducer,
+        employeeCollection: employeeCollectionReducer,
     },
 });

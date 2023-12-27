@@ -49,4 +49,9 @@ const Login = async (req, res) => {
   return res.status(200).json({ id, email, username, position });
 };
 
-module.exports = Login;
+const logOut = (req, res) => {
+  res.cookie("access_token", "", { maxAge: 1 });
+  return res.status(200).json({ msg: "Đăng xuất thành công" });
+};
+
+module.exports = { Login, logOut };
