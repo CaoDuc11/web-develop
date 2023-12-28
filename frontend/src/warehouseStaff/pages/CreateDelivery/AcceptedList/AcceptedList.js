@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './AcceptedList.module.scss';
 import { PiPrinterFill } from 'react-icons/pi';
 import { IoPaperPlane } from 'react-icons/io5';
+import { AiOutlineStop } from 'react-icons/ai';
 
 const cx = classNames.bind(styles);
 
@@ -30,9 +31,9 @@ const Button = ({ item, onClick }) => {
             return (
                 <button
                     style={{
-                        background: 'rgb(51,255,51)',
-                        color: 'white',
-                        fontSize: '13px',
+                        background: 'white',
+                        color: 'rgb(51,255,51)',
+                        fontSize: '14px',
                         fontWeight: '500',
                         padding: '0.4rem 0.5rem',
                         border: 'none',
@@ -44,13 +45,13 @@ const Button = ({ item, onClick }) => {
                     Đã nhận được hàng!
                 </button>
             );
-        case '4':
+        default:
             return (
                 <button
                     style={{
-                        background: 'rgb(51,255,51)',
-                        color: 'white',
-                        fontSize: '13px',
+                        background: 'white',
+                        color: 'hsl(187, 85%, 43%)',
+                        fontSize: '14px',
                         fontWeight: '500',
                         padding: '0.4rem 0.5rem',
                         border: 'none',
@@ -62,8 +63,6 @@ const Button = ({ item, onClick }) => {
                     Đã gửi hàng!
                 </button>
             );
-        default:
-            return null;
     }
 };
 
@@ -74,11 +73,11 @@ const AcceptedList = (props) => {
             <table className={cx('table-list')}>
                 <thead>
                     <tr className={cx('header-table')}>
-                        <th></th>
+                        {/* <th></th> */}
                         <th>MÃ ĐƠN HÀNG</th>
                         <th>KHÁCH HÀNG</th>
                         <th>NGƯỜI NHẬN</th>
-                        <th style={{ width: '25rem', textAlign: 'start' }}>ĐỊA CHỈ GIAO HÀNG</th>
+                        <th style={{ width: '20rem', textAlign: 'start' }}>ĐỊA CHỈ GIAO HÀNG</th>
                         <th>SỐ ĐIỆN THOẠI</th>
                         <th>TRẠNG THÁI</th>
                         <th>CHỌN ĐIỂM ĐẾN</th>
@@ -89,7 +88,7 @@ const AcceptedList = (props) => {
                 <tbody>
                     {deliveries.map((item, index) => (
                         <tr className={cx('body-table')}>
-                            <th>
+                            {/* <th>
                                 <input
                                     type="checkbox"
                                     style={{
@@ -101,7 +100,7 @@ const AcceptedList = (props) => {
                                         padding: '0',
                                     }}
                                 />
-                            </th>
+                            </th> */}
                             <th
                                 style={{ color: 'rgb(51,255,51)', cursor: 'pointer' }}
                                 onClick={() => handleOpen(index)}
@@ -110,7 +109,7 @@ const AcceptedList = (props) => {
                             </th>
                             <th>{item.senderName}</th>
                             <th>{item.receiverName}</th>
-                            <th style={{ textAlign: 'start' }}>{item.receiverAddress}</th>
+                            <th style={{ textAlign: 'start', width: '20rem' }}>{item.receiverAddress}</th>
                             <th>{item.receiverPhone}</th>
                             <th>
                                 <Button item={item} onClick={onClick} />
@@ -147,6 +146,14 @@ const AcceptedList = (props) => {
                                             <span>GỬI ĐƠN</span>
                                         </div>
                                     )}
+                                    {item.journeyStatus !== '0' &&
+                                        item.journeyStatus !== '2' &&
+                                        item.journeyStatus !== '3' && (
+                                            <div className={cx('button-red')}>
+                                                <AiOutlineStop className={cx('icon')} />
+                                                <span>HUỶ ĐƠN</span>
+                                            </div>
+                                        )}
                                 </div>
                             </th>
                         </tr>

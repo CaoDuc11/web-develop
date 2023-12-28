@@ -1,5 +1,6 @@
 const DataTypes = require("sequelize");
 const database = require("../../config/Database");
+const Collection = require("../collection/CollectionModel");
 const User = database.define(
   "users",
   {
