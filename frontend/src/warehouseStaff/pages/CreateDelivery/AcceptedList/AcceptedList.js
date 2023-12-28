@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import classNames from 'classnames/bind';
 import styles from './AcceptedList.module.scss';
 import { PiPrinterFill } from 'react-icons/pi';
 import { IoPaperPlane } from 'react-icons/io5';
 import { AiOutlineStop } from 'react-icons/ai';
-
+import DeliveryReceipt from '~/all/component/DeliveryReceipt/DeliveryReceipt';
+import { useReactToPrint } from 'react-to-print';
 const cx = classNames.bind(styles);
 
 const Button = ({ item, onClick }) => {
@@ -67,6 +68,20 @@ const Button = ({ item, onClick }) => {
 };
 const AcceptedList = (props) => {
     const { deliveries, onClick, handleOpen, collections, handleSelect } = props;
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+        pageStyle: () => `@media print {
+                           @page {
+                              size: A6 landscape;
+                              margin: 0;
+                            }
+
+                            body {
+                              margin: 1.5cm;
+                            }
+                         }`,
+    });
     return (
         <div className={cx('accepted-table')}>
             <table className={cx('table-list')}>
@@ -134,7 +149,10 @@ const AcceptedList = (props) => {
                             </th>
                             <th>
                                 <div className={cx('option-button')}>
-                                    <div className={cx('button-green')}>
+                                    <div style={{ display: 'none' }}>
+                                        <DeliveryReceipt ref={componentRef} {...item} />
+                                    </div>
+                                    <div className={cx('button-green')} onClick={handlePrint}>
                                         <PiPrinterFill className={cx('icon')} />
                                         <span>PRINT</span>
                                     </div>

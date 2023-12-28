@@ -14,7 +14,7 @@ import {
 } from '~/all/features/EmployeeCollectionSlice';
 import ModalDetailsCollection from '../../layout/components/ModalDetailsCollection/ModalDetailsCollection';
 const cx = classNames.bind(styles);
-const CreateDeliveryW = () => {
+const DeliveryFromDistribution = () => {
     const { deliveries, isLoading, isSuccess, updateStatus, collections } = useSelector(
         (state) => state.employeeCollection,
     );
@@ -102,4 +102,4 @@ const CreateDeliveryW = () => {
     return <div>{content}</div>;
 };
 
-export default CreateDeliveryW;
+export default DeliveryFromDistribution;
