@@ -65,7 +65,6 @@ const Button = ({ item, onClick }) => {
             );
     }
 };
-
 const AcceptedList = (props) => {
     const { deliveries, onClick, handleOpen, collections, handleSelect } = props;
     return (

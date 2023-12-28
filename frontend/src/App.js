@@ -12,10 +12,9 @@ import ManageStaff from './warehouse/pages/Employees';
 import Dashboard from './distribution_admin/pages/Dashboard';
 import Employees from './distribution_admin/pages/Employees';
 import WarehouseStaff from './warehouseStaff/pages/Dashboard';
-import AcceptDelivery from './warehouseStaff/pages/DeliveryFromCollection';
-import CreateDeliveryW from './warehouseStaff/pages/CreateDelivery';
+import DeliveryFromCollection from './warehouseStaff/pages/DeliveryFromCollection';
+import DeliveryFromDistribution from './warehouseStaff/pages/CreateDelivery';
 import Login from './all/Login';
-import SearchOfUser from './SearchingDelivery(User)/Search';
 
 function App() {
     return (
@@ -38,10 +37,8 @@ function App() {
                     <Route path="/admin/distribution/employees" element={<Employees />} />
 
                     <Route path="/warehouse/staff/dashboard" element={<WarehouseStaff />} />
-                    <Route path="/warehouse/staff/createDelivery" element={<AcceptDelivery />} />
-                    <Route path="/warehouse/staff/acceptDelivery" element={<CreateDeliveryW />} />
-
-                    <Route path="/user/searchEngine" element={<SearchOfUser />} />
+                    <Route path="/warehouse/staff/acceptDelivery" element={<DeliveryFromDistribution />} />
+                    <Route path="/warehouse/staff/createDelivery" element={<DeliveryFromCollection />} />
                 </Routes>
             </BrowserRouter>
         </div>
