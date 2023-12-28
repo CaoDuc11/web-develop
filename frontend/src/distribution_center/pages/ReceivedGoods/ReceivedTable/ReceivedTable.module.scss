@@ -10,7 +10,7 @@
         .header-table {
             background: rgb(227, 227, 227);
             th {
-                text-align: start;
+                text-align: center;
                 padding: 0.5rem 0.5rem;
                 font-size: 13px;
             }
@@ -18,11 +18,71 @@
         .body-table {
             background: $whiteColor;
             th {
-                text-align: start;
+                text-align: center;
                 padding: 0.5rem 0.5rem;
                 font-size: 13px;
                 font-weight: 400;
                 border-bottom: 1px solid $greyText;
+
+                .select-container {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    .select-filter {
+                        display: flex;
+                        flex-direction: row;
+                        font-size: 13px;
+                        font-weight: 500;
+                        padding: 0.3rem 0.5rem;
+                        border: 1px solid $greyText !important;
+                        background: $contentColor;
+                        justify-content: center;
+                        align-items: center;
+                        border-top-left-radius: 2px;
+                        border-bottom-left-radius: 2px;
+
+                        &::placeholder {
+                            font-size: 13px;
+                            border: 1px solid $primaryColor;
+                        }
+
+                        &:focus {
+                            border: 1px solid $primaryColor;
+                            outline: none;
+                        }
+
+                        option {
+                            font-size: 13px;
+                            border-radius: 0;
+                            margin-left: 0.5rem;
+                        }
+                    }
+                }
+
+                .button-XL {
+                    margin-right: 0.5rem;
+                    padding: 0.2rem 0.35rem;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 2px;
+                    .icon {
+                        height: 1.3rem;
+                        width: 1.3rem;
+                        color: white;
+                        margin-right: 0.5rem;
+                    }
+                    span {
+                        font-size: 13px;
+                        font-weight: 500;
+                        color: white;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }
