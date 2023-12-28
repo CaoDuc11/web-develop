@@ -1,0 +1,120 @@
+@import '../../../../variables';
+
+.accepted-table {
+    margin-top: 0.5rem;
+    .table-list {
+        border-collapse: collapse;
+        width: 100%;
+        border-left: 1px solid $greyText;
+        border-right: 1px solid $greyText;
+        .header-table {
+            background: rgb(227, 227, 227);
+            th {
+                text-align: center;
+                padding: 0.5rem 0.5rem;
+                font-size: 13px;
+            }
+        }
+        .body-table {
+            background: $whiteColor;
+            th {
+                text-align: center;
+                padding: 0.5rem 0.5rem;
+                font-size: 13px;
+                font-weight: 400;
+                border-bottom: 1px solid $greyText;
+
+                .select-container {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    .select-filter {
+                        display: flex;
+                        flex-direction: row;
+                        font-size: 13px;
+                        font-weight: 500;
+                        padding: 0.3rem 0.5rem;
+                        border: 1px solid $greyText !important;
+                        justify-content: center;
+                        background: $contentColor;
+                        align-items: center;
+                        border-top-left-radius: 2px;
+                        border-bottom-left-radius: 2px;
+
+                        &::placeholder {
+                            font-size: 13px;
+                            border: 1px solid $primaryColor;
+                        }
+
+                        &:focus {
+                            border: 1px solid $primaryColor;
+                            outline: none;
+                        }
+
+                        option {
+                            font-size: 13px;
+                            border-radius: 0;
+                            margin-left: 0.5rem;
+                        }
+                    }
+                }
+
+                .option-button {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+
+                    .button-green {
+                        margin-right: 0.5rem;
+                        padding: 0.15rem 0.25rem;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        background: rgb(10, 130, 60);
+                        border-radius: 2px;
+                        .icon {
+                            height: 1.4rem;
+                            color: $whiteColor;
+                            margin-right: 0.5rem;
+                        }
+                        span {
+                            font-size: 12px;
+                            font-weight: 500;
+                            color: $whiteColor;
+                        }
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .button-red {
+                        margin-right: 0.5rem;
+                        padding: 0.15rem 0.25rem;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        background: rgb(222, 46, 46);
+                        border-radius: 2px;
+                        .icon {
+                            height: 1.4rem;
+                            color: $whiteColor;
+                            margin-right: 0.5rem;
+                        }
+                        span {
+                            font-size: 12px;
+                            font-weight: 500;
+                            color: $whiteColor;
+                        }
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

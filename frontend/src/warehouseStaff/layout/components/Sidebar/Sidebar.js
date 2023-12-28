@@ -24,7 +24,7 @@ const Sidebar = () => {
     return (
         <section className={cx('sidebarSection')}>
             <div className={cx('sideBar')}>
-                <div className={cx('siderHeader')}>
+                <div className={cx('siderHeader')} style={{ marginTop: '3rem' }}>
                     <span className={cx('sidebar_label')}>Chung</span>
                     <div className={cx('sidebar-list')}>
                         <ul className={cx('sidebar_list_ul')}>
@@ -36,16 +36,30 @@ const Sidebar = () => {
                             </li>
 
                             <li>
-                                <NavLink to={'/warehouse/staff/createDelivery'} className={cx('sidebar-item')}>
-                                    <IoDocumentTextSharp className={cx('sidebar-icon')} />
-                                    <span className={cx('sidebar_title')}>Tạo đơn hàng</span>
+                                <NavLink to={'/warehouse/staff/dashboard'} className={cx('sidebar-item')}>
+                                    <IoStatsChart className={cx('sidebar-icon')} />
+                                    <span className={cx('sidebar_title')}>Thống kê</span>
                                 </NavLink>
                             </li>
+                        </ul>
+                    </div>
+                </div>
 
+                <div className={cx('siderHeader')}>
+                    <span className={cx('sidebar_label')}>Xử lí hàng hóa</span>
+                    <div className={cx('sidebar-list')}>
+                        <ul className={cx('sidebar_list_ul')}>
                             <li>
                                 <NavLink to={'/warehouse/staff/acceptDelivery'} className={cx('sidebar-item')}>
                                     <AiOutlineDeliveredProcedure className={cx('sidebar-icon')} />
                                     <span className={cx('sidebar_title')}>Xác nhận đơn hàng</span>
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to={'/warehouse/staff/createDelivery'} className={cx('sidebar-item')}>
+                                    <IoDocumentTextSharp className={cx('sidebar-icon')} />
+                                    <span className={cx('sidebar_title')}>Hàng nhận</span>
                                 </NavLink>
                             </li>
                         </ul>
