@@ -15,7 +15,7 @@ import WarehouseStaff from './warehouseStaff/pages/Dashboard';
 import DeliveryFromCollection from './warehouseStaff/pages/DeliveryFromCollection';
 import DeliveryFromDistribution from './warehouseStaff/pages/CreateDelivery';
 import Login from './all/Login';
-
+import User from './SearchingDelivery(User)/pages/Dashboard';
 function App() {
     return (
         <div>
@@ -35,7 +35,8 @@ function App() {
 
                     <Route path="/admin/distribution/dashboard" element={<Dashboard />} />
                     <Route path="/admin/distribution/employees" element={<Employees />} />
-
+                    <Route path="/user/dashboard" element={<User/>}/>
+                    
                     <Route path="/warehouse/staff/dashboard" element={<WarehouseStaff />} />
                     <Route path="/warehouse/staff/acceptDelivery" element={<DeliveryFromDistribution />} />
                     <Route path="/warehouse/staff/createDelivery" element={<DeliveryFromCollection />} />

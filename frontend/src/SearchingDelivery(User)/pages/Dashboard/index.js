@@ -19,10 +19,11 @@ const User = () => {
                         Nhập mã đơn hàng:
                     </label>
                     <input className={cx('searchInput')} type="text" id="orderId" name="orderId" required />
-                    <p>Nhập mã vận đơn của bạn (cách nhau bởi dấu phẩy), tối đa 10 vận đơn.</p>
                     <button className={cx('searchInput')} type="submit">
                         Tìm kiếm
                     </button>
+                    <p>Nhập mã vận đơn của bạn (cách nhau bởi dấu phẩy), tối đa 10 vận đơn.</p>
+                    
                 </form>
             </div>
             <div className={cx('about')}>
@@ -48,10 +49,45 @@ const User = () => {
                     trải nghiệm vận chuyển tốt nhất cho bạn!
                 </p>
             </div>
+        
+            <ul className={cx('image-icon')}>
+                <li className={cx('infor-icon')}>
+                    <img src={images.tinh_thanh} alt="tinh_thanh" />
+                    <h4>63 TỈNH THÀNH</h4>
+                </li>
+                <li className={cx('infor-icon')}>
+                    <img src={images.buu_cuc} alt="buu_cuc" />
+                    <h4>BƯU CỤC RỘNG KHẮP</h4>
+                </li>
+                <li className={cx('infor-icon')}>
+                    <img src={images.xe} alt="xe" />
+                    <h4>ĐA DẠNG PHƯƠNG TIỆN</h4>
+                </li>
+                <li className={cx('infor-icon')}>
+                    <img src={images.nhan_vien} alt="nhan_vien" />
+                    <h4>NHÂN SỰ CHUYÊN NGHIỆP</h4>
+                </li>
+            </ul>
+            <br></br>
+            <h1 className={cx('title')}>MẠNG LƯỚI PHỦ SÓNG TOÀN CẦU</h1>
+            <ul className={cx('place-list')}>
+                <li className={cx('place-item')}>
+                    <img src={images.newyork} alt="newyork" />
+                    <h3>New York</h3>
+                </li>
+                <li className={cx('place-item')}>
+                    <img src={images.paris} alt="paris" />
+                    <h3>Paris</h3>
+                </li>
+                <li className={cx('place-item')}>
+                    <img src={images.sanfran} alt="sanfran" />
+                    <h3>San Francisco</h3>
+                </li>
+            </ul>
             <div className={cx('contact')}>
-                <div className={cx('infor')}>
+                <ul className={cx('infor')}>
+                    <h3>Liên hệ với chúng tôi</h3>
                     <li>
-                        <h3>Liên hệ với chúng tôi</h3>
                         <IoLocation className={cx('user-icon')} />
                         <i>Cầu Giấy, Hà Nội, Việt Nam</i>
                     </li>
@@ -63,27 +99,9 @@ const User = () => {
                         <IoMail className={cx('user-icon')} />
                         <i>magicpostofficial@gmail.com</i>
                     </li>
-                </div>
-                <img className={cx('infor-icon')} src={images.tinh_thanh} alt="tinh_thanh" />
-                <img className={cx('infor-icon')} src={images.buu_cuc} alt="buu_cuc" />
-                <img className={cx('infor-icon')} src={images.xe} alt="xe" />
-                <img className={cx('infor-icon')} src={images.nhan_vien} alt="nhan_vien" />
+                </ul>
             </div>
-            <div className={cx('place-list')}>
-                <h1>MẠNG LƯỚI PHỦ SÓNG TOÀN CẦU</h1>
-                <div className={cx('place-item')}>
-                    <img src={images.newyork} alt="newyork" />
-                    <h3>New York</h3>
-                </div>
-                <div className={cx('place-item')}>
-                    <img src={images.paris} alt="paris" />
-                    <h3>Paris</h3>
-                </div>
-                <div className={cx('place-item')}>
-                    <img src={images.sanfran} alt="sanfran" />
-                    <h3>San Francisco</h3>
-                </div>
-            </div>
+            <img src={images.map} alt="login" className={cx('background')} />
         </Layout>
     );
 };
