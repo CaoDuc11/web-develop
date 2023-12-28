@@ -164,6 +164,27 @@ const GetDelivery = async (req, res) => {
   }
 };
 
+const GetDeliveryShip = async (req, res) => {
+  try {
+    const sql1 =
+      "SELECT DISTINCT transactions.transactionId as transactionId, transactions.status as status, sender.customerName as senderName, sender.address as senderAddress, sender.numberPhone as senderPhone," +
+      " receiver.customerName as receiverName, receiver.address as receiverAddress, receiver.numberPhone as receiverPhone," +
+      " parcels.width as parcelWidth, parcels.height as parcelHeight, parcels.length as parcelLength, parcels.parcelContent as parcelContent, parcels.parcelType as parcelType, parcels.weight as parcelWeight," +
+      " journey1.status as journeyStatus," +
+      " fees.feeMain as feeMain, fees.feeSub as feeSub, fees.cod as cod, fees.vat as vat, fees.gtgt as gtgt, fees.other as other, fees.total as total FROM transactions" +
+      " INNER JOIN customers as sender ON transactions.senderId = sender.customerId INNER JOIN customers as receiver ON transactions.receiverId = receiver.customerId JOIN parcels ON transactions.parcelId = parcels.parcelId INNER JOIN fees ON transactions.feeId = fees.feeId INNER JOIN journeys as journey1 ON transactions.journeyId1 = journey1.journeyId INNER JOIN distributions as distributionSend ON transactions.distriSend = distributionSend.distributionId WHERE transactions.distriReceived =  :employee_place ORDER BY transactions.createAt DESC";
+    const data1 = await database.query(sql1, {
+      replacements: {
+        employee_place: req.Workplace,
+      },
+      type: QueryTypes.SELECT,
+    });
+    return res.status(200).json(data1[0]);
+  } catch (error) {
+    return res.status(400).json({ msg: error.message });
+  }
+};
+
 const DeleteDelivery = async (req, res) => {
   try {
     const transaction = await Transaction.findOne({
@@ -252,9 +273,73 @@ const UpdateDelivery = async (req, res) => {
   }
 };
 
+const UpdateJourneyShip = async (req, res) => {
+  try {
+    const transaction = await Transaction.findOne({
+      where: {
+        transactionId: req.params.id,
+      },
+    });
+    if (!transaction) {
+      return res.status(404).json({ msg: "Không tồn tại đơn hàng " });
+    }
+    if (req.body.status === "6") {
+      await Journey.update(
+        {
+          status: "7",
+          distributionTime2: new Date(),
+        },
+        {
+          where: {
+            journeyId: transaction.journeyId1,
+          },
+        }
+      );
+    } else if (req.body.status === "7") {
+      await Journey.update(
+        {
+          status: "8",
+          sendFromDistribution2At: new Date(),
+        },
+        {
+          where: {
+            journeyId: transaction.journeyId1,
+          },
+        }
+      );
+    } else if (req.body.status === "8") {
+      await Transaction.update(
+        {
+          status: req.body.confirm === "success" ? "3" : "4",
+        },
+        {
+          where: {
+            journeyId1: transaction.journeyId1,
+          },
+        }
+      );
+      await Journey.update(
+        {
+          status: req.body.confirm === "success" ? "9" : "0",
+        },
+        {
+          where: {
+            journeyId: transaction.journeyId1,
+          },
+        }
+      );
+    }
+    return res.status(200).json({ msg: "Cập nhật đơn thành công" });
+  } catch (errior) {
+    return res.status(400).json({ msg: error.message });
+  }
+};
+
 module.exports = {
   CreateDelivery,
   GetDelivery,
   DeleteDelivery,
   UpdateDelivery,
+  GetDeliveryShip,
+  UpdateJourneyShip,
 };

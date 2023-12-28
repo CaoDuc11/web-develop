@@ -35,6 +35,9 @@ const initialState = {
     isSuccess: false,
     isLoading: true,
     createStatus: 'none',
+    deliveriesShip: [],
+    isSuccess2: false,
+    isLoading2: true,
 };
 
 export const employeeDistributionSlice = createSlice({
@@ -71,6 +74,12 @@ export const employeeDistributionSlice = createSlice({
             state.deliveries = action.payload;
         });
 
+        builder.addCase(GetDeliveryShip.fulfilled, (state, action) => {
+            state.isLoading2 = false;
+            state.isSuccess2 = true;
+            state.deliveriesShip = action.payload;
+        });
+
         //Xử lý khi trạng thái của CreateDelivery cập nhật
         builder.addCase(createDelivery.fulfilled, (state) => {
             if (state.isSuccess === true) {
@@ -92,6 +101,12 @@ export const employeeDistributionSlice = createSlice({
             state.createStatus = 'flex';
             state.isLoading = false;
         });
+
+        //Xử lý khi trạng thái của UpdateShip cập nhật
+        builder.addCase(UpdateJourneyShip.fulfilled, (state) => {
+            state.createStatus = 'flex';
+            state.isLoading2 = false;
+        });
     },
 });
 
@@ -110,6 +125,18 @@ export const createDelivery = createAsyncThunk('distribution/create', async (del
 export const GetDelivery = createAsyncThunk('distribution/get', async (option, thunkAPI) => {
     try {
         const response = await axios.get(API.HTTP_API + '/distribution/deliveries/' + option.transactionStatus, {
+            withCredentials: true,
+        });
+        return response.data;
+    } catch (error) {
+        const message = error.response.data.msg;
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
+export const GetDeliveryShip = createAsyncThunk('distribution/ship', async (thunkAPI) => {
+    try {
+        const response = await axios.get(API.HTTP_API + '/distribution/ship', {
             withCredentials: true,
         });
         return response.data;
@@ -142,6 +169,27 @@ export const UpdateDelivery = createAsyncThunk('distribution/update', async (obj
             API.HTTP_API + '/distribution/deliveries/update/' + object.transactionId,
             {
                 status: object.status,
+            },
+            {
+                withCredentials: true,
+            },
+        );
+        return response.data;
+    } catch (error) {
+        if (error.response) {
+            const message = error.respone.data.msg;
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+});
+
+export const UpdateJourneyShip = createAsyncThunk('distribution/journey/update', async (item, thunkAPI) => {
+    try {
+        const response = await axios.put(
+            API.HTTP_API + '/distribution/ship/update/' + item.transactionId,
+            {
+                status: item.journeyStatus,
+                confirm: item.confirm,
             },
             {
                 withCredentials: true,

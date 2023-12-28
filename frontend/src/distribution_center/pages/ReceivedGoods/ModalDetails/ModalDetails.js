@@ -7,9 +7,9 @@ import { MdOutlineAttachMoney } from 'react-icons/md';
 import { IoMdClose } from 'react-icons/io';
 import { PiPrinterFill } from 'react-icons/pi';
 const cx = classNames.bind(styles);
-const ModalDetails = () => {
+const ModalDetails = ({ display, deliveries, index, handleClose }) => {
     return (
-        <div style={{ display: 'none' }} className={cx('modal-details')}>
+        <div style={{ display: display }} className={cx('modal-details')}>
             <div className={cx('modal-background')}>
                 <div className={cx('modal-container')}>
                     <div className={cx('modal-header')}>Thông tin đơn hàng</div>
@@ -28,7 +28,7 @@ const ModalDetails = () => {
                                             Họ và tên:
                                         </span>
                                         <span className={cx('title-fullname-main', 'title-infor-main')}>
-                                            Trần Hoài Nam
+                                            {deliveries[index].senderName}
                                         </span>
                                     </div>
                                     <div className={cx('title-numberphone', 'title-infor')}>
@@ -36,7 +36,7 @@ const ModalDetails = () => {
                                             Số điện thoại:
                                         </span>
                                         <span className={cx('title-numberphone-main', 'title-infor-main')}>
-                                            0987678678
+                                            {deliveries[index].senderPhone}
                                         </span>
                                     </div>
                                     <div className={cx('title-address', 'title-infor')}>
@@ -44,7 +44,7 @@ const ModalDetails = () => {
                                             Địa chỉ:
                                         </span>
                                         <span className={cx('title-address-main', 'title-infor-main')}>
-                                            Dịch Vọng, Cầu Giấy, Hà Nội
+                                            {deliveries[index].senderAddress}
                                         </span>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@ const ModalDetails = () => {
                                             Họ và tên :
                                         </span>
                                         <span className={cx('title-fullname-main', 'title-infor-main')}>
-                                            Trần Hoài Nam
+                                            {deliveries[index].receiverName}
                                         </span>
                                     </div>
                                     <div className={cx('title-numberphone', 'title-infor')}>
@@ -64,7 +64,7 @@ const ModalDetails = () => {
                                             Số điện thoại:
                                         </span>
                                         <span className={cx('title-numberphone-main', 'title-infor-main')}>
-                                            0987678678
+                                            {deliveries[index].receiverPhone}
                                         </span>
                                     </div>
                                     <div className={cx('title-address', 'title-infor')}>
@@ -72,7 +72,7 @@ const ModalDetails = () => {
                                             Địa chỉ:
                                         </span>
                                         <span className={cx('title-address-main', 'title-infor-main')}>
-                                            Dịch Vọng, Cầu Giấy, Hà Nội
+                                            {deliveries[index].receiverAddress}
                                         </span>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@ const ModalDetails = () => {
                                             Loại hàng hóa:
                                         </span>
                                         <span className={cx('title-producttype-main', 'title-infor-main')}>
-                                            Tài liệu
+                                            {deliveries[index].parcelType}
                                         </span>
                                     </div>
                                     <div className={cx('title-productdetails', 'title-infor')}>
@@ -99,14 +99,16 @@ const ModalDetails = () => {
                                             Nội dung hàng hóa:
                                         </span>
                                         <span className={cx('title-productdetails-main', 'title-infor-main')}>
-                                            Tài liệu học tập
+                                            {deliveries[index].parcelContent}
                                         </span>
                                     </div>
                                     <div className={cx('title-weight', 'title-infor')}>
                                         <span className={cx('title-weight-header', 'title-infor-header')}>
                                             Trọng lượng (gram):
                                         </span>
-                                        <span className={cx('title-weight-main', 'title-infor-main')}>200</span>
+                                        <span className={cx('title-weight-main', 'title-infor-main')}>
+                                            {deliveries[index].parcelWeight}
+                                        </span>
                                     </div>
                                 </div>
 
@@ -115,19 +117,25 @@ const ModalDetails = () => {
                                         <span className={cx('title-length-header', 'title-infor-header')}>
                                             Chiều dài:
                                         </span>
-                                        <span className={cx('title-length-main', 'title-infor-main')}>0</span>
+                                        <span className={cx('title-length-main', 'title-infor-main')}>
+                                            {deliveries[index].parcelLength}
+                                        </span>
                                     </div>
                                     <div className={cx('title-width', 'title-infor')}>
                                         <span className={cx('title-width-header', 'title-infor-header')}>
                                             Chiều rộng:
                                         </span>
-                                        <span className={cx('title-width-main', 'title-infor-main')}>0</span>
+                                        <span className={cx('title-width-main', 'title-infor-main')}>
+                                            {deliveries[index].parcelWidth}
+                                        </span>
                                     </div>
                                     <div className={cx('title-height', 'title-infor')}>
                                         <span className={cx('title-height-header', 'title-infor-header')}>
                                             Chiều cao:
                                         </span>
-                                        <span className={cx('title-height-main', 'title-infor-main')}>0</span>
+                                        <span className={cx('title-height-main', 'title-infor-main')}>
+                                            {deliveries[index].parcelHeight}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -145,19 +153,25 @@ const ModalDetails = () => {
                                         <span className={cx('title-feemain-header', 'title-infor-header')}>
                                             Cước chính (vnđ):
                                         </span>
-                                        <span className={cx('title-feemain-main', 'title-infor-main')}>20.000</span>
+                                        <span className={cx('title-feemain-main', 'title-infor-main')}>
+                                            {deliveries[index].feeMain}
+                                        </span>
                                     </div>
                                     <div className={cx('title-subfee', 'title-infor')}>
                                         <span className={cx('title-subfee-header', 'title-infor-header')}>
                                             Phụ phí (vnđ):
                                         </span>
-                                        <span className={cx('title-subfee-main', 'title-infor-main')}>20.000</span>
+                                        <span className={cx('title-subfee-main', 'title-infor-main')}>
+                                            {deliveries[index].feeSub}
+                                        </span>
                                     </div>
                                     <div className={cx('title-cod', 'title-infor')}>
                                         <span className={cx('title-cod-header', 'title-infor-header')}>
                                             Cước COD (vnđ):
                                         </span>
-                                        <span className={cx('title-cod-main', 'title-infor-main')}>20.000</span>
+                                        <span className={cx('title-cod-main', 'title-infor-main')}>
+                                            {deliveries[index].cod}
+                                        </span>
                                     </div>
 
                                     <div className={cx('title-total', 'title-infor')}>
@@ -167,7 +181,9 @@ const ModalDetails = () => {
                                         >
                                             Tổng thanh toán (vnđ):
                                         </span>
-                                        <span className={cx('title-total-main', 'title-infor-main')}>120.000</span>
+                                        <span className={cx('title-total-main', 'title-infor-main')}>
+                                            {deliveries[index].total}
+                                        </span>
                                     </div>
                                 </div>
 
@@ -176,26 +192,32 @@ const ModalDetails = () => {
                                         <span className={cx('title-gtgt-header', 'title-infor-header')}>
                                             Cước GTGT (vnđ):
                                         </span>
-                                        <span className={cx('title-gtgt-main', 'title-infor-main')}>200</span>
+                                        <span className={cx('title-gtgt-main', 'title-infor-main')}>
+                                            {deliveries[index].gtgt}
+                                        </span>
                                     </div>
                                     <div className={cx('title-vat', 'title-infor')}>
                                         <span className={cx('title-vat-header', 'title-infor-header')}>
                                             Tổng cước VAT:
                                         </span>
-                                        <span className={cx('title-vat-main', 'title-infor-main')}>0</span>
+                                        <span className={cx('title-vat-main', 'title-infor-main')}>
+                                            {deliveries[index].vat}
+                                        </span>
                                     </div>
                                     <div className={cx('title-orther', 'title-infor')}>
                                         <span className={cx('title-orther-header', 'title-infor-header')}>
                                             Các phí khác:
                                         </span>
-                                        <span className={cx('title-orther-main', 'title-infor-main')}>0</span>
+                                        <span className={cx('title-orther-main', 'title-infor-main')}>
+                                            {deliveries[index].other}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className={cx('modal-footer')}>
-                        <div className={cx('button-red')}>
+                        <div className={cx('button-red')} onClick={handleClose}>
                             <IoMdClose className={cx('icon')} />
                             <span>ĐÓNG</span>
                         </div>
