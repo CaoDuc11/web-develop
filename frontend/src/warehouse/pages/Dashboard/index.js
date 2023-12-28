@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import Layout from '~/warehouse/layout';
 import styles from './DashboardWarehouse.module.scss';
 import classNames from 'classnames/bind';
@@ -11,9 +11,24 @@ import { IoWarning } from 'react-icons/io5';
 import ChangingProgressProvider from './ChangingProgressProvider';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { GetEmployees } from '~/all/features/AdminCollectionSlice';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 const Warehouse = () => {
+    const dispatch = useDispatch();
+    const [employeesList, setEmployees] = useState([]);
+    const { usersList } = useSelector((state) => state.adminCollection);
+
+    useEffect(() => {
+        if (usersList.length === 0) {
+            dispatch(GetEmployees());
+        } else {
+            setEmployees(usersList);
+        }
+    }, [dispatch, usersList]);
+
     return (
         <Layout>
             <div className={cx('dashboard')}>
@@ -159,7 +174,39 @@ const Warehouse = () => {
                             </div>
                         </div>
                     </div>
-                    
+                    <div className={cx('employees-table')}>
+                        <div className={cx('top')}>
+                            <div className={cx('title')}>Danh sách nhân viên</div>
+                        </div>
+                        <div className={cx('bottom')}>
+                            { employeesList.length > 0 ? (<table className={cx('table-list')}>
+                                <thead>
+                                    <tr className={cx('header-table')}>
+                                        <th style={{ textAlign: 'center' }}>SỐ THỨ TỰ</th>
+                                        <th>HỌ VÀ TÊN</th>
+                                        <th>EMAIL</th>
+                                        <th>SỐ ĐIỆN THOẠI</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {employeesList.map((item, index) => (
+                                        <tr className={cx('body-table')}>
+                                            <th style={{ textAlign: 'center' }}>{index + 1}</th>
+                                            <th>{item.fullname}</th>
+                                            <th>{item.email}</th>
+                                            <th>0987898768</th>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>) : (
+                                <h1 className={cx('warning')}>Chưa có nhân viên để hiển thị.</h1>
+                            )}
+                        </div>
+                        <div className={cx('see-details')}>
+                            <Link to='/warehouse/managestaff' className={cx('link')}><span>See Details</span></Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </Layout>
