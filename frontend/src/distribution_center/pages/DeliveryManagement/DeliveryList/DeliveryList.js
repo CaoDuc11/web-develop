@@ -8,7 +8,7 @@ import DeliveryItem from './DeliveryItem';
 import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { useReactToPrint } from 'react-to-print';
-import DeliveryReceipt from '../DeliveryReceipt/DeliveryReceipt';
+import DeliveryReceipt from '~/all/component/DeliveryReceipt/DeliveryReceipt';
 import DeliveryDetails from '../DeliveryDetails/DeliveryDetails';
 
 const cx = classNames.bind(styles);

@@ -1,6 +1,14 @@
 @import '../../../variables';
-#diagram
-{
-    font-size: 30px;
-    width: 75%;
+.chart {
+    width: 100%;
+    .title {
+        width: 100%;
+        .content {
+            margin-left: 40%;
+            margin-top: 50px;
+            transform: translateX(-30%);
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+    }
 }

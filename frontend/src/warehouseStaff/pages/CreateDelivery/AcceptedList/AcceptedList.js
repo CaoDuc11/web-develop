@@ -1,69 +1,184 @@
-import React from 'react'
+import React, { useRef } from 'react';
 import classNames from 'classnames/bind';
-import styles from './AcceptedList.module.scss'
-import { NavLink } from 'react-router-dom';
-
+import styles from './AcceptedList.module.scss';
+import { PiPrinterFill } from 'react-icons/pi';
+import { IoPaperPlane } from 'react-icons/io5';
+import { AiOutlineStop } from 'react-icons/ai';
+import DeliveryReceipt from '~/all/component/DeliveryReceipt/DeliveryReceipt';
+import { useReactToPrint } from 'react-to-print';
 const cx = classNames.bind(styles);
 
-const AcceptedList = () => {
-  return (
-    <div className={cx('accepted-table')}>
-    <table className={cx('table-list')}>
-        <thead>
-            <tr className={cx('header-table')}>
-                <th style={{ textAlign: 'center' }}>STT</th>
-                <th>MÃ ĐƠN HÀNG</th>
-                <th>KHÁCH HÀNG</th>
-                <th>NGƯỜI NHẬN</th>
-                <th style={{ width: '25rem', textAlign: 'start' }}>ĐỊA CHỈ GIAO HÀNG</th>
-                <th>SỐ ĐIỆN THOẠI</th>
-                <th style={{ textAlign: 'center' }}>TRẠNG THÁI</th>
-            </tr>
-        </thead>
+const Button = ({ item, onClick }) => {
+    switch (item.journeyStatus) {
+        case '2':
+            return (
+                <button
+                    style={{
+                        background: 'rgb(255, 95, 31)',
+                        color: 'white',
+                        fontSize: '13px',
+                        fontWeight: '500',
+                        padding: '0.4rem 0.5rem',
+                        border: 'none',
+                        borderRadius: '2px',
+                        cursor: 'pointer',
+                    }}
+                    onClick={() => onClick(item)}
+                >
+                    Xác nhận
+                </button>
+            );
+        case '3':
+            return (
+                <button
+                    style={{
+                        background: 'white',
+                        color: 'rgb(51,255,51)',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        padding: '0.4rem 0.5rem',
+                        border: 'none',
+                        borderRadius: '2px',
+                        cursor: 'pointer',
+                    }}
+                    onClick={() => onClick(item)}
+                >
+                    Đã nhận được hàng!
+                </button>
+            );
+        default:
+            return (
+                <button
+                    style={{
+                        background: 'white',
+                        color: 'hsl(187, 85%, 43%)',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        padding: '0.4rem 0.5rem',
+                        border: 'none',
+                        borderRadius: '2px',
+                        cursor: 'pointer',
+                    }}
+                    onClick={() => onClick(item)}
+                >
+                    Đã gửi hàng!
+                </button>
+            );
+    }
+};
+const AcceptedList = (props) => {
+    const { deliveries, onClick, handleOpen, collections, handleSelect } = props;
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+        pageStyle: () => `@media print {
+                           @page {
+                              size: A6 landscape;
+                              margin: 0;
+                            }
 
-        <tbody>
-            <tr className={cx('body-table')}>
-                <th style={{ textAlign: 'center' }}>1</th>
-                <th style={{ color: 'rgb(51,255,51)', cursor: 'pointer' }}>A000452</th>
-                <th>Trần Đức Khải</th>
-                <th>Nguyễn Phú Trọng</th>
-                <th>Số nhà 23 Đường Hai Bà Trưng, Quận Hai Bà Trưng, Thủ Đức Thành phố nhà bè</th>
-                <th>0989789789</th>
-                <th>
-                    <button>
-                    Tạo đơn
-                    </button>
-                    
-                </th>
-            </tr>
+                            body {
+                              margin: 1.5cm;
+                            }
+                         }`,
+    });
+    return (
+        <div className={cx('accepted-table')}>
+            <table className={cx('table-list')}>
+                <thead>
+                    <tr className={cx('header-table')}>
+                        {/* <th></th> */}
+                        <th>MÃ ĐƠN HÀNG</th>
+                        <th>KHÁCH HÀNG</th>
+                        <th>NGƯỜI NHẬN</th>
+                        <th style={{ width: '20rem', textAlign: 'start' }}>ĐỊA CHỈ GIAO HÀNG</th>
+                        <th>SỐ ĐIỆN THOẠI</th>
+                        <th>TRẠNG THÁI</th>
+                        <th>CHỌN ĐIỂM ĐẾN</th>
+                        <th>TÙY CHỌN</th>
+                    </tr>
+                </thead>
 
-            <tr className={cx('body-table')}>
-                <th style={{ textAlign: 'center' }}>1</th>
-                <th style={{ color: 'rgb(51,255,51)', cursor: 'pointer' }}>A000452</th>
-                <th>Trần Đức Khải</th>
-                <th>Nguyễn Phú Trọng</th>
-                <th>Số nhà 23 Đường Hai Bà Trưng, Quận Hai Bà Trưng, Thủ Đức Thành phố nhà bè</th>
-                <th>0989789789</th>
-                <th style={{ textAlign: 'center' }}>
-                    <button
-                        style={{
-                            background: 'rgb(51,255,51)',
-                            color: 'white',
-                            fontSize: '13px',
-                            fontWeight: '500',
-                            padding: '0.5rem 0.5rem',
-                            border: 'none',
-                            borderRadius: '2px',
-                        }}
-                    >
-                        Đã tạo đơn
-                    </button>
-                </th>
-            </tr>
-        </tbody>
-    </table>
-</div>
-  )
-}
+                <tbody>
+                    {deliveries.map((item, index) => (
+                        <tr className={cx('body-table')}>
+                            {/* <th>
+                                <input
+                                    type="checkbox"
+                                    style={{
+                                        display: 'none',
+                                        marginLeft: '0.5rem',
+                                        width: '1.4rem',
+                                        height: '1.4rem',
+                                        textAlign: 'center',
+                                        padding: '0',
+                                    }}
+                                />
+                            </th> */}
+                            <th
+                                style={{ color: 'rgb(51,255,51)', cursor: 'pointer' }}
+                                onClick={() => handleOpen(index)}
+                            >
+                                A200025
+                            </th>
+                            <th>{item.senderName}</th>
+                            <th>{item.receiverName}</th>
+                            <th style={{ textAlign: 'start', width: '20rem' }}>{item.receiverAddress}</th>
+                            <th>{item.receiverPhone}</th>
+                            <th>
+                                <Button item={item} onClick={onClick} />
+                            </th>
+                            <th>
+                                <div className={cx('select-container')}>
+                                    {item.journeyStatus === '3' ? (
+                                        <select className={cx('select-filter')} onChange={(e) => handleSelect(e)}>
+                                            {collections.map((option, index) => (
+                                                <option value={option.collectionName}>{option.collectionName}</option>
+                                            ))}
+                                        </select>
+                                    ) : (
+                                        <select disabled className={cx('select-filter')}>
+                                            <option value="Mã đơn hàng">
+                                                {item.collectionId
+                                                    ? `Điểm tập kết ${item.collectionId}`
+                                                    : 'Chờ xác nhận'}
+                                            </option>
+                                        </select>
+                                    )}
+                                </div>
+                            </th>
+                            <th>
+                                <div className={cx('option-button')}>
+                                    <div style={{ display: 'none' }}>
+                                        <DeliveryReceipt ref={componentRef} {...item} />
+                                    </div>
+                                    <div className={cx('button-green')} onClick={handlePrint}>
+                                        <PiPrinterFill className={cx('icon')} />
+                                        <span>PRINT</span>
+                                    </div>
 
-export default AcceptedList
+                                    {item.journeyStatus === '3' && (
+                                        <div className={cx('button-green')} onClick={() => onClick(item)}>
+                                            <IoPaperPlane className={cx('icon')} />
+                                            <span>GỬI ĐƠN</span>
+                                        </div>
+                                    )}
+                                    {item.journeyStatus !== '0' &&
+                                        item.journeyStatus !== '2' &&
+                                        item.journeyStatus !== '3' && (
+                                            <div className={cx('button-red')}>
+                                                <AiOutlineStop className={cx('icon')} />
+                                                <span>HUỶ ĐƠN</span>
+                                            </div>
+                                        )}
+                                </div>
+                            </th>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
+export default AcceptedList;

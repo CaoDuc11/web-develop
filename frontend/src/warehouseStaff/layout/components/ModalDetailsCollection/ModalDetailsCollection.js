@@ -7,7 +7,7 @@ import { MdOutlineAttachMoney } from 'react-icons/md';
 import { IoMdClose } from 'react-icons/io';
 import { PiPrinterFill } from 'react-icons/pi';
 const cx = classNames.bind(styles);
-const ModalDetails = ({ display, deliveries, index, handleClose }) => {
+const ModalDetailsCollection = ({ display, deliveries, handleClose, index }) => {
     return (
         <div style={{ display: display }} className={cx('modal-details')}>
             <div className={cx('modal-background')}>
@@ -232,4 +232,4 @@ const ModalDetails = ({ display, deliveries, index, handleClose }) => {
     );
 };
 
-export default ModalDetails;
+export default ModalDetailsCollection;

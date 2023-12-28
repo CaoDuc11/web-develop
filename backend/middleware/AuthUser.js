@@ -37,10 +37,17 @@ const checkAdminCollection = async (req, res, next) => {
   }
   return res.status(403).json({ msg: "Người dùng không có quyền truy cập" });
 };
-
+//Kiểm tra tài khoản nhân viên điểm tập kết
+const checkEmployeeCollection = async (req, res, next) => {
+  if (req.Position == "employee_collection") {
+    return next();
+  }
+  return res.status(403).json({ msg: "Người dùng không có quyền truy cập" });
+};
 module.exports = {
   authenticationUser,
   checkAdminDistribution,
   checkEmployeeDistribution,
   checkAdminCollection,
+  checkEmployeeCollection,
 };

@@ -1,6 +1,6 @@
 @import '../../../../variables';
 
-.received-table {
+.accepted-table {
     margin-top: 0.5rem;
     .table-list {
         border-collapse: collapse;
@@ -35,8 +35,8 @@
                         font-weight: 500;
                         padding: 0.3rem 0.5rem;
                         border: 1px solid $greyText !important;
-                        background: $contentColor;
                         justify-content: center;
+                        background: $contentColor;
                         align-items: center;
                         border-top-left-radius: 2px;
                         border-bottom-left-radius: 2px;
@@ -59,28 +59,59 @@
                     }
                 }
 
-                .button-XL {
-                    margin-right: 0.5rem;
-                    padding: 0.2rem 0.35rem;
+                .option-button {
+                    width: 100%;
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
                     align-items: center;
-                    border-radius: 2px;
-                    .icon {
-                        height: 1.3rem;
-                        width: 1.3rem;
-                        color: white;
+
+                    .button-green {
                         margin-right: 0.5rem;
-                    }
-                    span {
-                        font-size: 13px;
-                        font-weight: 500;
-                        color: white;
+                        padding: 0.15rem 0.25rem;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        background: rgb(10, 130, 60);
+                        border-radius: 2px;
+                        .icon {
+                            height: 1.4rem;
+                            color: $whiteColor;
+                            margin-right: 0.5rem;
+                        }
+                        span {
+                            font-size: 12px;
+                            font-weight: 500;
+                            color: $whiteColor;
+                        }
+                        &:hover {
+                            cursor: pointer;
+                        }
                     }
 
-                    &:hover {
-                        cursor: pointer;
+                    .button-red {
+                        margin-right: 0.5rem;
+                        padding: 0.15rem 0.25rem;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        background: rgb(222, 46, 46);
+                        border-radius: 2px;
+                        .icon {
+                            height: 1.4rem;
+                            color: $whiteColor;
+                            margin-right: 0.5rem;
+                        }
+                        span {
+                            font-size: 12px;
+                            font-weight: 500;
+                            color: $whiteColor;
+                        }
+                        &:hover {
+                            cursor: pointer;
+                        }
                     }
                 }
             }
