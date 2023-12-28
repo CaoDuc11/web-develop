@@ -4,11 +4,14 @@ import API from '../config/API';
 
 const initialState = {
     deliveries: [],
-    isError: false,
     isSuccess: false,
     isLoading: true,
     updateStatus: 'none',
     collections: [],
+    deliveriesFromCollection: [],
+    distributions: [],
+    isSuccess2: false,
+    isLoading2: true,
 };
 
 export const employeeCollectionSlice = createSlice({
@@ -31,12 +34,31 @@ export const employeeCollectionSlice = createSlice({
             state.deliveries = action.payload.deliveries;
             state.collections = action.payload.collections;
         });
+
+        builder.addCase(getDeliveriesFromCollection.fulfilled, (state, action) => {
+            state.isLoading2 = false;
+            state.isSuccess2 = true;
+            state.deliveriesFromCollection = action.payload.deliveries;
+            state.distributions = action.payload.distributions;
+        });
     },
 });
 
-export const getDeliveries = createAsyncThunk('collection/get', async (thunkAPI) => {
+export const getDeliveries = createAsyncThunk('collection/deliveries1/get', async (thunkAPI) => {
     try {
         const response = await axios.get(API.HTTP_API + '/collection/deliveries/2', {
+            withCredentials: true,
+        });
+        return response.data;
+    } catch (error) {
+        const message = error.response.data.msg;
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
+export const getDeliveriesFromCollection = createAsyncThunk('collection/deliveries2/get', async (thunkAPI) => {
+    try {
+        const response = await axios.get(API.HTTP_API + '/collection/received/2', {
             withCredentials: true,
         });
         return response.data;
@@ -53,6 +75,7 @@ export const updateJourney = createAsyncThunk('collection/update', async (item, 
             {
                 status: item.journeyStatus,
                 collectionId: item.collectionId,
+                distributionId: item.distributionId,
             },
             {
                 withCredentials: true,

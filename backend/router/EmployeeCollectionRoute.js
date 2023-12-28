@@ -6,6 +6,7 @@ const {
 const {
   GetDeliveryData,
   UpdateJourney,
+  GetDeliveryFromCollecton,
 } = require("../controller/employee_collection/EmployeeCollectionController");
 
 const EmployeeCollectionRouter = express.Router();
@@ -14,6 +15,13 @@ EmployeeCollectionRouter.get(
   authenticationUser,
   checkEmployeeCollection,
   GetDeliveryData
+);
+
+EmployeeCollectionRouter.get(
+  "/collection/received/:status",
+  authenticationUser,
+  checkEmployeeCollection,
+  GetDeliveryFromCollecton
 );
 
 EmployeeCollectionRouter.put(

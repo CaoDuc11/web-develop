@@ -37,12 +37,6 @@ const Collection = database.define(
 
     managerId: {
       type: DataTypes.STRING,
-      allowNull: false,
-
-      references: {
-        model: User,
-        key: "id",
-      },
     },
   },
   {
