@@ -4,6 +4,7 @@ import adminDistributionReducer from '../features/AdminDistributionSlice';
 import EmployeeDistributionReducer, { employeeDistributionSlice } from '../features/EmployeeDistributionSlice';
 import adminCollectionReducer from '../features/AdminCollectionSlice';
 import employeeCollectionReducer from '../features/EmployeeCollectionSlice';
+import journeyReducer from '../features/JourneySlice';
 
 export const store = configureStore({
     reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
         employeeDistribution: EmployeeDistributionReducer,
         adminCollection: adminCollectionReducer,
         employeeCollection: employeeCollectionReducer,
+        journey: journeyReducer,
     },
 });

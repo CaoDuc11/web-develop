@@ -5,6 +5,7 @@ const loginRoute = require("./router/LoginRoute");
 const AdminDistributionRouter = require("./router/AdminDistributionRoute");
 const EmployeeDistributionRouter = require("./router/EmployeeDistributionRoute");
 const AdminCollectionRouter = require("./router/AdminCollectionRoute");
+const JourneyRouter = require("./router/JourneyRoute");
 const {
   EmployeeCollectionRouter,
 } = require("./router/EmployeeCollectionRoute");
@@ -18,4 +19,5 @@ app.use(AdminDistributionRouter);
 app.use(EmployeeDistributionRouter);
 app.use(AdminCollectionRouter);
 app.use(EmployeeCollectionRouter);
+app.use(JourneyRouter);
 app.listen(5000);
