@@ -38,6 +38,9 @@ const initialState = {
     deliveriesShip: [],
     isSuccess2: false,
     isLoading2: true,
+    isSuccessHome: false,
+    isLoadingHome: true,
+    deliveriesDay: [],
 };
 
 export const employeeDistributionSlice = createSlice({
@@ -72,6 +75,12 @@ export const employeeDistributionSlice = createSlice({
             state.isLoading = false;
             state.isSuccess = true;
             state.deliveries = action.payload;
+        });
+
+        builder.addCase(GetDeliveryDay.fulfilled, (state, action) => {
+            state.isLoadingHome = false;
+            state.isSuccessHome = true;
+            state.deliveriesDay = action.payload;
         });
 
         builder.addCase(GetDeliveryShip.fulfilled, (state, action) => {
@@ -125,6 +134,18 @@ export const createDelivery = createAsyncThunk('distribution/create', async (del
 export const GetDelivery = createAsyncThunk('distribution/get', async (option, thunkAPI) => {
     try {
         const response = await axios.get(API.HTTP_API + '/distribution/deliveries/' + option.transactionStatus, {
+            withCredentials: true,
+        });
+        return response.data;
+    } catch (error) {
+        const message = error.response.data.msg;
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
+export const GetDeliveryDay = createAsyncThunk('distribution/gettoday', async (thunkAPI) => {
+    try {
+        const response = await axios.get(API.HTTP_API + '/distribution/deliveries/1', {
             withCredentials: true,
         });
         return response.data;
