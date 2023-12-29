@@ -6,19 +6,20 @@ import styles from './user.module.scss';
 import { IoLocation, IoMail } from 'react-icons/io5';
 import { FaPhone, FaPhoneAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { getJourney } from '~/all/features/JourneySlice';
+import { getJourney, reset } from '~/all/features/JourneySlice';
 import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 const User = () => {
     const dispatch = useDispatch();
-    const { journey } = useSelector((state) => state.journey);
-    const { id, setId } = useState('');
+    const { journey, isSuccess } = useSelector((state) => state.journey);
+    const [ id, setId ] = useState('');
     const handleInput = (e) => {
         setId(e.target.value);
     }
     const handleSubmit = () => {
+        dispatch(reset());
         dispatch(getJourney(id));
     }
     return (
@@ -42,7 +43,7 @@ const User = () => {
                         <div className={cx('title')}>Kết quả tìm kiếm</div>
                     </div>
                     <div className={cx('bottom')}>
-                        {id ? (
+                        {isSuccess ? (
                             <table className={cx('table-list')}>
                                 <thead>
                                     <tr className={cx('header-table')}>
@@ -57,7 +58,7 @@ const User = () => {
 
                                 <tbody>
                                     <tr className={cx('body-table')}>
-                                        <th style={{ textAlign: 'center' }}>A0544328</th>
+                                        <th style={{ textAlign: 'center' }}>{id}</th>
                                         <th>{journey.createdAt}</th>
                                         <th>{journey.collectionTime1 != null ? journey.collectionTime1 : 'Chưa đến'}</th>
                                         <th>{journey.collectionTime2 != null ? journey.collectionTime2 : 'Chưa đến'}</th>
