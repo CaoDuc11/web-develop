@@ -32,7 +32,7 @@ const AdminDistributionDashboard = () => {
                         <FeatureChart />
                     </div>
                     <div className={cx('table-component')}>
-                        <EmployeeTable employeesList={employeesList} />
+                        <EmployeeTable employeesList={employeesList} manageLink="/admin/distribution/employees" />
                     </div>
                 </div>
             </div>
