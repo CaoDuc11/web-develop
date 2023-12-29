@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './EmployeeTable.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
-const EmployeeTable = ({ employeesList }) => {
+const EmployeeTable = ({ employeesList, manageLink }) => {
     const Vaitro = (item) => {
         switch (item.position) {
             case 'employee_distribution':
@@ -18,7 +18,6 @@ const EmployeeTable = ({ employeesList }) => {
                 return null;
         }
     };
-const EmployeeTable = ({ employeesList, manageLink }) => {
     return (
         <div>
             <div className={cx('employees-table')}>
