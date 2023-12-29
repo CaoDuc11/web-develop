@@ -25,10 +25,10 @@ const DeliveryTable = ({ deliveries }) => {
                             <tbody>
                                 {deliveries.map((item, index) => (
                                     <tr className={cx('body-table')}>
-                                        <th style={{ textAlign: 'center' }}>{index + 1}</th>
+                                        <th style={{ textAlign: 'center' }}>{item.transactionId}</th>
                                         <th>{item.senderName}</th>
                                         <th>{item.senderAddress}</th>
-                                        <th>0987898768</th>
+                                        <th>{item.senderPhone}</th>
                                     </tr>
                                 ))}
                             </tbody>

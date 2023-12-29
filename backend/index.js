@@ -8,6 +8,7 @@ const AdminCollectionRouter = require("./router/AdminCollectionRoute");
 const {
   EmployeeCollectionRouter,
 } = require("./router/EmployeeCollectionRoute");
+const ManagerSystemRouter = require("./router/ManagerCollectionRoute");
 const app = express();
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(cookieParser());
@@ -18,4 +19,5 @@ app.use(AdminDistributionRouter);
 app.use(EmployeeDistributionRouter);
 app.use(AdminCollectionRouter);
 app.use(EmployeeCollectionRouter);
+app.use(ManagerSystemRouter);
 app.listen(5000);

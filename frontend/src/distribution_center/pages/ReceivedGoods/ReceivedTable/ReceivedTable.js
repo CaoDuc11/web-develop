@@ -175,7 +175,7 @@ const ReceivedTable = (props) => {
                                 style={{ color: 'rgb(51,255,51)', cursor: 'pointer' }}
                                 onClick={() => handleOpen(index)}
                             >
-                                A000452
+                                {item.transactionId}
                             </th>
                             <th>{item.senderName}</th>
                             <th>{item.receiverName}</th>

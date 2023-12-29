@@ -14,6 +14,10 @@ import Login from './all/Login';
 import User from './SearchingDelivery(User)/pages/Dashboard';
 import AdminDistributionDashboard from './distribution_admin/pages/Dashboard';
 import StatisticDistributionEmployee from './distribution_center/pages/StatisticDistributionEmployee';
+import ManagerDashboard from './system_management/pages/ManagerDashboard';
+import ManagerStatistic from './system_management/pages/ManagerStatistic';
+import ManagerSystemTable from './system_management/pages/ManagerSystemTable';
+import ManagerEmployee from './system_management/pages/ManagerEmployee';
 function App() {
     return (
         <div>
@@ -39,6 +43,11 @@ function App() {
                     <Route path="/warehouse/staff/dashboard" element={<WarehouseStaff />} />
                     <Route path="/warehouse/staff/acceptDelivery" element={<DeliveryFromDistribution />} />
                     <Route path="/warehouse/staff/createDelivery" element={<DeliveryFromCollection />} />
+
+                    <Route path="/management/dashboard" element={<ManagerDashboard />} />
+                    <Route path="/management/statistics" element={<ManagerStatistic />} />
+                    <Route path="/management/system" element={<ManagerSystemTable />} />
+                    <Route path="/management/employees" element={<ManagerEmployee />} />
                 </Routes>
             </BrowserRouter>
         </div>

@@ -35,8 +35,17 @@ const Collection = database.define(
       allowNull: false,
     },
 
+    hotline: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
     managerId: {
       type: DataTypes.STRING,
+      references: {
+        model: User,
+        key: "id",
+      },
     },
   },
   {
