@@ -33,7 +33,7 @@ const Button = ({ item, onClick }) => {
                 <button
                     style={{
                         background: 'white',
-                        color: 'rgb(51,255,51)',
+                        color: 'hsl(187, 85%, 43%)',
                         fontSize: '14px',
                         fontWeight: '500',
                         padding: '0.4rem 0.5rem',
@@ -51,7 +51,7 @@ const Button = ({ item, onClick }) => {
                 <button
                     style={{
                         background: 'white',
-                        color: 'hsl(260, 50%, 60%)',
+                        color: 'hsl(187, 85%, 43%)',
                         fontSize: '14px',
                         fontWeight: '500',
                         padding: '0.4rem 0.5rem',

@@ -64,7 +64,7 @@ const Sidebar = () => {
                             </li>
 
                             <li>
-                                <NavLink to={'/distribution/dashboard'} className={cx('sidebar-item')}>
+                                <NavLink to={'/distribution/statistic'} className={cx('sidebar-item')}>
                                     <IoStatsChart className={cx('sidebar-icon')} />
                                     <span className={cx('sidebar_title')}>Thống kê</span>
                                 </NavLink>
