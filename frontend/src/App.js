@@ -18,6 +18,8 @@ import ManagerDashboard from './system_management/pages/ManagerDashboard';
 import ManagerStatistic from './system_management/pages/ManagerStatistic';
 import ManagerSystemTable from './system_management/pages/ManagerSystemTable';
 import ManagerEmployee from './system_management/pages/ManagerEmployee';
+import StatisticDistribution from './distribution_admin/pages/StatisticDistribution';
+
 function App() {
     return (
         <div>
@@ -38,6 +40,8 @@ function App() {
 
                     <Route path="/admin/distribution/dashboard" element={<AdminDistributionDashboard />} />
                     <Route path="/admin/distribution/employees" element={<Employees />} />
+                    <Route path="/admin/distribution/statistics" element={<StatisticDistribution />} />
+
                     <Route path="/user/dashboard" element={<User />} />
 
                     <Route path="/warehouse/staff/dashboard" element={<WarehouseStaff />} />

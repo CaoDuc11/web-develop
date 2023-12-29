@@ -32,7 +32,7 @@ const Warehouse = () => {
                         <FeatureChart />
                     </div>
                     <div className={cx('table-component')}>
-                        <EmployeeTable employeesList={employeesList} />
+                        <EmployeeTable employeesList={employeesList} manageLink="/warehouse/managestaff" />
                     </div>
                 </div>
             </div>

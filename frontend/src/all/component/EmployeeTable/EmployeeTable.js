@@ -18,6 +18,7 @@ const EmployeeTable = ({ employeesList }) => {
                 return null;
         }
     };
+const EmployeeTable = ({ employeesList, manageLink }) => {
     return (
         <div>
             <div className={cx('employees-table')}>
@@ -52,7 +53,7 @@ const EmployeeTable = ({ employeesList }) => {
                     )}
                 </div>
                 <div className={cx('see-details')}>
-                    <Link to="/warehouse/managestaff" className={cx('link')}>
+                    <Link to={manageLink} className={cx('link')}>
                         <span>See Details</span>
                     </Link>
                 </div>

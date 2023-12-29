@@ -81,7 +81,7 @@ const Login = () => {
                             </label>
                             <div className={cx('control')}>
                                 <input
-                                    type="text"
+                                    type="password"
                                     className={cx('password-account', 'input')}
                                     placeholder="Mật khẩu"
                                     value={password}
