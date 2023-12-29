@@ -11,14 +11,14 @@ const {
 
 const EmployeeCollectionRouter = express.Router();
 EmployeeCollectionRouter.get(
-  "/collection/deliveries/:status",
+  "/collection/deliveries",
   authenticationUser,
   checkEmployeeCollection,
   GetDeliveryData
 );
 
 EmployeeCollectionRouter.get(
-  "/collection/received/:status",
+  "/collection/received",
   authenticationUser,
   checkEmployeeCollection,
   GetDeliveryFromCollecton

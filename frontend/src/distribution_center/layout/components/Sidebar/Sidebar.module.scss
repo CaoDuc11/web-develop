@@ -64,34 +64,34 @@
 
         .sidebar-sublist {
             width: 100%;
-            display: none;
+            display: flex;
         }
 
-        .sidebar-sublist.display {
+        .sidebar-sublist {
             display: inline-block;
         }
 
-        .sidebar-sublist.display li :hover {
-            background: rgb(230, 230, 230);
+        .sidebar-sublist li :hover {
+            background: $contentColor;
         }
     }
 
-    .donhang-item {
-        background: $contentColor;
-        .subclass {
-            color: $primaryColor !important;
-        }
+    // .donhang-item {
+    //     background: $contentColor;
+    //     .subclass {
+    //         color: $primaryColor !important;
+    //     }
 
-        .subtitle1.create-order,
-        .subtitle2.manage-inventory,
-        .subtitle3.manage-status {
-            background-color: rgb(230, 230, 230);
-            .sidebar-icon {
-                color: $primaryColor !important;
-            }
-            .sidebar_title {
-                color: $primaryColor !important;
-            }
-        }
-    }
+    //     .subtitle1.create-order,
+    //     .subtitle2.manage-inventory,
+    //     .subtitle3.manage-status {
+    //         background-color: rgb(230, 230, 230);
+    //         .sidebar-icon {
+    //             color: $primaryColor !important;
+    //         }
+    //         .sidebar_title {
+    //             color: $primaryColor !important;
+    //         }
+    //     }
+    // }
 }

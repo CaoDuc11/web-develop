@@ -11,7 +11,7 @@ const Sidebar = () => {
     return (
         <section className={cx('sidebarSection')}>
             <div className={cx('sideBar')}>
-                <div className={cx('siderHeader')}>
+                <div className={cx('siderHeader')} style={{ marginTop: '3rem' }}>
                     <span className={cx('sidebar_label')}>Chung</span>
                     <div className={cx('sidebar-list')}>
                         <ul className={cx('sidebar_list_ul')}>

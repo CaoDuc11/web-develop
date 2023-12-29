@@ -78,7 +78,7 @@ const Sidebar = () => {
                     <div className={cx('sidebar-list')}>
                         <ul className={cx('sidebar_list_ul')}>
                             <li>
-                                <div className={cx(donhangClass)} onClick={addDonHangClass}>
+                                <div className={cx(donhangClass)}>
                                     <NavLink to={''} className={cx('sidebar-item')}>
                                         {donhangClass === 'donhang-item' ? (
                                             <IoDocumentTextOutline
@@ -99,9 +99,9 @@ const Sidebar = () => {
                                         )}
                                     </NavLink>
 
-                                    <div className={cx('sidebar-sublist', displaySublist)}>
+                                    <div className={cx('sidebar-sublist')}>
                                         <ul className={cx('sidebar_list_ul')}>
-                                            <li className={cx('subtitle1', subTitleClass)}>
+                                            <li className={cx('subtitle1')}>
                                                 <NavLink
                                                     to={'/distribution/createdelivery'}
                                                     className={cx('sidebar-item')}
@@ -112,7 +112,7 @@ const Sidebar = () => {
                                                 </NavLink>
                                             </li>
 
-                                            <li className={cx('subtitle2', subTitleClass)}>
+                                            <li className={cx('subtitle2')}>
                                                 <NavLink
                                                     to={'/distribution/deliverymanagement'}
                                                     className={cx('sidebar-item')}
@@ -120,17 +120,6 @@ const Sidebar = () => {
                                                 >
                                                     <RiArrowRightSLine className={cx('sidebar-icon')} />
                                                     <span className={cx('sidebar_title')}>Quản lý đơn hàng</span>
-                                                </NavLink>
-                                            </li>
-
-                                            <li className={cx('subtitle3', subTitleClass)}>
-                                                <NavLink
-                                                    to={''}
-                                                    className={cx('sidebar-item')}
-                                                    onClick={(e) => addSubTitleClass(3, e)}
-                                                >
-                                                    <RiArrowRightSLine className={cx('sidebar-icon')} />
-                                                    <span className={cx('sidebar_title')}>Quản lý trạng thái</span>
                                                 </NavLink>
                                             </li>
                                         </ul>
