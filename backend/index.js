@@ -20,4 +20,5 @@ app.use(EmployeeDistributionRouter);
 app.use(AdminCollectionRouter);
 app.use(EmployeeCollectionRouter);
 app.use(JourneyRouter);
+app.use(ManagerSystemRouter);
 app.listen(5000);

@@ -5,6 +5,7 @@ import EmployeeDistributionReducer, { employeeDistributionSlice } from '../featu
 import adminCollectionReducer from '../features/AdminCollectionSlice';
 import employeeCollectionReducer from '../features/EmployeeCollectionSlice';
 import journeyReducer from '../features/JourneySlice';
+import managerSystemReducer from '../features/ManagerSystemSlice';
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
         adminCollection: adminCollectionReducer,
         employeeCollection: employeeCollectionReducer,
         journey: journeyReducer,
+        managerSystemReducer: managerSystemReducer,
     },
 });
