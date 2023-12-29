@@ -8,38 +8,38 @@ const cx = classNames.bind(styles);
 const data = [
     {
         name: '5 ngày trước',
-        Received: 4000,
-        Sent: 2400,
+        Success: 4000,
+        Failed: 2400,
         amt: 2400,
     },
     {
         name: '4 ngày trước',
-        Received: 3000,
-        Sent: 1398,
+        Success: 3000,
+        Failed: 1398,
         amt: 2210,
     },
     {
         name: '3 ngày trước',
-        Received: 2000,
-        Sent: 9800,
+        Success: 2000,
+        Failed: 9800,
         amt: 2290,
     },
     {
         name: '2 ngày trước',
-        Received: 2780,
-        Sent: 3908,
+        Success: 2780,
+        Failed: 3908,
         amt: 2000,
     },
     {
         name: 'Hôm qua',
-        Received: 1890,
-        Sent: 4800,
+        Success: 1890,
+        Failed: 4800,
         amt: 2181,
     },
     {
         name: 'Hôm nay',
-        Received: 2390,
-        Sent: 3800,
+        Success: 2390,
+        Failed: 3800,
         amt: 2500,
     },
 ];
@@ -49,7 +49,7 @@ const StatisticDistributionEmployee = () => {
         <Layout>
             <div className={cx('chart')}>
                 <div className={cx('title')}>
-                    <h1 className={cx('content')}>THỐNG KẾ SỐ LƯỢNG ĐƠN HÀNG LƯU CHUYỂN GẦN ĐÂY</h1>
+                    <h1 className={cx('content')}>THỐNG KẾ TÌNH TRẠNG CÁC ĐƠN HÀNG GẦN ĐÂY</h1>
                 </div>
                 <ResponsiveContainer width="90%" height="80vh" aspect={2 / 1}>
                     <BarChart
@@ -68,8 +68,8 @@ const StatisticDistributionEmployee = () => {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="Sent" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-                        <Bar dataKey="Received" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
+                        <Bar dataKey="Failed" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+                        <Bar dataKey="Success" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
                     </BarChart>
                 </ResponsiveContainer>
             </div>

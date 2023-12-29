@@ -14,6 +14,9 @@ import Login from './all/Login';
 import User from './SearchingDelivery(User)/pages/Dashboard';
 import AdminDistributionDashboard from './distribution_admin/pages/Dashboard';
 import StatisticDistributionEmployee from './distribution_center/pages/StatisticDistributionEmployee';
+import StatisticDistribution from './distribution_admin/pages/StatisticDistribution';
+import DeliveryReceipt from './all/component/DeliveryReceipt/DeliveryReceipt';
+
 function App() {
     return (
         <div>
@@ -34,6 +37,8 @@ function App() {
 
                     <Route path="/admin/distribution/dashboard" element={<AdminDistributionDashboard />} />
                     <Route path="/admin/distribution/employees" element={<Employees />} />
+                    <Route path="/admin/distribution/statistics" element={<StatisticDistribution />} />
+
                     <Route path="/user/dashboard" element={<User />} />
 
                     <Route path="/warehouse/staff/dashboard" element={<WarehouseStaff />} />

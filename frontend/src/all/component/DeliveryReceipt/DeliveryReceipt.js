@@ -2,6 +2,7 @@ import { Document, Page, Text, View, StyleSheet, PDFViewer, Font } from '@react-
 import { forwardRef } from 'react';
 import { IoMdCheckboxOutline } from 'react-icons/io';
 import { MdOutlineCheckBoxOutlineBlank } from 'react-icons/md';
+import QR from '../QR/QR';
 Font.register({
     family: 'Roboto',
     fonts: [
@@ -64,6 +65,10 @@ const DeliveryReceipt = forwardRef((props, ref) => {
     return (
         //<PDFViewer ref={ref}>
         <Document ref={ref}>
+            <div style={{display: 'flex', width: '100%', justifyContent: 'space-around', alignItems: 'center', marginBottom: '10px', marginTop: '10px'}}>
+                <h1>Magic Post</h1>
+                <QR id={props.transactionId} />
+            </div>
             <Page size="A6" orientation="landscape" style={style.Page}>
                 <View style={style.Section}>
                     <View
