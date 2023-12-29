@@ -16,6 +16,7 @@ import DeliveryFromCollection from './warehouseStaff/pages/DeliveryFromCollectio
 import DeliveryFromDistribution from './warehouseStaff/pages/CreateDelivery';
 import Login from './all/Login';
 import User from './SearchingDelivery(User)/pages/Dashboard';
+import AdminDistributionDashboard from './distribution_admin/pages/Dashboard';
 function App() {
     return (
         <div>
@@ -33,10 +34,10 @@ function App() {
 
                     <Route path="/distribution/receivedgoods" element={<ReceivedGoods />} />
 
-                    <Route path="/admin/distribution/dashboard" element={<Dashboard />} />
+                    <Route path="/admin/distribution/dashboard" element={<AdminDistributionDashboard />} />
                     <Route path="/admin/distribution/employees" element={<Employees />} />
-                    <Route path="/user/dashboard" element={<User/>}/>
-                    
+                    <Route path="/user/dashboard" element={<User />} />
+
                     <Route path="/warehouse/staff/dashboard" element={<WarehouseStaff />} />
                     <Route path="/warehouse/staff/acceptDelivery" element={<DeliveryFromDistribution />} />
                     <Route path="/warehouse/staff/createDelivery" element={<DeliveryFromCollection />} />

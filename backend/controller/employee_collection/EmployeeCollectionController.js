@@ -11,10 +11,9 @@ const GetDeliveryData = async (req, res) => {
       " parcels.width as parcelWidth, parcels.height as parcelHeight, parcels.length as parcelLength, parcels.parcelContent as parcelContent, parcels.parcelType as parcelType, parcels.weight as parcelWeight," +
       " journey1.status as journeyStatus," +
       " fees.feeMain as feeMain, fees.feeSub as feeSub, fees.cod as cod, fees.vat as vat, fees.gtgt as gtgt, fees.other as other, fees.total as total FROM transactions" +
-      " INNER JOIN customers as sender ON transactions.senderId = sender.customerId INNER JOIN customers as receiver ON transactions.receiverId = receiver.customerId JOIN parcels ON transactions.parcelId = parcels.parcelId INNER JOIN fees ON transactions.feeId = fees.feeId INNER JOIN journeys as journey1 ON transactions.journeyId1 = journey1.journeyId INNER JOIN distributions as distributionSend ON transactions.distriSend = distributionSend.distributionId WHERE transactions.status = :status AND transactions.collectionSend =  :employee_place ORDER BY transactions.createAt DESC";
+      " INNER JOIN customers as sender ON transactions.senderId = sender.customerId INNER JOIN customers as receiver ON transactions.receiverId = receiver.customerId JOIN parcels ON transactions.parcelId = parcels.parcelId INNER JOIN fees ON transactions.feeId = fees.feeId INNER JOIN journeys as journey1 ON transactions.journeyId1 = journey1.journeyId INNER JOIN distributions as distributionSend ON transactions.distriSend = distributionSend.distributionId WHERE transactions.collectionSend =  :employee_place ORDER BY transactions.createAt DESC";
     const data1 = await database.query(sql1, {
       replacements: {
-        status: req.params.status,
         employee_place: req.Workplace,
       },
       type: QueryTypes.SELECT,
@@ -44,10 +43,9 @@ const GetDeliveryFromCollecton = async (req, res) => {
       " parcels.width as parcelWidth, parcels.height as parcelHeight, parcels.length as parcelLength, parcels.parcelContent as parcelContent, parcels.parcelType as parcelType, parcels.weight as parcelWeight," +
       " journey1.status as journeyStatus," +
       " fees.feeMain as feeMain, fees.feeSub as feeSub, fees.cod as cod, fees.vat as vat, fees.gtgt as gtgt, fees.other as other, fees.total as total FROM transactions" +
-      " INNER JOIN customers as sender ON transactions.senderId = sender.customerId INNER JOIN customers as receiver ON transactions.receiverId = receiver.customerId JOIN parcels ON transactions.parcelId = parcels.parcelId INNER JOIN fees ON transactions.feeId = fees.feeId INNER JOIN journeys as journey1 ON transactions.journeyId1 = journey1.journeyId INNER JOIN distributions as distributionSend ON transactions.distriSend = distributionSend.distributionId WHERE transactions.status = :status AND transactions.collectionReceived =  :employee_place ORDER BY transactions.createAt DESC";
+      " INNER JOIN customers as sender ON transactions.senderId = sender.customerId INNER JOIN customers as receiver ON transactions.receiverId = receiver.customerId JOIN parcels ON transactions.parcelId = parcels.parcelId INNER JOIN fees ON transactions.feeId = fees.feeId INNER JOIN journeys as journey1 ON transactions.journeyId1 = journey1.journeyId INNER JOIN distributions as distributionSend ON transactions.distriSend = distributionSend.distributionId WHERE transactions.collectionReceived =  :employee_place ORDER BY transactions.createAt DESC";
     const data1 = await database.query(sql1, {
       replacements: {
-        status: req.params.status,
         employee_place: req.Workplace,
       },
       type: QueryTypes.SELECT,

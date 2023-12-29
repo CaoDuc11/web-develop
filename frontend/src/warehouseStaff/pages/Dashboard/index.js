@@ -3,12 +3,12 @@ import Layout from '~/warehouseStaff/layout';
 import styles from './DashboardWarehouseStaff.module.scss';
 import classNames from 'classnames/bind';
 import { IoDocumentText } from 'react-icons/io5';
-import { IoEllipsisVerticalSharp } from "react-icons/io5";
+import { IoEllipsisVerticalSharp } from 'react-icons/io5';
 import { IoIosArrowRoundUp } from 'react-icons/io';
 import { MdShoppingCart } from 'react-icons/md';
 import { FaRegCalendarCheck } from 'react-icons/fa';
 import { IoWarning } from 'react-icons/io5';
-import ChangingProgressProvider from '../../../warehouse/pages/Dashboard/ChangingProgressProvider';
+import ChangingProgressProvider from '../../../all/component/Chart/ChangingProgressProvider';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -121,15 +121,15 @@ const WarehouseStaff = () => {
                             <div className={cx('featured-chart')}>
                                 <ChangingProgressProvider values={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}>
                                     {(percentage) => (
-                                        <CircularProgressbar 
-                                        value={percentage} 
-                                        text={`${percentage}%`} 
-                                        styles={buildStyles({
-                                            pathTransitionDuration: 0.95,
-                                            trailColor: "#82ca9d",
-                                            pathColor: "#210876",
-                                            textColor: "#210876",
-                                        })}
+                                        <CircularProgressbar
+                                            value={percentage}
+                                            text={`${percentage}%`}
+                                            styles={buildStyles({
+                                                pathTransitionDuration: 0.95,
+                                                trailColor: '#82ca9d',
+                                                pathColor: '#210876',
+                                                textColor: '#210876',
+                                            })}
                                         />
                                     )}
                                 </ChangingProgressProvider>
@@ -166,4 +166,3 @@ const WarehouseStaff = () => {
 };
 
 export default WarehouseStaff;
-

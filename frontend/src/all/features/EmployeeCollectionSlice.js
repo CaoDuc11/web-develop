@@ -46,7 +46,7 @@ export const employeeCollectionSlice = createSlice({
 
 export const getDeliveries = createAsyncThunk('collection/deliveries1/get', async (thunkAPI) => {
     try {
-        const response = await axios.get(API.HTTP_API + '/collection/deliveries/2', {
+        const response = await axios.get(API.HTTP_API + '/collection/deliveries', {
             withCredentials: true,
         });
         return response.data;
@@ -58,7 +58,7 @@ export const getDeliveries = createAsyncThunk('collection/deliveries1/get', asyn
 
 export const getDeliveriesFromCollection = createAsyncThunk('collection/deliveries2/get', async (thunkAPI) => {
     try {
-        const response = await axios.get(API.HTTP_API + '/collection/received/2', {
+        const response = await axios.get(API.HTTP_API + '/collection/received', {
             withCredentials: true,
         });
         return response.data;
