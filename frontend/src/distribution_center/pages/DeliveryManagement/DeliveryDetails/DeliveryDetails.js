@@ -17,7 +17,7 @@ const DeliveryDetails = ({ deliveryDetail, position }) => {
             <div className={cx('delivery-details-header')}>
                 <div className={cx('delivery-details-header-title')}>
                     <span className={cx('title')}>Thông tin chi tiết đơn hàng:</span>
-                    <span className={cx('subtitle')}>A005442</span>
+                    <span className={cx('subtitle')}>{deliveryDetail[position].transactionId}</span>
                 </div>
 
                 <div className={cx('delivery-details-header-button')}>

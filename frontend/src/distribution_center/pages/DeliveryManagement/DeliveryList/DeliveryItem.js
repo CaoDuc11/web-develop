@@ -59,7 +59,7 @@ const DeliveryItem = (props) => {
             <div className={cx('delivery-item-subitem')}>
                 <BsQrCodeScan className={cx('delivery-item-subitem-icon')} />
                 <span className={cx('delivery-item-subitem-title')}>Mã đơn hàng:</span>
-                <span className={cx('delivery-item-subitem-infor')}>A005442</span>
+                <span className={cx('delivery-item-subitem-infor')}>{item.transactionId}</span>
             </div>
             <div className={cx('delivery-item-subitem')}>
                 <BsPersonCheck className={cx('delivery-item-subitem-icon')} />

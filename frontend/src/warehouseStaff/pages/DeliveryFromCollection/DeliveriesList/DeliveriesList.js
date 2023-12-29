@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './DeliveriesList.module.scss';
-import { PiPrinterFill } from 'react-icons/pi';
 import { IoPaperPlane } from 'react-icons/io5';
-import { AiOutlineStop } from 'react-icons/ai';
+import { MdOutlineReportGmailerrorred } from 'react-icons/md';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const cx = classNames.bind(styles);
 
@@ -32,6 +32,23 @@ const Button = ({ item, onClick }) => {
                 <button
                     style={{
                         background: 'white',
+                        color: 'hsl(187, 85%, 43%)',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        padding: '0.4rem 0.5rem',
+                        border: 'none',
+                        borderRadius: '2px',
+                        cursor: 'pointer',
+                    }}
+                >
+                    Đã nhận được hàng!
+                </button>
+            );
+        case '9':
+            return (
+                <button
+                    style={{
+                        background: 'white',
                         color: 'rgb(51,255,51)',
                         fontSize: '14px',
                         fontWeight: '500',
@@ -40,12 +57,28 @@ const Button = ({ item, onClick }) => {
                         borderRadius: '2px',
                         cursor: 'pointer',
                     }}
-                    onClick={() => onClick(item)}
                 >
-                    Đã nhận được hàng!
+                    Giao hàng thành công!
                 </button>
             );
-        case '6':
+        case '0':
+            return (
+                <button
+                    style={{
+                        background: 'white',
+                        color: 'rgb(222, 46, 46)',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        padding: '0.4rem 0.5rem',
+                        border: 'none',
+                        borderRadius: '2px',
+                        cursor: 'pointer',
+                    }}
+                >
+                    Giao hàng không thành công!
+                </button>
+            );
+        default:
             return (
                 <button
                     style={{
@@ -58,13 +91,10 @@ const Button = ({ item, onClick }) => {
                         borderRadius: '2px',
                         cursor: 'pointer',
                     }}
-                    onClick={() => onClick(item)}
                 >
                     Đã gửi hàng!
                 </button>
             );
-        default:
-            return null;
     }
 };
 
@@ -107,7 +137,7 @@ const DeliveriesList = (props) => {
                                 style={{ color: 'rgb(51,255,51)', cursor: 'pointer' }}
                                 onClick={() => handleOpen(index)}
                             >
-                                A200025
+                                {item.transactionId}
                             </th>
                             <th>{item.senderName}</th>
                             <th>{item.receiverName}</th>
@@ -139,21 +169,22 @@ const DeliveriesList = (props) => {
                             </th>
                             <th>
                                 <div className={cx('option-button')}>
-                                    <div className={cx('button-green')}>
-                                        <PiPrinterFill className={cx('icon')} />
-                                        <span>PRINT</span>
-                                    </div>
-
                                     {item.journeyStatus === '5' && (
                                         <div className={cx('button-green')} onClick={() => onClick(item)}>
                                             <IoPaperPlane className={cx('icon')} />
                                             <span>GỬI ĐƠN</span>
                                         </div>
                                     )}
-                                    {item.journeyStatus === '6' && (
+                                    {item.journeyStatus !== '5' && item.journeyStatus !== '9' && (
+                                        <div className={cx('button-green')} style={{ background: 'rgb(255, 95, 31)' }}>
+                                            <MdOutlineReportGmailerrorred className={cx('icon')} />
+                                            <span>BÁO CÁO</span>
+                                        </div>
+                                    )}
+                                    {item.journeyStatus === '9' && (
                                         <div className={cx('button-red')} onClick={() => onClick(item)}>
-                                            <AiOutlineStop className={cx('icon')} />
-                                            <span>HUỶ ĐƠN</span>
+                                            <RiDeleteBin6Line className={cx('icon')} />
+                                            <span>XÓA</span>
                                         </div>
                                     )}
                                 </div>

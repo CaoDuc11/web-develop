@@ -86,6 +86,7 @@ export const adminCollectionSlice = createSlice({
     name: 'adminCollection',
     initialState,
     reducers: {
+        resetAdminCollection: () => initialState,
         reset: (state) => {
             state.isError = false;
             state.message = '';
@@ -196,5 +197,6 @@ export const adminCollectionSlice = createSlice({
         // });
     },
 });
-export const { reset, addEmployee, deleteEmployee, setEmployeeEdit, updateEmployee } = adminCollectionSlice.actions;
+export const { reset, resetAdminCollection, addEmployee, deleteEmployee, setEmployeeEdit, updateEmployee } =
+    adminCollectionSlice.actions;
 export default adminCollectionSlice.reducer;
