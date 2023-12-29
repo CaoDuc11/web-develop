@@ -39,11 +39,18 @@ const Sidebar = () => {
                                     <span className={cx('sidebar_title')}>Thống kê</span>
                                 </NavLink>
                             </li>
+                        </ul>
+                    </div>
+                </div>
 
+                <div className={cx('siderMain')}>
+                    <span className={cx('sidebar_label')}>Quản lí nhân viên</span>
+                    <div className={cx('sidebar-list')}>
+                        <ul className={cx('sidebar_list_ul')}>
                             <li>
                                 <NavLink to={'/warehouse/managestaff'} className={cx('sidebar-item')}>
                                     <GrUserManager className={cx('sidebar-icon')} />
-                                    <span className={cx('sidebar_title')}>Quản lý nhân viên</span>
+                                    <span className={cx('sidebar_title')}>Nhân viên</span>
                                 </NavLink>
                             </li>
                         </ul>
