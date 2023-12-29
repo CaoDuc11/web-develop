@@ -18,7 +18,7 @@ export const employeeCollectionSlice = createSlice({
     name: 'employeeCollection',
     initialState,
     reducers: {
-        reset: () => initialState,
+        reset1: () => initialState,
         resetUpdateStatus: (state) => {
             state.updateStatus = 'none';
         },
@@ -87,5 +87,5 @@ export const updateJourney = createAsyncThunk('collection/update', async (item, 
         return thunkAPI.rejectWithValue(message);
     }
 });
-export const { reset, resetUpdateStatus, ChangeUpdateStatus } = employeeCollectionSlice.actions;
+export const { reset1, resetUpdateStatus, ChangeUpdateStatus } = employeeCollectionSlice.actions;
 export default employeeCollectionSlice.reducer;

@@ -52,7 +52,7 @@ const CreateEmployee = async (req, res) => {
 const GetEmployees = async (req, res) => {
   try {
     const data = await User.findAll({
-      attributes: ["id", "fullname", "email", "username"],
+      attributes: ["id", "fullname", "email", "username", "position"],
       where: {
         [Op.and]: [
           {

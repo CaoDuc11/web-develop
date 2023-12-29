@@ -33,6 +33,9 @@ const Login = () => {
             if (user.position === 'employee_collection') {
                 navigate('/warehouse/staff/dashboard');
             }
+            if (user.position === 'manager_system') {
+                navigate('/management/dashboard');
+            }
         }
         dispatch(reset());
     }, [user, isSuccess, dispatch, navigate]);

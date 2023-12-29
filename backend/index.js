@@ -9,6 +9,7 @@ const JourneyRouter = require("./router/JourneyRoute");
 const {
   EmployeeCollectionRouter,
 } = require("./router/EmployeeCollectionRoute");
+const ManagerSystemRouter = require("./router/ManagerCollectionRoute");
 const app = express();
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(cookieParser());

@@ -35,6 +35,11 @@ const User = database.define(
       allowNull: false,
     },
 
+    numberPhone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
     workplace: {
       type: DataTypes.STRING,
       allowNull: false,

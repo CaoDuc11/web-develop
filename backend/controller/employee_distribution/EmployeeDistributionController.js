@@ -123,7 +123,10 @@ const CreateDelivery = async (req, res) => {
         distributionId: req.Workplace,
       },
     });
+    const transactions = await Transaction.findAndCountAll();
+
     await Transaction.create({
+      transactionId: `MP00${transactions.count}`,
       parcelId,
       senderId,
       receiverId,

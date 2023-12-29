@@ -1,16 +1,32 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './AcceptedList.module.scss';
-import { PiPrinterFill } from 'react-icons/pi';
 import { IoPaperPlane } from 'react-icons/io5';
-import { AiOutlineStop } from 'react-icons/ai';
 import { MdOutlineReportGmailerrorred } from 'react-icons/md';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 const cx = classNames.bind(styles);
 
 const Button = ({ item, onClick }) => {
     switch (item.journeyStatus) {
-        case ('2', '1'):
+        case '1':
+            return (
+                <button
+                    style={{
+                        background: 'rgb(255, 95, 31)',
+                        color: 'white',
+                        fontSize: '13px',
+                        fontWeight: '500',
+                        padding: '0.4rem 0.5rem',
+                        border: 'none',
+                        borderRadius: '2px',
+                        cursor: 'pointer',
+                    }}
+                    onClick={() => onClick(item)}
+                >
+                    Xác nhận
+                </button>
+            );
+        case '2':
             return (
                 <button
                     style={{
@@ -41,7 +57,6 @@ const Button = ({ item, onClick }) => {
                         borderRadius: '2px',
                         cursor: 'pointer',
                     }}
-                    onClick={() => onClick(item)}
                 >
                     Đã nhận được hàng!
                 </button>
@@ -51,7 +66,7 @@ const Button = ({ item, onClick }) => {
                 <button
                     style={{
                         background: 'white',
-                        color: 'hsl(187, 85%, 43%)',
+                        color: 'rgb(51,255,51)',
                         fontSize: '14px',
                         fontWeight: '500',
                         padding: '0.4rem 0.5rem',
@@ -59,7 +74,6 @@ const Button = ({ item, onClick }) => {
                         borderRadius: '2px',
                         cursor: 'pointer',
                     }}
-                    onClick={() => onClick(item)}
                 >
                     Giao hàng thành công!
                 </button>
@@ -77,7 +91,6 @@ const Button = ({ item, onClick }) => {
                         borderRadius: '2px',
                         cursor: 'pointer',
                     }}
-                    onClick={() => onClick(item)}
                 >
                     Giao hàng không thành công!
                 </button>
@@ -95,7 +108,6 @@ const Button = ({ item, onClick }) => {
                         borderRadius: '2px',
                         cursor: 'pointer',
                     }}
-                    onClick={() => onClick(item)}
                 >
                     Đã gửi hàng!
                 </button>
@@ -142,7 +154,7 @@ const AcceptedList = (props) => {
                                 style={{ color: 'rgb(51,255,51)', cursor: 'pointer' }}
                                 onClick={() => handleOpen(index)}
                             >
-                                A200025
+                                {item.transactionId}
                             </th>
                             <th>{item.senderName}</th>
                             <th>{item.receiverName}</th>
@@ -185,7 +197,7 @@ const AcceptedList = (props) => {
                                         </div>
                                     )}
                                     {item.journeyStatus === '9' && (
-                                        <div className={cx('button-red')} onClick={() => onClick(item)}>
+                                        <div className={cx('button-red')}>
                                             <RiDeleteBin6Line className={cx('icon')} />
                                             <span>XÓA</span>
                                         </div>

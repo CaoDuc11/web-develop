@@ -26,14 +26,33 @@ const Distribution = database.define(
       allowNull: false,
     },
 
+    province: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    district: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
     ward: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    hotline: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
     managerId: {
       type: DataTypes.STRING,
-      allowNull: false,
+
+      references: {
+        model: User,
+        key: "id",
+      },
     },
 
     collectionId: {

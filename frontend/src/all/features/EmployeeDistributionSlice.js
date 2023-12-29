@@ -47,6 +47,7 @@ export const employeeDistributionSlice = createSlice({
     name: 'employeeDistribution',
     initialState,
     reducers: {
+        resetEmployeeDistribution: () => initialState,
         reset: (state) => {
             const place = {
                 senderId: nanoid(),
@@ -225,6 +226,6 @@ export const UpdateJourneyShip = createAsyncThunk('distribution/journey/update',
     }
 });
 
-export const { addDelivery, reset, resetState, resetCreateStatus, ChangStatusOption } =
+export const { addDelivery, resetEmployeeDistribution, reset, resetState, resetCreateStatus, ChangStatusOption } =
     employeeDistributionSlice.actions;
 export default employeeDistributionSlice.reducer;
