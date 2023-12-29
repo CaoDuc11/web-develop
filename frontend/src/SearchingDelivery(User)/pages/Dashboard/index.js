@@ -5,10 +5,22 @@ import classNames from 'classnames/bind';
 import styles from './user.module.scss';
 import { IoLocation, IoMail } from 'react-icons/io5';
 import { FaPhone, FaPhoneAlt } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { getJourney } from '~/all/features/JourneySlice';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 const User = () => {
+    const dispatch = useDispatch();
+    const { journey } = useSelector((state) => state.journey);
+    const { id, setId } = useState('');
+    const handleInput = (e) => {
+        setId(e.target.value);
+    }
+    const handleSubmit = () => {
+        dispatch(getJourney(id));
+    }
     return (
         <Layout>
             <img src={images.login} alt="login" className={cx('background')} />
@@ -18,13 +30,47 @@ const User = () => {
                     <label className={cx('searchInput')} for="orderId">
                         Nhập mã đơn hàng:
                     </label>
-                    <input className={cx('searchInput')} type="text" id="orderId" name="orderId" required />
-                    <button className={cx('searchInput')} type="submit">
+                    <input className={cx('searchInput')} type="text" id="orderId" name="orderId" required onChange={handleInput} />
+                    <button className={cx('searchInput')} type="submit" onClick={handleSubmit}>
                         Tìm kiếm
                     </button>
                     <p>Nhập mã vận đơn của bạn (cách nhau bởi dấu phẩy), tối đa 10 vận đơn.</p>
                     
                 </form>
+                <div className={cx('result-table')}>
+                    <div className={cx('top')}>
+                        <div className={cx('title')}>Kết quả tìm kiếm</div>
+                    </div>
+                    <div className={cx('bottom')}>
+                        {id ? (
+                            <table className={cx('table-list')}>
+                                <thead>
+                                    <tr className={cx('header-table')}>
+                                        <th style={{ textAlign: 'center' }}>MÃ VẬN ĐƠN</th>
+                                        <th>ĐƯỢC TẠO</th>
+                                        <th>ĐẾN ĐIỂM TẬP KẾT 1</th>
+                                        <th>ĐẾN ĐIỂM TẬP KẾT 2</th>
+                                        <th>ĐẾN ĐIỂM GIAO DỊCH 2</th>
+                                        <th>TÌNH TRẠNG</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr className={cx('body-table')}>
+                                        <th style={{ textAlign: 'center' }}>A0544328</th>
+                                        <th>{journey.createdAt}</th>
+                                        <th>{journey.collectionTime1 != null ? journey.collectionTime1 : 'Chưa đến'}</th>
+                                        <th>{journey.collectionTime2 != null ? journey.collectionTime2 : 'Chưa đến'}</th>
+                                        <th>{journey.distributionTime2 != null ? journey.distributionTime2 : 'Chưa đến'}</th>
+                                        <th>{journey.status == 9 ? 'Đã hoàn thành' : 'Đang xử lý'}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        ) : (
+                            <h1 className={cx('warning')}>Không tìm thấy đơn hàng</h1>
+                        )}
+                    </div>
+                </div>
             </div>
             <div className={cx('about')}>
                 <h1>VỀ CHÚNG TÔI</h1>

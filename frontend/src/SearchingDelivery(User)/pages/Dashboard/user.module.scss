@@ -44,6 +44,61 @@
     display: flex;
     flex-direction: column;
     background-color: beige;
+    .result-table {
+        position: relative;
+        padding: 1.5rem;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        background: $whiteColor;
+        margin-left: 1.5rem;
+        height: 72vh;
+
+        .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: rgb(20, 5, 73);
+            .title {
+                font-size: 1rem;
+                font-weight: 500;
+            }
+        }
+        .bottom {
+            .table-list {
+                margin-top: 20px;
+                border-collapse: collapse;
+                width: 100%;
+                border-left: 1px solid $greyText;
+                border-right: 1px solid $greyText;
+                .header-table {
+                    background: rgb(227, 227, 227);
+                    th {
+                        text-align: start;
+                        padding: 0.5rem 0.5rem;
+                        font-size: 13px;
+                    }
+                }
+                .body-table {
+                    background: $whiteColor;
+                    th {
+                        text-align: start;
+                        padding: 0.5rem 0.5rem;
+                        font-size: 13px;
+                        font-weight: 400;
+                        border-bottom: 1px solid $greyText;
+                    }
+                }
+            }
+            .warning {
+                display: flex;
+                margin-top: 100px;
+                font-weight: 300;
+                font-size: 1rem;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
 }
 
 .searchEngine > h1 {
