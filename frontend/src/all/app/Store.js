@@ -14,5 +14,7 @@ export const store = configureStore({
         employeeDistribution: EmployeeDistributionReducer,
         adminCollection: adminCollectionReducer,
         employeeCollection: employeeCollectionReducer,
+        journey: journeyReducer,
+        managerSystemReducer: managerSystemReducer,
     },
 });
